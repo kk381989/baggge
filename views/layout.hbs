@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>{{title}}</title>
+    <meta charset="utf-8">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css.map">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css.map">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+    	.navbar-default{
+    		background-color: white;
+    	}
+    </style>
   </head>
   <body>
+    <!--header starts here -->
+    <header>
+  	  <nav class="navbar navbar-default">
+  		<div class="container-fluid">
+  			<div class="navbar-header">
+  				<a class="navbar-brand" href="#"><img  class="img-responsive img-rounded" src="/images/logo.jpg" alt="beggge.com"></a>
+  			</div>
+  			<ul class="nav navbar-nav navbar-right">
+  			  <li><a href="#">Login</a></li>
+  			  <li><a href="#">Signup</a></li> 	
+  			</ul>
+  		</div>
+  	  </nav>
+    </header>    
+    <!--header ends here -->
+   
     {{{body}}}
+    
+    <footer>
+  	
+    </footer>
   </body>
 </html>
