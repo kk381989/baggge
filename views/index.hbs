@@ -1,37 +1,197 @@
 <div class="first">
   <div class="container-fluid">
    <div class="mid">
-    <h5><b>Mobile Recharge & Bill Payments</b></h5>
+    <h4><b>Mobile Recharge & Bill Payments</b></h4>
     
-   <!--menu starts here-->	
+   <!--menu1 starts here-->	
     <ul class="list-inline">
-      <li><a href="#mobile" data-toggle="collapse"><img src="/images/menu1.jpg"></a></li>
-       <div id="mobile" class="">
-		  <form action="" method="">
-		    <input type="radio" name="" value="prepaid"> prepaid 
-  		    <input type="radio" name="" value="postpaid"> postpaid <br>
-  		    <input type="number" name="" placeholder="Mobile Number">
-  		    <input type="number" name="" placeholder="Operator">
-            <input type="number" name="" placeholder="Amount">
-            <button type="button" class="btn btn-primary">Browse Plans</button>
-            <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
-		  </form>
-       </div>
-      <li><button type="button" data-toggle="collapse" data-target="#electricity"><img src="/images/menu2.jpg"></button></li>
-        <div id="electricity" class="collapse">
-		 Lorem ipsum dolor text....
-        </div>
-      <li><button type="button" data-toggle="collapse" data-target="#water"><img src="/images/menu3.jpg"></button></li>
-        <div id="water" class="collapse">
-          Lorem ipsum dolor text....
-        </div>
-      <li><button type="button" data-toggle="collapse" data-target="#dth"><img src="/images/menu4.jpg"></button></li>
-      <div id="dth" class="collapse">
-      Lorem ipsum dolor text....
-      </div>
+      <li><button id="menu1" ><img src="/images/menu1.jpg"></button></li>
+      <li class="active"><button id="menu2" ><img src="/images/menu2.jpg"></button></li>
+      <li><button id="menu3" ><img src="/images/menu3.jpg"></button></li>
+      <li><button id="menu4" ><img src="/images/menu4.jpg"></button></li>
     </ul>
-    <!--menu ends here-->
+    
+    <div id="mobile" class="">
+		  <form action="" method="">
+		    <label class="radio-inline"><input type="radio" class="radio-inline" name="" value="prepaid"> Prepaid</label> 
+  		  <label class="radio-inline"><input type="radio" class="radio-inline" name="" value="postpaid"> Postpaid</label><br>
+  		    <div class="form-group row">
+          <div class="col-xs-2">
+          <input type="number" class="form-control" name="" placeholder="Mobile Number">
+          </div>
+          <div class="col-xs-2">
+  		    <input type="number" class="form-control" name="" placeholder="Operator">
+          </div>
+          <div class="col-xs-2">
+            <input type="number" class="form-control" name="" placeholder="Amount">
+            </div>
+            <div class="col-xs-2">
+            <button type="button" class="btn btn-primary">Browse Plans</button>
+            </div>
+            <div class="col-xs-2">
+            <button type="submit" class="btn btn-primary">Proceed To Pay</button>
+            </div>
 
+           </div>
+		  </form>
+    </div>
+    
+    <div id="electricity" class="">
+		<form action="" method="">
+	         <div class="form-group row">
+           <div class="col-xs-3">
+           <select class="form-control">
+            <option value="BSES Yamuna - DELHI">BSES Yamuna - DELHI </option>
+            <option value="BSES Rajdhani - DELHI">BSES Rajdhani - DELHI </option>
+           </select>
+           </div>
+           <div class="col-xs-2">
+           <input type="number" class="form-control" name="" placeholder="Number">
+           </div>
+           <div class="col-xs-2">
+           <input type="number" class="form-control" name="" placeholder="Amount">
+            </div>
+           <div class="col-xs-2">
+            <button type="submit" class="btn btn-primary">Proceed</button>
+            </div> 
+            </div>
+		  </form>
+    </div>
+    
+    <div id="water" class="">
+   <form action="" method="">
+          <div class="form-group row">
+          <div class="col-xs-2">
+		     <select class="form-control">
+            <option value="dish tv">DISH TV</option>
+            <option value="tata sky">TATA SKY</option>
+           </select>
+           </div>
+           <div class="col-xs-2">
+            <input type="number" class="form-control" name="" placeholder="Number">
+            </div>
+            <div class="col-xs-2">
+  		      <input type="number" class="form-control" name="" placeholder="Amount">
+            </div>
+            <div class="col-xs-2">
+            <button type="submit" class="btn btn-primary">Proceed</button>
+            </div> 
+            </div>
+		  </form>
+    </div>
+    
+    <div id="dth" class="">
+      <form action="" method="">
+        <div class="form-group row">
+        <div class="col-xs-2">
+		    <select class="form-control">
+            <option value="dish tv">DISH TV</option>
+            <option value="tata sky">TATA SKY</option>
+           </select>
+           </div>
+           <div class="col-xs-2">
+  		    <input type="number" class="form-control" name="" placeholder="Number">
+          </div>
+          <div class="col-xs-2">
+            <input type="number" class="form-control" name="" placeholder="Amount">
+            </div>
+            <div class="col-xs-2">
+            <button type="submit" class="btn btn-primary">Proceed</button> 
+            </div>
+            </div>
+		  </form>
+    </div>
+    <!--menu1 ends here-->
+   </div>
   </div>
 </div>
 
+<div class="second">
+  <div class="container-fluid">
+   <div class="mid">
+    <h4><b>Book With Us</b></h4>
+    
+   <!--menu2 starts here-->	
+    <ul class="list-inline">
+      <li><button id="menu5"><img src="/images/menu5.jpg"></button></li>
+      <li><button id="menu6"><img src="/images/menu6.jpg"></button></li>
+      <li><button id="menu7"><img src="/images/menu7.jpg"></button></li>
+      <li><button id="menu8"><img src="/images/menu8.jpg"></button></li>
+    </ul>
+    
+    <div id="flight" class="">
+		  <form action="" method="">
+		      <input type="radio" name="" value="oneway"> One Way 
+  		    <input type="radio" name="" value="roundtrip"> Round Trip <br>
+  		    <div class="form-group row">
+          <div class="col-xs-4">
+          <input type="text" class="form-control" name="" placeholder="From: City or Airport">
+  		    </div>
+          <div class="col-xs-2 text-center">
+          <span class="glyphicon glyphicon-transfer"></span>
+          </div>
+          <div class="col-xs-4">
+  		    <input type="text" class="form-control" name="" placeholder="From: City or Airport"><br>
+          </div>
+          </div>
+          <div class="form-group row">
+          <div class="col-xs-2">
+            <input type="date" class="form-control" name="" placeholder="Depart date">
+          </div>
+          <div class="col-xs-2">
+            <input type="date" class="form-control" name="" placeholder="Depart date">
+          </div>
+          <div class="col-xs-2">
+          </div>
+          <div class="col-xs-2">
+            <input type="number" class="form-control" name="" placeholder="Travellers">
+            </div>
+           <div class="col-xs-2">
+            <select class="form-control">
+            <option value="">Economy Class</option>
+            <option value="">Business Class</option>
+            </select>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Find Flights</button> 
+		  </form>
+    </div>
+    
+    <div id="bus" class="">
+		<form action="" method="">
+		    <input type="radio" name="" value="prepaid"> prepaid 
+  		    <input type="radio" name="" value="postpaid"> postpaid <br>
+  		    <input type="number" class="" name="" placeholder="Mobile Number">
+  		    <input type="number" class="" name="" placeholder="Operator">
+            <input type="number" class="" name="" placeholder="Amount">
+            <button type="button" class="btn btn-primary">Browse Plans</button>
+            <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+		  </form>
+    </div>
+    
+    <div id="hotels" class=""
+>   <form action="" method="">
+		    <input type="radio" name="" value="prepaid"> prepaid 
+  		    <input type="radio" name="" value="postpaid"> postpaid <br>
+  		    <input type="number" class="" name="" placeholder="Mobile Number">
+  		    <input type="number" class="" name="" placeholder="Operator">
+            <input type="number" class="" name="" placeholder="Amount">
+            <button type="button" class="btn btn-primary">Browse Plans</button>
+            <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+		  </form>
+    </div>
+    
+    <div id="holiday_package" class="">
+      <form action="" method="">
+		    <input type="radio" name="" value="prepaid"> prepaid 
+  		    <input type="radio" name="" value="postpaid"> postpaid <br>
+  		    <input type="number" class="" name="" placeholder="Mobile Number">
+  		    <input type="number" class="" name="" placeholder="Operator">
+            <input type="number" class="" name="" placeholder="Amount">
+            <button type="button" class="btn btn-primary">Browse Plans</button>
+            <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+		  </form>
+    </div>
+    <!--menu2 ends here-->
+  </div>
+</div>
