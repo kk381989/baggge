@@ -7,14 +7,22 @@
     <ul class="list-inline">
       <li><a href="#mobile" data-toggle="collapse"><img src="/images/menu1.jpg"></a></li>
        <div id="mobile" class="">
-		  <form action="" method="">
-		    <input type="radio" name="" value="prepaid"> prepaid 
-  		    <input type="radio" name="" value="postpaid"> postpaid <br>
-  		    <input type="number" name="" placeholder="Mobile Number">
-  		    <input type="number" name="" placeholder="Operator">
-            <input type="number" name="" placeholder="Amount">
-            <button type="button" class="btn btn-primary">Browse Plans</button>
-            <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+		  <form action="/recharge/mobile" method="Get">
+		    <input type="radio" name="planType" value="1"> prepaid 
+  		  <input type="radio" name="planType" value="2"> postpaid <br>
+  		  <input style="color:black;" type="number" name="" placeholder="Mobile Number">
+  		 <select name="operator">
+        {{#each data.providers}}
+        {{#ifEquals this.service 'Recharge'}}
+        <option value="{{this.provider_code}}">{{@index}}: {{this.provider_name}}</option>
+          <!-- <div>{{@key}} himanshu yadav</div></br> -->
+        {{/ifEquals}}
+        {{/each}}
+        </select>
+        <input style="color:black;" type="number" name="" placeholder="Operator">
+        <input style="color:black;" type="number" name="amount" placeholder="Amount">
+        <button type="button" class="btn btn-primary">Browse Plans</button>
+        <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
 		  </form>
        </div>
       <li><button type="button" data-toggle="collapse" data-target="#electricity"><img src="/images/menu2.jpg"></button></li>
