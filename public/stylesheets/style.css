@@ -8,21 +8,48 @@ a {
 }
 
 .first{
-  height:200px;
+  height:300px;
   width: 100%;
   background-color: #99cccc;
-  color: ;  	
+  padding: 10px 10px 10px 10px;  	
 }
 
 .mid{
   height:100%;
   width: 90%;
   margin: 0 auto;
-  background-color:;  	
+  padding: 10px 10px 10px 10px;  	
 }
 .second{
   height:100%;
   width: 100%;
-  background-color:;
+  padding: 10px 10px 10px 10px;
   color: black;  	
+}
+
+.trending{
+  height:100%;
+  width: 100%;
+  margin:;
+  background-color:;    
+}
+
+.last{
+  width:100% ;
+  background-color: #eef2f5;
+  padding: 10px 10px 10px 10px;  
+}
+
+.copyright{
+  width:100% ;
+  background-color: #d8dcdf;
+}
+.blue_div{
+  background-color: #4c50cd;
+  padding: 10px 10px 10px 10px;
+}
+
+.white_div{
+  background-color: #ffffff;
+  padding: 10px 10px 10px 10px;
 }
