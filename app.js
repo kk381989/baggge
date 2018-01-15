@@ -4,10 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var colors = require('colors')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var recharge = require('./routes/recharge');
+var appFunctions = require('./lib/appFunction');
 
 var app = express();
 
@@ -31,6 +33,11 @@ var hbs = require('hbs');
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+
+
+appFunctions.bagggePreLoad(() => {
+    console.log(colors.green('[booting] ✔ All prerequisites are done'))
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
