@@ -54,3 +54,21 @@ $(document).ready(function(){
         $("#hotels").hide();
     });
 });
+
+function validateForm() {
+    var x = document.forms["mobile_recharge_form"]["number"].value;
+    var y = document.forms["mobile_recharge_form"]["amount"].value;
+    if (x == "") {
+        alert("Please enter a number");
+        return false;
+    }
+    else if (x.length < 10 || x.length > 10) {
+        alert("Please enter a valid number");
+        return false;
+    }
+    else if (y == "") {
+        alert("Please enter amount");
+        return false;
+        } 
+}
+

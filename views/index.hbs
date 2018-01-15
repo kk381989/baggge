@@ -12,25 +12,25 @@
     </ul>
     
     <div id="mobile" class="white_div">
-      <form action="/recharge/mobile" method="Get">
+      <form name="mobile_recharge_form" action="/recharge/mobile" method="Get" onsubmit="return validateForm()">
       <label class="radio-inline" style="color:orange;font-size:15px;"><input type="radio" class="radio-inline" name="planType" value="1"> Prepaid</label> 
       <label class="radio-inline" style="color:orange;font-size:15px;"><input type="radio" class="radio-inline" name="planType" value="2"> Postpaid</label><br>
           <div class="form-group row">
             <div class="col-xs-2">
-              <input type="number" class="form-control" style="color:black;" name="" placeholder="Mobile Number">
+              <input type="number" class="form-control" style="color:black;" name="number" placeholder="Mobile Number" required>
             </div>
             <div class="col-xs-2">
               <select name="operator" class="form-control">
               {{#each data.providers}}
               {{#ifEquals this.service 'Recharge'}}
-              <option value="{{this.provider_code}}">{{this.provider_name}}</option>
+              <option value="{{this.provider_id}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}
               {{/each}}
               </select>
             </div>
             <div class="col-xs-2">
-              <input type="number" class="form-control" style="color:black;" name="amount" placeholder="Amount">
+              <input type="number" class="form-control" style="color:black;" name="amount" placeholder="Amount" maxlength="10" required>
             </div>
             <div class="col-xs-2">
               <button type="button" class="btn btn-primary">Browse Plans</button>
