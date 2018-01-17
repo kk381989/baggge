@@ -9,6 +9,8 @@ var colors = require('colors')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var recharge = require('./routes/recharge');
+var electricity_recharge = require('./routes/electricity_recharge');
+var dth_recharge = require('./routes/dth_recharge');
 var appFunctions = require('./lib/appFunction');
 
 var app = express();
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/recharge', recharge);
+app.use('/dth_recharge', dth_recharge);
+app.use('/electricity_recharge', electricity_recharge);
 
 var hbs = require('hbs');
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
