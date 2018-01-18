@@ -8,9 +8,10 @@ a {
 }
 
 .first{
-  height:300px;
+  height:250px;
   width: 100%;
-  background-color: #99cccc;
+  //background-color: #99cccc;
+  background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
   padding: 10px 10px 10px 10px;  	
 }
 
@@ -46,10 +47,22 @@ a {
 }
 .blue_div{
   background-color: #4c50cd;
-  padding: 10px 10px 10px 10px;
+  padding: 15px 10px 10px 25px;
+  box-shadow: 3px 1px 10px 2px ;
 }
 
 .white_div{
   background-color: #ffffff;
-  padding: 10px 10px 10px 10px;
+  padding: 15px 10px 10px 25px;
+  box-shadow: 3px 1px 10px 2px ;
+}
+
+.transparent {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    padding: 5px 25px 5px 25px;
 }

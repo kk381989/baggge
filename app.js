@@ -44,18 +44,18 @@ appFunctions.bagggePreLoad(() => {
     var users = global.MongoHandler.opened.baggge.collection('users')
     var where1 = {}
     users.find(where1, (err, cursor) => {
-	    if (err) {
-	      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
-	    } else {
-	      cursor.toArray((error, docs) => {
-	        if (error) {
-	          return cb(error)
+	  if (err) {
+	  console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+	  else {
+	  cursor.toArray((error, docs) => {
+	  if (error) {
+	    return cb(error)
 	        }
 	        console.log("docs is the :::: ")
 	        console.log(docs)
-	      })
+	     })
 		}
-  	})
+	})
 })
 
 // catch 404 and forward to error handler

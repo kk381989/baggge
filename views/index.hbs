@@ -4,11 +4,23 @@
     <h4><b>Mobile Recharge & Bill Payments</b></h4>
     
    <!--   menu1 starts here     --> 
-    <ul class="list-inline">
-      <li><button id="menu1" ><img src="/images/menu1.jpg"></button></li>
-      <li><button id="menu2" ><img src="/images/menu2.jpg"></button></li>
-      <li><button id="menu3" ><img src="/images/menu3.jpg"></button></li>
-      <li><button id="menu4" ><img src="/images/menu4.jpg"></button></li>
+    <ul class="list-inline" style="margin-bottom: -2px;">
+      <li><button id="menu1" class="transparent" >
+          <span class="glyphicon glyphicon-phone"></span>
+          <p><b>Mobile</b></p></button>
+      </li>
+      <li><button id="menu2" class="transparent" >
+          <span class="glyphicon glyphicon-flash"></span>
+          <p><b>Electricity</b></p></button>
+      </li>
+      <li><button id="menu3" class="transparent">
+          <span class="glyphicon glyphicon-tint"></span>
+          <p><b>Water</b></p></button>
+      </li>
+      <li><button id="menu4" class="transparent">
+          <span class="glyphicon glyphicon-eye-open"></span>
+          <p><b>DTH</b></p></button>
+      </li>
     </ul>
     
     <div id="mobile" class="white_div">
@@ -21,6 +33,7 @@
             </div>
             <div class="col-xs-2">
               <select name="operator" class="form-control">
+              <option value="">Select Operator</option>
               {{#each data.providers}}
               {{#ifEquals this.service 'Recharge'}}
               <option value="{{this.provider_id}}">{{this.provider_name}}</option>
@@ -47,6 +60,7 @@
         <div class="form-group row">
           <div class="col-xs-3">
             <select name="operator" class="form-control">
+            <option value="">Select Operator</option>
             {{#each data.providers}}
             {{#ifEquals this.service 'Electricity Payment'}}
             <option value="{{this.provider_id}}">{{this.provider_name}}</option>
@@ -73,6 +87,7 @@
         <div class="form-group row">
           <div class="col-xs-2">
             <select class="form-control">
+            <option value="">Select Operator</option>
             <option value="dish tv">DISH TV</option>
             <option value="tata sky">TATA SKY</option>
             </select>
@@ -95,6 +110,7 @@
         <div class="form-group row">
           <div class="col-xs-2">
             <select name="operator" class="form-control">
+            <option value="">Select Operator</option>
             {{#each data.providers}}
             {{#ifEquals this.service 'DTH Recharge'}}
             <option value="{{this.provider_id}}">{{this.provider_name}}</option>
@@ -126,11 +142,23 @@
       <h4><b>Book With Us</b></h4>
     
       <!--    menu2 starts here    -->  
-      <ul class="list-inline">
-        <li><button id="menu5"><img src="/images/menu5.jpg"></button></li>
-        <li><button id="menu6"><img src="/images/menu6.jpg"></button></li>
-        <li><button id="menu7"><img src="/images/menu7.jpg"></button></li>
-        <li><button id="menu8"><img src="/images/menu8.jpg"></button></li>
+      <ul class="list-inline" style="margin-bottom:-2px;">
+        <li><button id="menu5" class="transparent">
+            <span class="glyphicon glyphicon-plane"></span>
+            <p><b>Flight</b></p></button>
+        </li>
+        <li><button id="menu6" class="transparent">
+            <span class="glyphicon glyphicon-road"></span>
+            <p><b>Bus</b></p></button>
+        </li>
+        <li><button id="menu7" class="transparent">
+            <span class="glyphicon glyphicon-home"></span>
+            <p><b>Hotels</b></p></button>
+        </li>
+        <li><button id="menu8" class="transparent">
+            <span class="glyphicon glyphicon-tent"></span>
+            <p><b>Holiday Package</b></p></button>
+        </li>
       </ul>
     
     <div id="flight" class="blue_div">
