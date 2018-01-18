@@ -24,7 +24,7 @@
     </ul>
     
     <div id="mobile" class="white_div">
-      <form name="mobile_recharge_form" action="/recharge/mobile" method="Get" onsubmit="return validateMobileRechargeForm()">
+      <form name="mobileRechargeForm" action="/recharge/mobile" method="Get" onsubmit="return validateMobileRechargeForm()">
       <label class="radio-inline" style="color:orange;font-size:15px;"><input type="radio" class="radio-inline" name="planType" value="1"> Prepaid</label> 
       <label class="radio-inline" style="color:orange;font-size:15px;"><input type="radio" class="radio-inline" name="planType" value="2"> Postpaid</label><br>
           <div class="form-group row">
@@ -56,7 +56,7 @@
     </div>
     
     <div id="electricity" class="white_div">
-      <form action="/electricity_recharge/electricity" method="Get" name="electricity_recharge_form" onsubmit="return validateElectricityRechargeForm()">
+      <form action="/electricityRecharge/electricity" method="Get" name="electricityRechargeForm" onsubmit="return validateElectricityRechargeForm()">
         <div class="form-group row">
           <div class="col-xs-3">
             <select name="operator" class="form-control">
@@ -106,7 +106,7 @@
     </div>
     
     <div id="dth" class="white_div">
-      <form action="/dth_recharge/dth" method="Get" name="dth_recharge_form" onsubmit="return validateDthRechargeForm()">
+      <form action="/dthRecharge/dth" method="Get" name="dthRechargeForm" onsubmit="return validateDthRechargeForm()">
         <div class="form-group row">
           <div class="col-xs-2">
             <select name="operator" class="form-control">
