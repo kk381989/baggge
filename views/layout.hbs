@@ -38,14 +38,84 @@
   			  </div>
   			  <div class="collapse navbar-collapse" id="topNavbar">
             <ul class="nav navbar-nav navbar-right">
-  			      <li><a href="#">Login</a></li>
-  			      <li><a href="#">Signup</a></li> 	
+  			      <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+  			      <li><a href="#" data-toggle="modal" data-target="#signupModal">Signup</a></li> 	
   			    </ul>
           </div>
   	    </div>
   	  </nav>
     </header>    
     <!--header ends here -->
+    <!--Login Modal -->
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Sign In to Baggge</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+        <form action="/login" method="Post">
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-8">
+              <input type="text" class="form-control"  name="number" placeholder=" Mobile Number">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-8">
+              <input type="password" class="form-control" name="pass" placeholder=" Password ">
+            </div>
+          </div>
+          <div class="col-sm-offset-2 form-group">
+              <button type="submit" class="btn btn-primary col-sm-3">Log in</button>
+          </div>
+        </form>
+        <!-- login form ends here -->
+      </div>
+      <div class="modal-footer" style="background: linear-gradient(to left, #66cccc,#99cccc, #99ffcc);">
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SignUp Modal -->
+<div id="signupModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+      <!-- Signup form starts here -->
+        <form action="/signUp" method="Post">
+          <div class="form-group">
+            <input type="text" class="form-control"  name="number" placeholder=" Mobile Number or Email Id">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="pass" placeholder=" Password ">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
+        <!-- signup form ends here -->
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
    
     {{{body}}}
     

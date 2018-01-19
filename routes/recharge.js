@@ -10,15 +10,15 @@ router.get('/', function(req, res, next) {
   	res.send('respond with a resource recharge /');
 });
 
-router.get('/mobile', function(req, res, next) {
-    var planType = req.query.planType;
-    var customer_number = req.query.number;
-    var operator = req.query.operator;
-    var amount = req.query.amount;
+router.post('/mobile', function(req, res, next) {
+    var planType = req.body.planType;
+    var customerNumber = req.body.number;
+    var operator = req.body.operator;
+    var amount = req.body.amount;
 	  var options = { method: 'GET',
   	url: 'https://www.pay2all.in/web-api/paynow',
   	qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW',
-  	      number: customer_number ,
+  	      number: customerNumber ,
   	      provider_id: operator ,
   	      amount: amount ,
   	      client_id: '12'  },

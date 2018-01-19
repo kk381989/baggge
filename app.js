@@ -41,22 +41,23 @@ hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
 
 appFunctions.bagggePreLoad(() => {
     console.log(colors.green('[booting] ✔ All prerequisites are done'))
-    var users = global.MongoHandler.opened.baggge.collection('users')
-    var where1 = {}
-    users.find(where1, (err, cursor) => {
-	  if (err) {
-	  console.log(colors.red(`Mongo:error can't query users ==>${err}`))
-	  else {
-	  cursor.toArray((error, docs) => {
-	  if (error) {
-	    return cb(error)
-	        }
-	        console.log("docs is the :::: ")
-	        console.log(docs)
-	     })
-		}
-	})
-})
+  //  var users = global.MongoHandler.opened.baggge.collection('users')
+  //  var where1 = {}
+  //  users.find(where1, (err, cursor) => {
+	//  if (err) {
+	//  console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+  //  }	
+  //  else {
+	//  cursor.toArray((error, docs) => {
+	//  if (error) {
+	//    return cb(error)
+	//        }
+	 //       console.log("docs is the :::: ")
+	  //      console.log(docs)
+	  //   });
+//		}
+// 	})
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
