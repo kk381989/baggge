@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -35,28 +34,26 @@ app.use('/electricityRecharge', electricityRecharge);
 
 const hbs = require('hbs');
 
-hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
+hbs.registerHelper('ifEquals', (arg1, arg2, options) => ((arg1 === arg2) ? options.fn(this) : options.inverse(this)));
 
 
 appFunctions.bagggePreLoad(() => {
   console.log(colors.green('[booting] ✔ All prerequisites are done'))
-  const users = global.MongoHandler.opened.baggge.collection('users')
+  const user = global.MongoHandler.opened.baggge.collection('users')
   const where1 = {}
-  users.find(where1, (err, cursor) => {
-	  if (err) {
-	  console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+  user.find(where1, (err, cursor) => {
+    if (err) {
+      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
     } else {
-	  cursor.toArray((error, docs) => {
-	  if (error) {
-	    return cb(error)
-	        }
-	        console.log('docs is the :::: ')
-	        console.log(docs)
-	     });
+      cursor.toArray((error, docs) => {
+        if (error) {
+          console.log(error)
+        }
+        console.log('docs is the :::: ')
+        console.log(docs)
+      });
     }
- 	})
+  })
 });
 
 // catch 404 and forward to error handler
@@ -67,7 +64,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
