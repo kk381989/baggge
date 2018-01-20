@@ -64,8 +64,8 @@
               <input type="email" class="form-control" name="userName" placeholder="Enter email" required>
             </div>
             <div class="form-group">
-              <label for="pass"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter password" required>
+              <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" name="passWord" placeholder="Enter password" required>
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
@@ -85,7 +85,7 @@
 
 <!-- SignUp Modal -->
 <div id="signupModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -98,28 +98,37 @@
         <form action="/signUp" method="Post" name="signupForm">
           <div class="form-group">
             <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
-            <input type="text" class="form-control" name="userName" placeholder="Enter your Name" required>
+            <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter your Name" required>
           </div>
           <div class="form-group">
-            <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email Id</label>
-            <input type="email" class="form-control" id="usrname" placeholder="Enter email" required>
+            <label for="emailId"><span class="glyphicon glyphicon-envelope"></span> Email Id</label>
+            <input type="email" class="form-control" name="emailId" id="emailId" placeholder="Enter email" required>
           </div>
           <div class="form-group">
             <label for="mobileNumber"><span class="glyphicon glyphicon-phone"></span> Mobile Number</label>
-            <input type="text" class="form-control" name="mobileNumber" placeholder="Enter you Number" required>
+            <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Enter you Number" required>
           </div>
           <div class="form-group">
-            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-            <input type="text" class="form-control" id="psw" placeholder="Enter password" required>
+            <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+            <input type="password" class="form-control" name="passWord" id="passWord" placeholder="Enter password" required>
           </div>
-            <button type="submit" class="btn btn-default btn-success btn-block">
+          <div id="message" style="display: none;">
+         <h5>Password must contain the following:</h5>
+         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+         <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+         <p id="number" class="invalid">A <b>number</b></p>
+         <p id="splChars" class="invalid">A <b>Special Character</b></p>
+         <p id="length" class="invalid">Minimum <b>6 characters</b></p>
+        </div>
+       
+            <button type="submit" class="btn btn-default btn-block">
             <span class="glyphicon glyphicon-off"></span> Signup</button> 
         </form>
         <!-- signup form ends here -->
       
       </div>
       <div class="modal-footer" align="center" style="background: linear-gradient(to left, #66cccc,#99cccc, #99ffcc);">
-        
+             
       </div>
     </div>
 
@@ -175,6 +184,7 @@
       </div>
     </footer>
     <!--footer starts here -->
+  <script type="text/javascript" src="/js/processEvent.js"></script>
   <script type="text/javascript" src="/js/validations.js"></script>
   </body>
 </html>
