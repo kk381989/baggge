@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "lint": "node_modules/.bin/eslint *.js lib config utilities custom_modules",
+    "lint": "node_modules/.bin/eslint *.js lib config",
     "test": "node_modules/.bin/nyc node_modules/.bin/nodeunit"
   },
   "dependencies": {

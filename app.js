@@ -1,26 +1,26 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var colors = require('colors')
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const colors = require('colors')
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var recharge = require('./routes/recharge');
-var electricityRecharge = require('./routes/electricityRecharge');
-var dthRecharge = require('./routes/dthRecharge');
-var appFunctions = require('./lib/appFunction');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const recharge = require('./routes/recharge');
+const electricityRecharge = require('./routes/electricityRecharge');
+const dthRecharge = require('./routes/dthRecharge');
+const appFunctions = require('./lib/appFunction');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,41 +33,41 @@ app.use('/recharge', recharge);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
 
-var hbs = require('hbs');
+const hbs = require('hbs');
+
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 
 
 appFunctions.bagggePreLoad(() => {
-    console.log(colors.green('[booting] ✔ All prerequisites are done'))
-    var users = global.MongoHandler.opened.baggge.collection('users')
-    var where1 = {}
-    users.find(where1, (err, cursor) => {
+  console.log(colors.green('[booting] ✔ All prerequisites are done'))
+  const users = global.MongoHandler.opened.baggge.collection('users')
+  const where1 = {}
+  users.find(where1, (err, cursor) => {
 	  if (err) {
 	  console.log(colors.red(`Mongo:error can't query users ==>${err}`))
-    }	
-    else {
+    } else {
 	  cursor.toArray((error, docs) => {
 	  if (error) {
 	    return cb(error)
 	        }
-	        console.log("docs is the :::: ")
+	        console.log('docs is the :::: ')
 	        console.log(docs)
 	     });
-		}
+    }
  	})
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
