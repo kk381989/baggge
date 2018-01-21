@@ -1,0 +1,24 @@
+root: true
+
+plugins:
+    - node
+
+rules:
+  semi: 0
+  no-console: 0
+  no-underscore-dangle: 0
+  max-len:
+    - 0
+    - 150
+    - 4
+  space-before-function-paren:
+    - 0
+    - always
+  comma-dangle:
+    - 0
+    - always
+
+extends:
+    - "eslint:recommended"
+    - "airbnb-base"
+    - "plugin:node/recommended"
