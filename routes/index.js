@@ -24,9 +24,10 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/login', (req, res) => {
-  const userNumber = req.body.number;
-  const userPassword = req.body.pass;
+router.post('/login', (req, res, next) => {
+  const userName = req.body.userName;
+  const userPassword = req.body.passWord;
+
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
@@ -45,9 +46,12 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/signUp', (req, res) => {
-  const userNumber = req.body.number;
-  const userPassword = req.body.pass;
+router.post('/signUp', (req, res, next) => {
+  const userName = req.body.userName;
+  const userEmailId = req.body.emailId;
+  const userNumber = req.body.mobileNumber;
+  const userPassword = req.body.passWord;
+
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',

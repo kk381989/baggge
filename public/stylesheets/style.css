@@ -73,5 +73,17 @@ input [type="radio"]{
   margin-bottom: 10px;
   background-color: white;
   border-radius: 50%;
+}
 
+#message p {
+    padding: ;
+    font-size: ;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
 }
