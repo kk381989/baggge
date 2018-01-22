@@ -12,33 +12,33 @@ a {
   width: 100%;
   //background-color: #99cccc;
   background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
-  padding: 10px 10px 10px 10px;  	
+  padding: 10px 10px 10px 10px;
 }
 
 .mid{
   height:100%;
   width: 90%;
   margin: 0 auto;
-  padding: 10px 10px 10px 10px;  	
+  padding: 10px 10px 10px 10px;
 }
 .second{
   height:100%;
   width: 100%;
   padding: 10px 10px 10px 10px;
-  color: black;  	
+  color: black;
 }
 
 .trending{
   height:100%;
   width: 100%;
   margin:;
-  background-color:;    
+  background-color:;
 }
 
 .last{
   width:100% ;
   background-color: #eef2f5;
-  padding: 10px 10px 10px 10px;  
+  padding: 10px 10px 10px 10px;
 }
 
 .copyright{
@@ -86,4 +86,11 @@ input [type="radio"]{
 
 .invalid {
     color: red;
+}
+
+.card {
+  //  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.title {
+    color: grey;
 }

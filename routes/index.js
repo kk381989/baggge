@@ -65,7 +65,7 @@ router.post('/login', (req, res, next) => {
         }
         res.send('correct mail id or number');
         console.log('docs is the :::: ')
-        console.log(docs.password)
+        console.log(docs[0].password)
       });
     }
   })
@@ -109,6 +109,11 @@ router.post('/signUp', (req, res, next) => {
     console.log(bodyData.providers);
     res.render('index', { data: body });
   });
+});
+
+/* GET ABOUT US page. */
+router.get('/aboutus', (req, res) => {
+  res.render('aboutus', {});
 });
 
 
