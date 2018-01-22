@@ -26,7 +26,7 @@ router.post('/dth', (req, res) => {
       amount,
       client_id: '12'
     },
-    agent: httpsAgent
+  //  agent: httpsAgent
   };
 
   request(options, (error, response, body) => {
