@@ -116,5 +116,59 @@ router.get('/aboutus', (req, res) => {
   res.render('aboutus', {});
 });
 
+/* GET Terms and Conditions page. */
+router.get('/termsandconditions', (req, res) => {
+  res.render('termsandconditions', {});
+});
+
+/* GET Refund Policy page. */
+router.get('/refundpolicy', (req, res) => {
+  res.render('refundpolicy', {});
+});
+
+/* GET Privacy Policy page. */
+router.get('/privacypolicy', (req, res) => {
+  res.render('privacypolicy', {});
+});
+
+/* GET CONTACT US page. */
+router.get('/contactus', (req, res) => {
+  res.render('contactus', {});
+});
+/* GET CAREERS page. */
+router.get('/career', (req, res) => {
+  res.render('career', {});
+});
+
+
+
+/* Contact Us page handler */
+router.post('/contactus', (req, res) => {
+  if (req.body.submit) {
+    const yourNamename = req.body.yourName;
+    const emailId = req.body.email;
+    const subject = req.body.subject;
+    const question = req.body.yourQuestion;
+    const contactDoc = {
+      name: yourNamename,
+      email: emailId,
+      subject: subject,
+      question: question
+    };
+    const randomVisitors = global.MongoHandler.opened.baggge.collection('randomVisitors');
+    randomVisitors.insert(contactDoc, (err, doc) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('submitted successfully');
+        console.log(doc);
+        res.render('contactus', { msg: 'submitted successfully' })
+      }
+    });
+  } else {
+    res.render('contactus', {});
+  }
+});
+
 
 module.exports = router;
