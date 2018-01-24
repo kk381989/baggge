@@ -2,37 +2,38 @@
   <div class="container-fluid">
    <div class="mid">
     <h4><b>Mobile Recharge & Bill Payments</b></h4>
-    
-   <!--   menu1 starts here     --> 
+
+   <!--   menu1 starts here     -->
     <ul class="list-inline" style="margin-bottom: -2px;">
-      <li><button id="menu1" class="transparent" >
+      <li><button id="menu1" class="transparentOne" >
           <span class="glyphicon glyphicon-phone"></span>
           <p><b>Mobile</b></p></button>
       </li>
-      <li><button id="menu2" class="transparent" >
+      <li><button id="menu2" class="transparentOne" >
           <span class="glyphicon glyphicon-flash"></span>
           <p><b>Electricity</b></p></button>
       </li>
-      <li><button id="menu3" class="transparent">
+      <li><button id="menu3" class="transparentOne">
           <span class="glyphicon glyphicon-tint"></span>
           <p><b>Water</b></p></button>
       </li>
-      <li><button id="menu4" class="transparent">
+      <li><button id="menu4" class="transparentOne">
           <span class="glyphicon glyphicon-eye-open"></span>
           <p><b>DTH</b></p></button>
       </li>
     </ul>
-    
+
+
     <div id="mobile" class="white_div">
       <form name="mobileRechargeForm" action="/recharge/mobile" method="Post" onsubmit="return validateMobileRechargeForm()">
-      <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="1"> Prepaid</label> 
+      <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="1"> Prepaid</label>
       <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="2"> Postpaid</label><br>
           <div class="form-group row">
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-md-2">
               <input type="number" class="form-control" style="color:black;" name="number" placeholder="Mobile Number" required>
             </div>
-            <div class="col-xs-2">
-              <select name="operator" class="form-control">
+            <div class="col-sm-2 col-md-2">
+              <select id="moperator" name="operator" class="form-control">
               <option value="">Select Operator</option>
               {{#each data.providers}}
               {{#ifEquals this.service 'Recharge'}}
@@ -42,24 +43,24 @@
               {{/each}}
               </select>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-md-2">
               <input type="number" class="form-control" style="color:black;" name="amount" placeholder="Amount" maxlength="10" required>
             </div>
-            <div class="col-xs-2">
-              <button type="button" style="border-radius:20px;border:2px solid #0066cc;color:#3399ff;background-color: white;" class="btn">Browse Plans</button>
+            <div class="col-sm-2 col-md-2">
+              <button type="button" id="plans" style="border-radius:20px;border:2px solid #0066cc;color:#3399ff;background-color: white;" class="btn">Browse Plans</button>
             </div>
-            <div class="col-xs-3">
-              <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-xs-12" style="">Proceed To Pay</button>
+            <div class="col-sm-3 col-md-3">
+              <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-sm-12 col-xs-11" style="">Proceed To Pay</button>
             </div>
           </div>
       </form>
     </div>
-    
+
     <div id="electricity" class="white_div">
       <form action="/electricityRecharge/electricity" method="Post" name="electricityRechargeForm" onsubmit="return validateElectricityRechargeForm()">
         <div class="form-group row">
-          <div class="col-xs-3">
-            <select name="operator" class="form-control">
+          <div class="col-sm-3">
+            <select id="eoperator" name="operator" class="form-control">
             <option value="">Select Operator</option>
             {{#each data.providers}}
             {{#ifEquals this.service 'Electricity Payment'}}
@@ -69,47 +70,47 @@
             {{/each}}
             </select>
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <input type="number" class="form-control" name="number" placeholder="Number" required>
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
            <input type="number" class="form-control" name="amount" placeholder="Amount" required>
           </div>
-          <div class="col-xs-3">
+          <div class="col-sm-3">
             <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-xs-10">Proceed to Pay</button>
-          </div> 
+          </div>
         </div>
       </form>
     </div>
-    
+
     <div id="water" class="white_div">
       <form action="" method="">
         <div class="form-group row">
-          <div class="col-xs-2">
-            <select class="form-control">
+          <div class="col-sm-2">
+            <select id="woperator" class="form-control">
             <option value="">Select Operator</option>
             <option value="dish tv">DISH TV</option>
             <option value="tata sky">TATA SKY</option>
             </select>
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <input type="number" class="form-control" name="" placeholder="Number">
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <input type="number" class="form-control" name="" placeholder="Amount">
           </div>
-          <div class="col-xs-3">
+          <div class="col-sm-3">
             <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-xs-10">Proceed to Pay</button>
-          </div> 
+          </div>
         </div>
       </form>
     </div>
-    
+
     <div id="dth" class="white_div">
       <form action="/dthRecharge/dth" method="Post" name="dthRechargeForm" onsubmit="return validateDthRechargeForm()">
         <div class="form-group row">
-          <div class="col-xs-2">
-            <select name="operator" class="form-control">
+          <div class="col-sm-2">
+            <select id="doperator" name="operator" class="form-control">
             <option value="">Select Operator</option>
             {{#each data.providers}}
             {{#ifEquals this.service 'DTH Recharge'}}
@@ -119,14 +120,14 @@
             {{/each}}
            </select>
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <input type="number" class="form-control" name="number" placeholder="Number" required>
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <input type="number" class="form-control" name="amount" placeholder="Amount" required>
           </div>
-          <div class="col-xs-3">
-            <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-xs-10">Proceed to Pay</button> 
+          <div class="col-sm-3">
+            <button type="submit" style="color:white;background: linear-gradient(to left, #3366cc,#6699cc, #74ccda);" class="btn col-xs-10">Proceed to Pay</button>
           </div>
         </div>
       </form>
@@ -140,102 +141,102 @@
   <div class="container-fluid">
     <div class="mid">
       <h4><b>Book With Us</b></h4>
-    
-      <!--    menu2 starts here    -->  
+
+      <!--    menu2 starts here    -->
       <ul class="list-inline" style="margin-bottom:-2px;">
-        <li><button id="menu5" class="transparent">
+        <li><button id="menu5" class="transparentTwo">
             <span class="glyphicon glyphicon-plane"></span>
             <p><b>Flight</b></p></button>
         </li>
-        <li><button id="menu6" class="transparent">
+        <li><button id="menu6" class="transparentTwo">
             <span class="glyphicon glyphicon-road"></span>
             <p><b>Bus</b></p></button>
         </li>
-        <li><button id="menu7" class="transparent">
+        <li><button id="menu7" class="transparentTwo">
             <span class="glyphicon glyphicon-home"></span>
             <p><b>Hotels</b></p></button>
         </li>
-        <li><button id="menu8" class="transparent">
+        <li><button id="menu8" class="transparentTwo">
             <span class="glyphicon glyphicon-tent"></span>
             <p><b>Holiday Package</b></p></button>
         </li>
       </ul>
-    
+
     <div id="flight" class="blue_div">
       <form action="" method="">
         <label class="redio-inline" style="color:white;font-size:15px;">
-          <input type="radio"  name="" value="oneway"> One Way 
+          <input type="radio"  name="" value="oneway"> One Way
         </label>
         <label class="redio-inline" style="color:white;font-size:15px;">
           <input type="radio" name="" value="roundtrip"> Round Trip <br>
         </label>
         <div class="form-group row">
-          <div class="col-xs-4">
+          <div class="col-sm-4">
             <input type="text" class="form-control" name="" placeholder="From: City or Airport">
           </div>
-          <div class="col-xs-2 text-center">
+          <div class="col-sm-2 text-center">
             <span class="glyphicon glyphicon-transfer"></span>
           </div>
-          <div class="col-xs-4">
+          <div class="col-sm-4">
             <input type="text" class="form-control" name="" placeholder="From: City or Airport"><br>
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-xs-2">
-            <input type="date" class="form-control" name="" placeholder="Depart date">
+          <div class="col-sm-2">
+            <input type="date" id="dDate" class="form-control" name="" placeholder="Depart date">
           </div>
-          <div class="col-xs-2">
-            <input type="date" class="form-control" name="" placeholder="Depart date">
+          <div class="col-sm-2">
+            <input type="date" id="rDate" class="form-control" name="" placeholder="Return date">
           </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
           </div>
-          <div class="col-xs-2">
-            <input type="number" class="form-control" name="" placeholder="Travellers">
+          <div class="col-sm-2">
+            <input type="number" id="Travellers" class="form-control" name="" placeholder="Travellers">
             </div>
-          <div class="col-xs-2">
+          <div class="col-sm-2">
             <select class="form-control">
             <option value="">Economy Class</option>
             <option value="">Business Class</option>
             </select>
           </div>
         </div>
-          <button type="submit" class="btn btn-primary">Find Flights</button> 
+          <button type="submit" class="btn btn-primary">Find Flights</button>
       </form>
     </div>
-    
+
     <div id="bus" class="blue_div">
       <form action="" method="">
-        <input type="radio" name="" value="prepaid"> prepaid 
+        <input type="radio" name="" value="prepaid"> prepaid
         <input type="radio" name="" value="postpaid"> postpaid <br>
         <input type="number" class="" name="" placeholder="Mobile Number">
         <input type="number" class="" name="" placeholder="Operator">
         <input type="number" class="" name="" placeholder="Amount">
         <button type="button" class="btn btn-primary">Browse Plans</button>
-        <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+        <button type="submit" class="btn btn-primary">Proceed To Pay</button>
       </form>
     </div>
-    
-    <div id="hotels" class="blue_div">   
+
+    <div id="hotels" class="blue_div">
       <form action="" method="">
-        <input type="radio" name="" value="prepaid"> prepaid 
+        <input type="radio" name="" value="prepaid"> prepaid
         <input type="radio" name="" value="postpaid"> postpaid <br>
         <input type="number" class="" name="" placeholder="Mobile Number">
         <input type="number" class="" name="" placeholder="Operator">
         <input type="number" class="" name="" placeholder="Amount">
         <button type="button" class="btn btn-primary">Browse Plans</button>
-        <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+        <button type="submit" class="btn btn-primary">Proceed To Pay</button>
       </form>
     </div>
-    
+
     <div id="holiday_package" class="blue_div">
       <form action="" method="">
-        <input type="radio" name="" value="prepaid"> prepaid 
+        <input type="radio" name="" value="prepaid"> prepaid
         <input type="radio" name="" value="postpaid"> postpaid <br>
         <input type="number" class="" name="" placeholder="Mobile Number">
         <input type="number" class="" name="" placeholder="Operator">
         <input type="number" class="" name="" placeholder="Amount">
         <button type="button" class="btn btn-primary">Browse Plans</button>
-        <button type="submit" class="btn btn-primary">Proceed To Pay</button> 
+        <button type="submit" class="btn btn-primary">Proceed To Pay</button>
       </form>
     </div>
     <!--menu2 ends here-->
@@ -270,7 +271,7 @@
   <div class="container">
     <h4 class="text-center"><b>Subscribe for Exiting Offers</b></h4>
     <hr style="border-width: 5px; border-color: orange;width:5%;">
-    <div class="col-xs-6 col-xs-offset-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
       <input type="text" class="form-control input-lg" placeholder="Your Email"><hr>
     </div>
   </div>
