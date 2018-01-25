@@ -23,7 +23,6 @@
       </li>
     </ul>
 
-
     <div id="mobile" class="white_div">
       <form name="mobileRechargeForm" action="/recharge/mobile" method="Post" onsubmit="return validateMobileRechargeForm()">
       <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="1"> Prepaid</label>
@@ -33,11 +32,11 @@
               <input type="number" class="form-control" style="color:black;" name="number" placeholder="Mobile Number" required>
             </div>
             <div class="col-sm-2 col-md-2">
-              <select id="moperator" name="operator" class="form-control">
+              <select id="moperator" name="operator" class="form-control" >
               <option value="">Select Operator</option>
               {{#each data.providers}}
               {{#ifEquals this.service 'Recharge'}}
-              <option value="{{this.provider_id}}">{{this.provider_name}}</option>
+              <option style="color:black; " value="{{this.provider_id}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}
               {{/each}}

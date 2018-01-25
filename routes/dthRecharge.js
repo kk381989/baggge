@@ -23,7 +23,7 @@ router.post('/dth', (req, res) => {
       api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW',
       number: customerNumber,
       provider_id: operator,
-      amount,
+      amount: amount,
       client_id: '12'
     },
   //  agent: httpsAgent

@@ -6,6 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+.contactFormError{
+  color: #FF1F1F;
+}
+
+.loginFormError{
+  color: #FF1F1F;
+}
+.signUpFormError{
+  color: #FF1F1F;
+}
 
 button[type="submit"]{
   margin: 10px;

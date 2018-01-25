@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const request = require('request')
 const colors = require('colors');
-const http = require('http')
+// const http = require('http')
 
 // const httpsAgent = new http.Agent({ keepAlive: true });
 
@@ -15,13 +15,13 @@ router.get('/', (req, res) => {
     qs: {
       api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW'
     },
-    // agent: httpsAgent
+//  agent: httpsAgent
   };
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
     const bodyData = JSON.parse(body)
     console.log(bodyData.providers)
-    res.render('index', { data: body });
+    res.render('index', { data: bodyData });
   });
 });
 

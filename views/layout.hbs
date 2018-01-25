@@ -58,15 +58,17 @@
       </div>
       <div class="modal-body">
         <!-- login form starts here -->
-        <form action="/login" method="Post" name="loginForm">
+        <form action="/login" method="Post" name="loginForm" onsubmit="return loginFormVal()">
           <div class="form-group">
               <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" name="userName" placeholder="Enter email or number" required>
+              <input type="text" class="form-control" name="userName" placeholder="Enter email or number" >
             </div>
+            <div class="loginFormError" id="userNameError"></div>
             <div class="form-group">
               <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" name="passWord" placeholder="Enter password" required>
+              <input type="password" class="form-control" name="passWord" placeholder="Enter password" >
             </div>
+            <div class="loginFormError" id="passWordError"></div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
@@ -95,23 +97,27 @@
       </div>
       <div class="modal-body">
       <!-- Signup form starts here -->
-        <form action="/signUp" method="Post" name="signupForm">
+        <form action="/signUp" method="Post" name="signUpForm" onsubmit="return signUpFormVal()">
           <div class="form-group">
-            <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
-            <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter your Name" required>
+            <label for="userName"><span class="glyphicon glyphicon-user"></span> Your Name </label>
+            <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter your Name" >
           </div>
+          <div class="signUpFormError" id="userNameErr"></div>
           <div class="form-group">
             <label for="emailId"><span class="glyphicon glyphicon-envelope"></span> Email Id</label>
-            <input type="email" class="form-control" name="emailId" id="emailId" placeholder="Enter email" required>
+            <input type="email" class="form-control" name="emailId" id="emailId" placeholder="Enter email" >
           </div>
+          <div class="signUpFormError" id="emailIdErr"></div>
           <div class="form-group">
             <label for="mobileNumber"><span class="glyphicon glyphicon-phone"></span> Mobile Number</label>
-            <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Enter you Number" required>
+            <input type="number" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Enter you Number" >
           </div>
+          <div class="signUpFormError" id="mobileNumberErr"></div>
           <div class="form-group">
             <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-            <input type="password" class="form-control" name="passWord" id="passWord" placeholder="Enter password" required>
+            <input type="password" class="form-control" name="passWord" id="passWord" placeholder="Enter password" >
           </div>
+          <div class="signUpFormError" id="passWordErr"></div>
           <div id="message" style="display: none;">
          <h5>Password must contain the following:</h5>
          <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -186,5 +192,8 @@
     <!--footer starts here -->
   <script type="text/javascript" src="/js/processEvent.js"></script>
   <script type="text/javascript" src="/js/validations.js"></script>
+  <script type="text/javascript" src="/js/contactUsValidations.js"></script>
+  <script type="text/javascript" src="/js/loginFormValidations.js"></script>
+  <script type="text/javascript" src="/js/signUpFormValidations.js"></script>
   </body>
 </html>
