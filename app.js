@@ -49,8 +49,8 @@ appFunctions.bagggePreLoad(() => {
         if (error) {
           console.log(error)
         }
-        console.log('docs is the :::: ')
-        console.log(docs)
+        // console.log('docs is the :::: ')
+        // console.log(docs)
       });
     }
   })
