@@ -1,56 +1,171 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request')
-const http = require('http')
-const httpsAgent = new http.Agent({ keepAlive: true });
+const routers = global.router
+const request = require('request')
+const colors = require('colors');
+// const http = require('http')
+
+// const httpsAgent = new http.Agent({ keepAlive: true });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-	var options = { method: 'GET',
-  	url: 'https://www.pay2all.in/web-api/get-provider',
-  	qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW' }
-  	 };
-
-	request(options, function (error, response, body) {
-  		if (error) throw new Error(error);
-  		body = JSON.parse(body)
-  		console.log(body.providers);
-  		res.render('index', {data:body});
-	});
-});
-
-router.post('/login', function(req, res, next) {
-  var userNumber = req.body.number;
-  var userPassword = req.body.pass;
-  var options = { method: 'GET',
+routers.get('/', (req, res) => {
+  const options = {
+    method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
-    qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW' }
-   };
-  
-
-  request(options, function (error, response, body) {
-      if (error) throw new Error(error);
-      body = JSON.parse(body)
-      console.log(body.providers);
-      res.render('index', {data:body});
+    qs: {
+      api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW'
+    },
+  };
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    let sessionStore = true
+    let signupDone = false
+    const bodyData = JSON.parse(body)
+    if (req.session.page_views) { sessionStore = false }
+    if (req.session.signupDone) { signupDone = true }
+    console.log(`session is the :: ${sessionStore}`)
+    res.render('index', { data: bodyData, session: sessionStore, signupDone });
   });
 });
 
-router.post('/signUp', function(req, res, next) {
-  var userNumber = req.body.number;
-  var userPassword = req.body.pass;
-  var options = { method: 'GET',
+
+// login form handler
+routers.post('/login', (req, res, next) => {
+  const userName = req.body.userName;
+  const userPassword = req.body.passWord;
+  const options = {
+    method: 'GET',
+    url: 'https://www.pay2all.in/web-api/get-provider',
+    qs: {
+      api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW'
+    }
+  };
+
+
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    const bodyData = JSON.parse(body)
+    //  res.render('index', { data: bodyData });
+  });
+
+  const user = global.MongoHandler.opened.baggge.collection('users')
+  const where1 = {
+    $or: [{ emailId: userName },
+      { number: userName }]
+  }
+  user.find(where1, (err, cursor) => {
+    if (err) {
+      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+    } else {
+      cursor.toArray((error, docs) => {
+        if (error) {
+          console.log(error)
+        }
+        if (docs.length === 0) {
+          res.send('incorrect mail id or Number');
+        }
+        req.session.page_views = 'hhh'
+        console.log(req.session.page_views)
+        res.redirect('/')
+        // res.send('correct mail id or number');
+      });
+    }
+  })
+});
+
+
+// signUp form handle
+routers.post('/signUp', (req, res, next) => {
+  const userName = req.body.userName;
+  const userEmailId = req.body.emailId;
+  const userNumber = req.body.mobileNumber;
+  const userPassword = req.body.passWord;
+  const userDocument = {
+    userId: userNumber,
+    name: userName,
+    emailId: userEmailId,
+    password: userPassword,
+    number: userNumber,
+    isActive: 1
+  };
+  const user = global.MongoHandler.opened.baggge.collection('users');
+  user.insert(userDocument, (err, doc) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('user registered successfully');
+    }
+  });
+
+  const options = {
+    method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
     qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW' }
-   };
-  
+  };
 
-  request(options, function (error, response, body) {
-      if (error) throw new Error(error);
-      body = JSON.parse(body)
-      console.log(body.providers);
-      res.render('index', {data:body});
+
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    const bodyData = JSON.parse(body)
+    // res.render('index', { data: body });
+    req.session.signupDone = 1
+    res.redirect('/')
   });
+});
+
+/* GET ABOUT US page. */
+routers.get('/aboutus', (req, res) => {
+  res.render('aboutus', {});
+});
+
+/* GET Terms and Conditions page. */
+routers.get('/termsandconditions', (req, res) => {
+  res.render('termsandconditions', {});
+});
+
+/* GET Refund Policy page. */
+routers.get('/refundpolicy', (req, res) => {
+  res.render('refundpolicy', {});
+});
+
+/* GET Privacy Policy page. */
+routers.get('/privacypolicy', (req, res) => {
+  res.render('privacypolicy', {});
+});
+
+/* GET CONTACT US page. */
+routers.get('/contactus', (req, res) => {
+  res.render('contactus', {});
+});
+/* GET CAREERS page. */
+routers.get('/career', (req, res) => {
+  res.render('career', {});
+});
+
+
+/* Contact Us page handler */
+routers.post('/contactus', (req, res) => {
+  if (req.body.submit) {
+    const yourNamename = req.body.yourName;
+    const emailId = req.body.email;
+    const subject = req.body.subject;
+    const question = req.body.yourQuestion;
+    const contactDoc = {
+      name: yourNamename,
+      email: emailId,
+      subject,
+      question
+    };
+    const randomVisitors = global.MongoHandler.opened.baggge.collection('randomVisitors');
+    randomVisitors.insert(contactDoc, (err, doc) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('submitted successfully');
+        res.render('contactus', { msg: 'submitted successfully' })
+      }
+    });
+  } else {
+    res.render('contactus', {});
+  }
 });
 
 

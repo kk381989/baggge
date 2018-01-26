@@ -6,39 +6,82 @@ body {
 a {
   color: #00B7FF;
 }
+.contactFormError{
+  color: #FF1F1F;
+}
+
+.loginFormError{
+  color: #FF1F1F;
+}
+.signUpFormError{
+  color: #FF1F1F;
+}
+
+button[type="submit"]{
+  margin: 10px;
+}
+input[type="number"]{
+  margin: 10px 10px 10px 0px;
+}
+
+#moperator{
+  margin: 10px;
+}
+#eoperator{
+  margin: 10px;
+}
+#woperator{
+  margin: 10px;
+}
+#doperator{
+  margin: 10px;
+}
+input#dDate.form-control{
+  margin: 0px 0px 10px 0px;
+}
+input#rDate.form-control{
+  margin: 0px 0px 10px 0px;
+}
+input#Travellers.form-control{
+  margin: 0px 0px 10px 0px;
+}
+
+#plans{
+  margin: 10px;
+}
+
 
 .first{
   height:250px;
   width: 100%;
-  //background-color: #99cccc;
   background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
-  padding: 10px 10px 10px 10px;  	
+  padding: 10px 10px 10px 10px;
 }
 
 .mid{
   height:100%;
   width: 90%;
   margin: 0 auto;
-  padding: 10px 10px 10px 10px;  	
+  padding: 10px 10px 10px 10px;
 }
 .second{
   height:100%;
   width: 100%;
   padding: 10px 10px 10px 10px;
-  color: black;  	
+  color: black;
 }
 
 .trending{
   height:100%;
   width: 100%;
   margin:;
-  background-color:;    
+  background-color:;
 }
 
 .last{
   width:100% ;
   background-color: #eef2f5;
-  padding: 10px 10px 10px 10px;  
+  padding: 10px 10px 10px 10px;
 }
 
 .copyright{
@@ -53,11 +96,20 @@ a {
 
 .white_div{
   background-color: #ffffff;
-  padding: 15px 10px 10px 25px;
+  padding: 15px 10px 10px 15px;
   box-shadow: 3px 1px 10px 2px ;
 }
 
-.transparent {
+.transparentOne {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    padding: 5px 25px 5px 25px;
+}
+.transparentTwo {
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -67,11 +119,85 @@ a {
     padding: 5px 25px 5px 25px;
 }
 
+
 input [type="radio"]{
   height:20px;
   width:20px;
   margin-bottom: 10px;
   background-color: white;
   border-radius: 50%;
+}
+
+#message p {
+    padding: ;
+    font-size: ;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+.card {
+  //  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.title {
+    color: grey;
+}
+@media only screen and (max-width: 768px) {
+  .first{
+    height:440px;
+    width: 100%;
+    background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
+    padding: 10px 10px 10px 10px;
+  }
+  .transparentTwo {
+      padding: 5px 15px 5px 15px;
+  }
+
+  #moperator{
+    margin: 0px;
+  }
+  #eoperator{
+    margin: 0px;
+  }
+
+  #woperator{
+    margin: 0px;
+  }
+
+  #doperator{
+    margin: 0px;
+  }
+  #dDate{
+    margin: 0px;
+  }
+  #rDate{
+    margin: 0px;
+  }
+}
+
+
+@media only screen and (max-width: 560px) {
+  .first{
+    height:460px;
+    width: 100%;
+    background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
+    padding: 10px 10px 10px 10px;
+  }
+  .transparentOne {
+      padding: 5px 6px 5px 6px;
+  }
+  .transparentTwo {
+      padding: 5px 6px 5px 6px;
+  }
+
+  ul.list-inline{
+    width: 320px;
+    height: 60px;
+  }
 
 }

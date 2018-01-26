@@ -15,7 +15,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
-    body { padding-top: 52px; 
+    body { padding-top: 52px;
     }
     	.navbar-default{
     		background-color: white;
@@ -32,22 +32,30 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
             </button>
-  				  <a class="navbar-brand" href="#"><img  class="img-responsive img-rounded" src="/images/logo.jpg" alt="beggge.com"></a>
+  				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/logo.jpg" alt="beggge.com"></a>
   			  </div>
-  			  <div class="collapse navbar-collapse" id="topNavbar">
-            <ul class="nav navbar-nav navbar-right">
-  			      <li><a href="#loginModal" data-toggle="modal" >Login</a></li>
-  			      <li><a href="#signupModal" data-toggle="modal" >Signup</a></li> 	
-  			    </ul>
-          </div>
+          {{#if session}}
+    			  <div class="collapse navbar-collapse" id="topNavbar">
+              <ul class="nav navbar-nav navbar-right">
+    			      <li><a href="#loginModal" data-toggle="modal" >Login</a></li>
+    			      <li><a href="#signupModal" data-toggle="modal" >Signup</a></li>
+    			    </ul>
+            </div>
+            {{else}}
+            <div class="collapse navbar-collapse" id="topNavbar">
+              <ul class="nav navbar-nav navbar-right">
+    			      <li><a href="/logout" data-toggle="modal" >Logout</a></li>
+    			    </ul>
+            </div>
+          {{/if}}
   	    </div>
   	  </nav>
-    </header>    
+    </header>
     <!--header ends here -->
     <!--Login Modal -->
-<div id="loginModal" class="modal fade" role="dialog">
+<div id="loginModal" class="modal fade {{#if signupDone}}in{{/if}}" role="dialog">
   <div class="modal-dialog modal-sm">
 
     <!-- Modal content-->
@@ -58,25 +66,27 @@
       </div>
       <div class="modal-body">
         <!-- login form starts here -->
-        <form action="/login" method="Post" name="loginForm">
+        <form action="/login" method="Post" name="loginForm" onsubmit="return loginFormVal()">
           <div class="form-group">
               <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="email" class="form-control" name="userName" placeholder="Enter email" required>
+              <input type="text" class="form-control" name="userName" placeholder="Enter email or number" >
             </div>
+            <div class="loginFormError" id="userNameError"></div>
             <div class="form-group">
-              <label for="pass"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter password" required>
+              <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" name="passWord" placeholder="Enter password" >
             </div>
+            <div class="loginFormError" id="passWordError"></div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
-            <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>   
+            <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
 
         </form>
         <!-- login form ends here -->
       </div>
       <div class="modal-footer" align="center" style="background: linear-gradient(to left, #66cccc,#99cccc, #99ffcc);">
-        
+
       </div>
     </div>
 
@@ -85,7 +95,7 @@
 
 <!-- SignUp Modal -->
 <div id="signupModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -95,39 +105,52 @@
       </div>
       <div class="modal-body">
       <!-- Signup form starts here -->
-        <form action="/signUp" method="Post" name="signupForm">
+        <form action="/signUp" method="Post" name="signUpForm" onsubmit="return signUpFormVal()">
           <div class="form-group">
-            <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
-            <input type="text" class="form-control" name="userName" placeholder="Enter your Name" required>
+            <label for="userName"><span class="glyphicon glyphicon-user"></span> Your Name </label>
+            <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter your Name" >
           </div>
+          <div class="signUpFormError" id="userNameErr"></div>
           <div class="form-group">
-            <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email Id</label>
-            <input type="email" class="form-control" id="usrname" placeholder="Enter email" required>
+            <label for="emailId"><span class="glyphicon glyphicon-envelope"></span> Email Id</label>
+            <input type="email" class="form-control" name="emailId" id="emailId" placeholder="Enter email" >
           </div>
+          <div class="signUpFormError" id="emailIdErr"></div>
           <div class="form-group">
             <label for="mobileNumber"><span class="glyphicon glyphicon-phone"></span> Mobile Number</label>
-            <input type="text" class="form-control" name="mobileNumber" placeholder="Enter you Number" required>
+            <input type="number" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Enter you Number" >
           </div>
+          <div class="signUpFormError" id="mobileNumberErr"></div>
           <div class="form-group">
-            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-            <input type="text" class="form-control" id="psw" placeholder="Enter password" required>
+            <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+            <input type="password" class="form-control" name="passWord" id="passWord" placeholder="Enter password" >
           </div>
-            <button type="submit" class="btn btn-default btn-success btn-block">
-            <span class="glyphicon glyphicon-off"></span> Signup</button> 
+          <div class="signUpFormError" id="passWordErr"></div>
+          <div id="message" style="display: none;">
+         <h5>Password must contain the following:</h5>
+         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+         <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+         <p id="number" class="invalid">A <b>number</b></p>
+         <p id="splChars" class="invalid">A <b>Special Character</b></p>
+         <p id="length" class="invalid">Minimum <b>6 characters</b></p>
+        </div>
+
+            <button type="submit" class="btn btn-default btn-block">
+            <span class="glyphicon glyphicon-off"></span> Signup</button>
         </form>
         <!-- signup form ends here -->
-      
+
       </div>
       <div class="modal-footer" align="center" style="background: linear-gradient(to left, #66cccc,#99cccc, #99ffcc);">
-        
+
       </div>
     </div>
 
   </div>
 </div>
-   
+
     {{{body}}}
-    
+
     <!--footer starts here -->
     <footer>
   	  <div class="last">
@@ -135,18 +158,18 @@
           <div class="row">
             <div class="col-sm-3">
               <ul style="list-style: none;">
-                <li><a href="" class="btn" style="color: black;">About Us</a></li>
-                <li><a href="" class="btn" style="color: black;">FAQs</a></li>
-                <li><a href="" class="btn" style="color: black;">Terms and conditions</a></li>
+                <li><a href="/aboutus" class="btn" style="color: black;">About Us</a></li>
+                <li><a href="/refundpolicy" class="btn" style="color: black;">Refund Policy</a></li>
+                <li><a href="/termsandconditions" class="btn" style="color: black;">Terms and conditions</a></li>
               </ul>
-              
+
             </div>
             <div class="col-sm-3">
               <ul style="list-style: none;">
-                <li><a href="" class="btn" style="color: black;">Privacy</a></li>
-                <li><a href="" class="btn" style="color: black;">Contact Us</a></li>
-                <li><a href="" class="btn" style="color: black;">Career</a></li>
-              </ul>              
+                <li><a href="/privacypolicy" class="btn" style="color: black;">Privacy Policy</a></li>
+                <li><a href="/contactus" class="btn" style="color: black;">Contact Us</a></li>
+                <li><a href="/career" class="btn" style="color: black;">Career</a></li>
+              </ul>
             </div>
             <div class="col-sm-3">
               <h4><b>Download Our App</b></h4>
@@ -162,10 +185,10 @@
                  <li><a href=""><img src="/images/twitter.jpg" style="height: 20px;width: 20px;"></a></li>
                  <li><a href=""><img src="/images/googleplus.jpg" style="height: 20px;width: 20px;"></a></li>
                  <li><a href=""><img src="/images/linkedin.jpg" style="height: 20px;width: 20px;"></a></li>
-               </ul> 
-            </div>  
+               </ul>
+            </div>
           </div>
-        </div>      
+        </div>
       </div>
 
       <div class="copyright">
@@ -175,6 +198,10 @@
       </div>
     </footer>
     <!--footer starts here -->
+  <script type="text/javascript" src="/js/processEvent.js"></script>
   <script type="text/javascript" src="/js/validations.js"></script>
+  <script type="text/javascript" src="/js/contactUsValidations.js"></script>
+  <script type="text/javascript" src="/js/loginFormValidations.js"></script>
+  <script type="text/javascript" src="/js/signUpFormValidations.js"></script>
   </body>
 </html>

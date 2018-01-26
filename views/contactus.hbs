@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 class="text-center">Contact Us</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+    <p>Contact us about anything related to our company or services.</p>
+    <p>We'll do our best to get back to you as soon as possible.<p/>
+      {{#if msg }}
+      <div class="alert alert-success"><strong>{{msg}}</strong></div>
+      {{/if}}
+
+<!-- CONTACT US form starts here -->
+      <form action="/contactus" method="post" class="" name="contactUsForm" onsubmit="return contactUsFormVal()" >
+        <div class="form-group">
+          <label for="yourName">Your Name</label>
+          <input type="text" class="form-control" id="yourName" name="yourName" placeholder="Your name..">
+        </div>
+        <div class="contactFormError" id="nameError"></div>
+        <div class="form-group">
+          <label for="email">Email Id</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email Id">
+        </div>
+        <div class="contactFormError" id="emailError"></div>
+        <div class="form-group">
+         <label for="subject">Subject</label>
+         <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+        </div>
+        <div class="contactFormError" id="subjectError"></div>
+        <div class="form-group" >
+          <label for="yourQuestion">Your Question</label>
+          <textarea id="yourQuestion" class="form-control" name="yourQuestion" placeholder="Write something.." style="height:140px"></textarea>
+        </div>
+        <div class="contactFormError" id="questionError"></div>
+        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+      </form>
+  <!-- CONTACT US form ends here -->
+    </div>
+    <div class="col-sm-4">
+      <p>
+        <h2>Baggge.com</h2>
+        4<sup>th</sup> Floor<br>
+        Ahinsa Khand<br>
+        Indirapuram, Ghaziabad<br>
+        INDIA</br>
+        Phone:0000000000</br>
+        Email: info@baggge.com</br>
+        </p>
+      </div>
+  </div>
+  <hr style="border-width: 5px; border-color: orange;width:60%;">
+</div>
