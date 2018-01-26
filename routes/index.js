@@ -169,4 +169,4 @@ routers.post('/contactus', (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = routers;
