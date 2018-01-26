@@ -1,6 +1,6 @@
 $(document).ready(function(){
         document.getElementById("menu1").style.backgroundColor = "white";
-  		document.getElementById("menu5").style.backgroundColor = "#4c50cd";
+  		  document.getElementById("menu5").style.backgroundColor = "#4c50cd";
         $("#electricity").hide();
         $("#water").hide();
         $("#dth").hide();
