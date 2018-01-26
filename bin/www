@@ -6,8 +6,8 @@
 
 var app = require('../app');
 var debug = require('debug')('baggge:server');
-var http = require('http');
-
+var http = require('https');
+var fs = require('fs');
 /**
  * Get port from environment and store in Express.
  */
@@ -22,8 +22,11 @@ global.conf = conf
 /**
  * Create HTTP server.
  */
-
-var server = http.createServer(app);
+var options = {
+    key: fs.readFileSync('/etc/ssl/certs/baggge.com.key','utf8'),
+    cert: fs.readFileSync('/etc/ssl/certs/baggge.com.cert','utf8')
+};
+var server = http.createServer(options,app);
 
 /**
  * Listen on provided port, on all network interfaces.
