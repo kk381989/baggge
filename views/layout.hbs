@@ -36,18 +36,26 @@
             </button>
   				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/logo.jpg" alt="beggge.com"></a>
   			  </div>
-  			  <div class="collapse navbar-collapse" id="topNavbar">
-            <ul class="nav navbar-nav navbar-right">
-  			      <li><a href="#loginModal" data-toggle="modal" >Login</a></li>
-  			      <li><a href="#signupModal" data-toggle="modal" >Signup</a></li>
-  			    </ul>
-          </div>
+          {{#if session}}
+    			  <div class="collapse navbar-collapse" id="topNavbar">
+              <ul class="nav navbar-nav navbar-right">
+    			      <li><a href="#loginModal" data-toggle="modal" >Login</a></li>
+    			      <li><a href="#signupModal" data-toggle="modal" >Signup</a></li>
+    			    </ul>
+            </div>
+            {{else}}
+            <div class="collapse navbar-collapse" id="topNavbar">
+              <ul class="nav navbar-nav navbar-right">
+    			      <li><a href="/logout" data-toggle="modal" >Logout</a></li>
+    			    </ul>
+            </div>
+          {{/if}}
   	    </div>
   	  </nav>
     </header>
     <!--header ends here -->
     <!--Login Modal -->
-<div id="loginModal" class="modal fade" role="dialog">
+<div id="loginModal" class="modal fade {{#if signupDone}}in{{/if}}" role="dialog">
   <div class="modal-dialog modal-sm">
 
     <!-- Modal content-->

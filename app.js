@@ -4,6 +4,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const colors = require('colors')
+const session = require('express-session');
+
+const router = express.Router();
+
+global.express = express
+global.session = session
+global.router = router
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -14,6 +21,7 @@ const appFunctions = require('./lib/appFunction');
 
 const app = express();
 
+app.use(session({ secret: 'Shh, its a secret!' }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -31,6 +39,12 @@ app.use('/users', users);
 app.use('/recharge', recharge);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  console.log('logout called successfully')
+  res.redirect('/')
+})
 
 const hbs = require('hbs');
 

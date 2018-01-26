@@ -1,6 +1,4 @@
-const express = require('express');
-
-const router = express.Router();
+const routers = global.router
 const request = require('request')
 const colors = require('colors');
 // const http = require('http')
@@ -8,7 +6,7 @@ const colors = require('colors');
 // const httpsAgent = new http.Agent({ keepAlive: true });
 
 /* GET home page. */
-router.get('/', (req, res) => {
+routers.get('/', (req, res) => {
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
@@ -18,14 +16,19 @@ router.get('/', (req, res) => {
   };
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
+    let sessionStore = true
+    let signupDone = false
     const bodyData = JSON.parse(body)
-    res.render('index', { data: bodyData });
+    if (req.session.page_views) { sessionStore = false }
+    if (req.session.signupDone) { signupDone = true }
+    console.log(`session is the :: ${sessionStore}`)
+    res.render('index', { data: bodyData, session: sessionStore, signupDone });
   });
 });
 
 
 // login form handler
-router.post('/login', (req, res, next) => {
+routers.post('/login', (req, res, next) => {
   const userName = req.body.userName;
   const userPassword = req.body.passWord;
   const options = {
@@ -59,7 +62,10 @@ router.post('/login', (req, res, next) => {
         if (docs.length === 0) {
           res.send('incorrect mail id or Number');
         }
-        res.send('correct mail id or number');
+        req.session.page_views = 'hhh'
+        console.log(req.session.page_views)
+        res.redirect('/')
+        // res.send('correct mail id or number');
       });
     }
   })
@@ -67,7 +73,7 @@ router.post('/login', (req, res, next) => {
 
 
 // signUp form handle
-router.post('/signUp', (req, res, next) => {
+routers.post('/signUp', (req, res, next) => {
   const userName = req.body.userName;
   const userEmailId = req.body.emailId;
   const userNumber = req.body.mobileNumber;
@@ -99,42 +105,44 @@ router.post('/signUp', (req, res, next) => {
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
     const bodyData = JSON.parse(body)
-    res.render('index', { data: body });
+    // res.render('index', { data: body });
+    req.session.signupDone = 1
+    res.redirect('/')
   });
 });
 
 /* GET ABOUT US page. */
-router.get('/aboutus', (req, res) => {
+routers.get('/aboutus', (req, res) => {
   res.render('aboutus', {});
 });
 
 /* GET Terms and Conditions page. */
-router.get('/termsandconditions', (req, res) => {
+routers.get('/termsandconditions', (req, res) => {
   res.render('termsandconditions', {});
 });
 
 /* GET Refund Policy page. */
-router.get('/refundpolicy', (req, res) => {
+routers.get('/refundpolicy', (req, res) => {
   res.render('refundpolicy', {});
 });
 
 /* GET Privacy Policy page. */
-router.get('/privacypolicy', (req, res) => {
+routers.get('/privacypolicy', (req, res) => {
   res.render('privacypolicy', {});
 });
 
 /* GET CONTACT US page. */
-router.get('/contactus', (req, res) => {
+routers.get('/contactus', (req, res) => {
   res.render('contactus', {});
 });
 /* GET CAREERS page. */
-router.get('/career', (req, res) => {
+routers.get('/career', (req, res) => {
   res.render('career', {});
 });
 
 
 /* Contact Us page handler */
-router.post('/contactus', (req, res) => {
+routers.post('/contactus', (req, res) => {
   if (req.body.submit) {
     const yourNamename = req.body.yourName;
     const emailId = req.body.email;
