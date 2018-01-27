@@ -36,6 +36,25 @@ input[type="number"]{
 #doperator{
   margin: 10px;
 }
+#city{
+  margin: 10px;
+}
+#hotelCategory{
+  margin: 10px;
+}
+
+#vendorRegForm {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 40px auto;
+  color: black;
+  font-family: Raleway;
+  padding: 30px;
+  width: 50%;
+  min-width: 150px;
+}
+
+
 input#dDate.form-control{
   margin: 0px 0px 10px 0px;
 }
@@ -57,6 +76,41 @@ input#Travellers.form-control{
   background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
   padding: 10px 10px 10px 10px;
 }
+.findHotels{
+  height:180px;
+  width: 100%;
+  background-color: #00498E;
+  padding: 10px 10px 10px 10px;
+}
+.vendorReg{
+  height:100%;
+  width: 100%;
+  background-color: #00498E;
+  padding: 10px 10px 10px 10px;
+}
+
+.hotelCard{
+  height:100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid;
+}
+
+
+.coupons{
+  height:350px;
+  width: 100%;
+  border: 1px solid;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  box-shadow: 3px 1px 5px 2px ;
+}
+.coupons:hover{
+  box-shadow: 3px 1px 10px 2px ;
+}
+
+
 
 .mid{
   height:100%;
@@ -97,7 +151,7 @@ input#Travellers.form-control{
 .white_div{
   background-color: #ffffff;
   padding: 15px 10px 10px 15px;
-  box-shadow: 3px 1px 10px 2px ;
+//  box-shadow: 3px 1px 10px 2px ;
 }
 
 .transparentOne {
