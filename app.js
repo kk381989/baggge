@@ -6,15 +6,16 @@ const bodyParser = require('body-parser');
 const colors = require('colors')
 const session = require('express-session');
 
-const router = express.Router();
+// const router = express.Router();
 
 global.express = express
 global.session = session
-global.router = router
+// global.router = router
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const recharge = require('./routes/recharge');
+const coupons = require('./routes/coupons');
 const electricityRecharge = require('./routes/electricityRecharge');
 const dthRecharge = require('./routes/dthRecharge');
 const appFunctions = require('./lib/appFunction');
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/recharge', recharge);
+app.use('/coupons', coupons);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
 

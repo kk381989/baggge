@@ -24,7 +24,7 @@
     </ul>
 
     <div id="mobile" class="white_div">
-      <form name="mobileRechargeForm" action="/recharge/mobile" method="Post" onsubmit="return validateMobileRechargeForm()">
+      <form name="mobileRechargeForm" action="/coupons/mobile" method="Post" onsubmit="return validateMobileRechargeForm()">
       <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="1"> Prepaid</label>
       <label style="color:orange;font-size:15px;"><input type="radio" name="planType" value="2"> Postpaid</label><br>
           <div class="form-group row">
@@ -42,7 +42,7 @@
               {{/each}}
               </select>
             </div>
-            <div class="col-sm-2 col-md-2">
+            <div class="col-sm-2 col-md-2 has-warning">
               <input type="number" class="form-control" style="color:black;" name="amount" placeholder="Amount" maxlength="10" required>
             </div>
             <div class="col-sm-2 col-md-2">

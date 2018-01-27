@@ -57,6 +57,19 @@ input#Travellers.form-control{
   background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
   padding: 10px 10px 10px 10px;
 }
+.coupons{
+  height:350px;
+  width: 100%;
+  border: 1px solid;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  box-shadow: 3px 1px 5px 2px ;
+}
+.coupons:hover{
+  box-shadow: 3px 1px 10px 2px ;
+}
+
+
 
 .mid{
   height:100%;
