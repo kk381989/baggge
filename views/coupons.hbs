@@ -1,0 +1,29 @@
+<div class="container">
+ <div class="jumbotron">
+ <form action="/recharge/mobile" method="post">
+   <input type="hidden" name="planType" value="{{rData.planType}}">
+   <input type="hidden" name="number" value="{{rData.number}}">
+   <input type="hidden" name="operator" value="{{rData.operator}}">
+   <input type="hidden" name="amount" value="{{rData.amount}}">
+<p>Recharge of mobile number {{rData.number}} for Rs. {{rData.amount}}
+   <button type="submit" class="btn btn-primary">Proceed to Pay Rs. {{rData.amount}}</button>
+ </form></p>
+ </div>
+</div>
+
+<div class="container">
+  <div class="row">
+{{#each data}}
+<div class="col-sm-4">
+  <div class="coupons" >
+    <p><b>{{this.TITLE}}</b></p>
+    <p><b>Description</b> : {{this.DESCRIPTION}}</p>
+    <p><b>Coupon Code</b> : {{this.COUPON}}</p>
+    <p><b>Discount</b> : {{this.DISCOUNT}}</p>
+    <p><b>Store</b> : {{this.STORE_NAME}}</p>
+    <a href="{{this.LINK}}" class="btn btn-primary">Go to store to avail this offer</a>
+ </div>
+</div>
+{{/each}}
+  </div>
+</div>

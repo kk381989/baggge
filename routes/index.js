@@ -1,4 +1,5 @@
-const routers = global.router
+const routers = global.express.Router();
+// const routers = global.router
 const request = require('request')
 const colors = require('colors');
 // const http = require('http')
@@ -61,11 +62,19 @@ routers.post('/login', (req, res, next) => {
         }
         if (docs.length === 0) {
           res.send('incorrect mail id or Number');
+        } else if (docs.length === 1) {
+          if (docs[0].password !== userPassword) {
+            res.send('incorrect passWord');
+          } else {
+            console.log('login successfully');
+            req.session.userId = docs[0].userId;
+            console.log(req.session.userId);
+            req.session.page_views = 'hhh'
+            console.log(req.session.page_views)
+            //  res.send('login successfully');
+            res.redirect('/');
+          }
         }
-        req.session.page_views = 'hhh'
-        console.log(req.session.page_views)
-        res.redirect('/')
-        // res.send('correct mail id or number');
       });
     }
   })
@@ -74,32 +83,54 @@ routers.post('/login', (req, res, next) => {
 
 // signUp form handle
 routers.post('/signUp', (req, res, next) => {
-  const userName = req.body.userName;
+  const usrName = req.body.userName;
   const userEmailId = req.body.emailId;
   const userNumber = req.body.mobileNumber;
   const userPassword = req.body.passWord;
   const userDocument = {
     userId: userNumber,
-    name: userName,
+    name: usrName,
     emailId: userEmailId,
     password: userPassword,
     number: userNumber,
     isActive: 1
   };
-  const user = global.MongoHandler.opened.baggge.collection('users');
-  user.insert(userDocument, (err, doc) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('user registered successfully');
-    }
-  });
-
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
     qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW' }
   };
+
+  const user = global.MongoHandler.opened.baggge.collection('users');
+  const where = {
+    $or: [{ emailId: userEmailId },
+      { number: userNumber }]
+  }
+  user.find(where, (err, cursor) => {
+    if (err) {
+      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+    } else {
+      cursor.toArray((error, docs) => {
+        if (error) {
+          console.log(error)
+        }
+        if (docs.length === 0) {
+          user.insert(userDocument, (err, doc) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('user registered successfully');
+              req.session.page_views = 'hhh'
+              console.log(req.session.page_views)
+              res.redirect('/')
+            }
+          });
+        }
+        res.redirect('/')
+      });
+    }
+  })
+  // });
 
 
   request(options, (error, response, body) => {
@@ -111,10 +142,23 @@ routers.post('/signUp', (req, res, next) => {
   });
 });
 
+
+/* GET Hotels page. */
+routers.get('/hotels', (req, res) => {
+  res.render('hotels', {});
+});
+
+/* GET Vendor Registration page. */
+routers.get('/vendorRegistration', (req, res) => {
+  res.render('vendorRegistration', {});
+});
+
+
 /* GET ABOUT US page. */
 routers.get('/aboutus', (req, res) => {
   res.render('aboutus', {});
 });
+
 
 /* GET Terms and Conditions page. */
 routers.get('/termsandconditions', (req, res) => {

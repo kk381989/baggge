@@ -1,5 +1,4 @@
-
-const name = document.forms["contactUsForm"]['yourName'];
+const name = document.forms["contactUsForm"]["yourName"];
 const email = document.forms["contactUsForm"]["email"];
 const subject = document.forms['contactUsForm']['subject'];
 const question = document.forms['contactUsForm']['yourQuestion'];

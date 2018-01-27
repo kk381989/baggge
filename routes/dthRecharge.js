@@ -1,6 +1,7 @@
-const express = require('express');
+//  const express = require('express');
+const router = global.express.Router();
 
-const router = express.Router();
+// const router = global.router
 const request = require('request')
 const http = require('http')
 
