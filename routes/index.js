@@ -20,7 +20,6 @@ routers.get('/', (req, res) => {
     let sessionStore = true
     let signupDone = false
     const bodyData = JSON.parse(body)
-    console.log(bodyData);
     if (req.session.page_views) { sessionStore = false }
     if (req.session.signupDone) { signupDone = true }
     console.log(`session is the :: ${sessionStore}`)
@@ -143,10 +142,23 @@ routers.post('/signUp', (req, res, next) => {
   });
 });
 
+
+/* GET Hotels page. */
+routers.get('/hotels', (req, res) => {
+  res.render('hotels', {});
+});
+
+/* GET Vendor Registration page. */
+routers.get('/vendorRegistration', (req, res) => {
+  res.render('vendorRegistration', {});
+});
+
+
 /* GET ABOUT US page. */
 routers.get('/aboutus', (req, res) => {
   res.render('aboutus', {});
 });
+
 
 /* GET Terms and Conditions page. */
 routers.get('/termsandconditions', (req, res) => {
