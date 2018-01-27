@@ -23,29 +23,29 @@
     	}
     </style>
   </head>
-  <body>
+  <body style="padding-top:0; color:white">
     <!--header starts here -->
     <header>
-  	  <nav class="navbar navbar-default navbar-fixed-top">
-  		  <div class="container-fluid">
-  			  <div class="navbar-header">
+  	  <nav class="navbar navbar-default navbar-fixed-top" style="height:95px; position:relative;margin-bottom:0;box-shadow:none;">
+  		  <div class="container-fluid" style="height:100%">
+  			  <div class="navbar-header" style="height:100%">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-  				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/logo.jpg" alt="beggge.com"></a>
+  				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/bagggelogo.png" alt="beggge.com"></a>
   			  </div>
           {{#if session}}
     			  <div class="collapse navbar-collapse" id="topNavbar">
-              <ul class="nav navbar-nav navbar-right">
-    			      <li><a href="#loginModal" data-toggle="modal" >Login</a></li>
-    			      <li><a href="#signupModal" data-toggle="modal" >Signup</a></li>
+              <ul class="nav navbar-nav navbar-right" style="margin-top: 18px;font-size:20px;font-family:'Roboto',sans-serif">
+    			      <li><a href="#loginModal" data-toggle="modal" style="color:#175588">Login</a></li>
+    			      <li><a href="#signupModal" data-toggle="modal" style="color:#175588">Signup</a></li>
     			    </ul>
             </div>
             {{else}}
             <div class="collapse navbar-collapse" id="topNavbar">
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav navbar-right" style="margin-top: 18px;font-size: 20px;">
     			      <li><a href="/logout" data-toggle="modal" >Logout</a></li>
     			    </ul>
             </div>
