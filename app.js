@@ -50,7 +50,8 @@ app.get('/logout', (req, res) => {
 
 const hbs = require('hbs');
 
-hbs.registerHelper('ifEquals', (arg1, arg2, options) => ((arg1 === arg2) ? options.fn(this) : options.inverse(this)));
+hbs.registerHelper('ifEquals', (arg1, arg2, options) => (
+  (arg1 === arg2) ? options.fn(this) : options.inverse(this)));
 
 
 appFunctions.bagggePreLoad(() => {
