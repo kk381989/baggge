@@ -73,7 +73,7 @@ input#Travellers.form-control{
 .first{
   height:250px;
   width: 100%;
-  background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
+  background-color: #004E89;
   padding: 10px 10px 10px 10px;
 }
 .findHotels{
@@ -122,7 +122,7 @@ input#Travellers.form-control{
   height:100%;
   width: 100%;
   padding: 10px 10px 10px 10px;
-  color: black;
+  color: #00498E;
 }
 
 .trending{
@@ -143,15 +143,13 @@ input#Travellers.form-control{
   background-color: #d8dcdf;
 }
 .blue_div{
-  background-color: #4c50cd;
+  background-color: #004293;
   padding: 15px 10px 10px 25px;
-  box-shadow: 3px 1px 10px 2px ;
 }
 
 .white_div{
   background-color: #ffffff;
   padding: 15px 10px 10px 15px;
-//  box-shadow: 3px 1px 10px 2px ;
 }
 
 .transparentOne {
@@ -205,7 +203,7 @@ input [type="radio"]{
   .first{
     height:440px;
     width: 100%;
-    background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
+    background-color: #004E89;
     padding: 10px 10px 10px 10px;
   }
   .transparentTwo {
@@ -239,7 +237,7 @@ input [type="radio"]{
   .first{
     height:460px;
     width: 100%;
-    background: linear-gradient(to bottom left, #66cccc,#99cccc, #99ffcc);
+    background:-color: #004E89;
     padding: 10px 10px 10px 10px;
   }
   .transparentOne {
