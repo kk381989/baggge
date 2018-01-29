@@ -2,7 +2,48 @@ const router = global.express.Router();
 const colors = require('colors');
 /*  */
 router.get('/', (req, res) => {
-  res.send('respond with a resource user');
+  if (req.session.vendorId) {
+    const vendor = req.session.vendorId;
+    console.log(vendor);
+    const vendors = global.MongoHandler.opened.baggge.collection('vendors')
+    const where1 = {
+      vendorId: vendor
+    }
+    vendors.find(where1, (err, cursor) => {
+      if (err) {
+        console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+      } else {
+        cursor.toArray((error, docs) => {
+          if (error) {
+            console.log(error)
+          }
+          if (docs.length === 0) {
+            res.send('not logged in');
+          } else if (docs.length === 1) {
+            const hotels = global.MongoHandler.opened.baggge.collection('hotels');
+            const where = {
+              vendorId: docs[0].vendorId
+            }
+            hotels.find(where, (err1, cursor1) => {
+              if (err1) {
+                console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+              } else {
+                cursor1.toArray((error2, hotel) => {
+                  if (error2) {
+                    console.log(error)
+                  }
+                  const hotelData = hotel;
+                  console.log(hotelData);
+                  req.session.vendorId = docs[0].vendorId;
+                  res.render('dashboard', { data: docs[0], hotels: hotelData });
+                });
+              }
+            });
+          }
+        });
+      }
+    })
+  }
 });
 
 // HOTEL Registration form handle
@@ -41,32 +82,14 @@ router.post('/addHotel', (req, res, next) => {
   };
 
   const hotels = global.MongoHandler.opened.baggge.collection('hotels');
-  const where = {
-    name: hotelName
-  }
-  hotels.find(where, (err, cursor) => {
+  hotels.insert(hotelDocument, (err, doc) => {
     if (err) {
-      console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+      console.log(err);
     } else {
-      cursor.toArray((error, docs) => {
-        if (error) {
-          console.log(error)
-        }
-        if (docs.length === 0) {
-          hotels.insert(hotelDocument, (err, doc) => {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log('Hotel registered successfully');
-              res.redirect('back');
-            }
-          });
-        } else if (docs.length !== 0) {
-          res.render('back')
-        }
-      });
+      console.log('Hotel registered successfully');
+      res.redirect('/dashboard');
     }
-  })
+  });
 });
 
 

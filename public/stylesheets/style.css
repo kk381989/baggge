@@ -68,7 +68,9 @@ input#Travellers.form-control{
 #plans{
   margin: 10px;
 }
-
+.entry{
+  margin: 10px;
+}
 
 .first{
   height:250px;
@@ -99,8 +101,9 @@ input#Travellers.form-control{
 .hotelCard{
   height:100%;
   width: 100%;
-  margin: 0 auto;
+  margin:10px;
   padding: 10px 10px 10px 10px;
+  box-shadow: 3px 1px 5px 2px ;
   border: 1px solid;
 }
 

@@ -22,8 +22,8 @@
        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHotel">Click Here To Add Hotel</button>
        <div class="entry">
       {{#if hotels}}
-       {{#each data.hotels}}
-       <div class="card">
+       {{#each hotels}}
+       <div class="hotelCard">
          <div class="row">
            <div class="col-sm-5">
            <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="100px">
@@ -57,7 +57,7 @@
       </div>
       <div class="modal-body">
         <div class="hotels">
-          <form method="post" action="/dashboard/addHotel" enctype="multipart/form-data">
+          <form method="post" action="/dashboard/addHotel">
             <div class="form-group row">
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">

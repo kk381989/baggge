@@ -32,9 +32,26 @@ router.post('/login', (req, res, next) => {
             res.send('Incorrect passWord');
           } else {
             console.log('login successfully');
-            req.session.vendorId = docs[0].vendorId;
-            console.log(req.session.vendorId);
-            res.render('dashboard', { data: docs[0] });
+            const hotels = global.MongoHandler.opened.baggge.collection('hotels');
+            const where = {
+              vendorId: docs[0].vendorId
+            }
+            hotels.find(where, (err1, cursor1) => {
+              if (err1) {
+                console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+              } else {
+                cursor1.toArray((error2, hotel) => {
+                  if (error2) {
+                    console.log(error)
+                  }
+                  const hotelData = hotel;
+                  console.log(hotelData);
+                  req.session.vendorId = docs[0].vendorId;
+                  console.log(req.session.vendorId);
+                  res.render('dashboard', { data: docs[0], hotels: hotelData });
+                });
+              }
+            });
           }
         }
       });
