@@ -82,6 +82,13 @@ input#Travellers.form-control{
   background-color: #00498E;
   padding: 10px 10px 10px 10px;
 }
+.hotels{
+  height:100%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  padding: 10px 10px 10px 10px;
+}
 .vendorReg{
   height:100%;
   width: 100%;
@@ -155,6 +162,7 @@ input#Travellers.form-control{
 .transparentOne {
     background-color: Transparent;
     background-repeat:no-repeat;
+    color: white;
     border: none;
     cursor:pointer;
     overflow: hidden;

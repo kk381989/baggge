@@ -1,4 +1,5 @@
 const colors = require('colors');
+const fs = require('fs');
 
 const router = global.express.Router();
 
@@ -33,7 +34,7 @@ router.post('/login', (req, res, next) => {
             console.log('login successfully');
             req.session.vendorId = docs[0].vendorId;
             console.log(req.session.vendorId);
-            res.render('dashboard');
+            res.render('dashboard', { data: docs[0] });
           }
         }
       });

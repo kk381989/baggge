@@ -17,6 +17,7 @@ const users = require('./routes/users');
 const recharge = require('./routes/recharge');
 const coupons = require('./routes/coupons');
 const vendor = require('./routes/vendor');
+const dashboard = require('./routes/dashboard');
 const electricityRecharge = require('./routes/electricityRecharge');
 const dthRecharge = require('./routes/dthRecharge');
 const appFunctions = require('./lib/appFunction');
@@ -41,6 +42,7 @@ app.use('/users', users);
 app.use('/recharge', recharge);
 app.use('/coupons', coupons);
 app.use('/vendor', vendor);
+app.use('/dashboard', dashboard);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
 
