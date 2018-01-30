@@ -106,18 +106,45 @@ input#Travellers.form-control{
   box-shadow: 3px 1px 5px 2px ;
   border: 1px solid;
 }
-
+.couponsBlue{
+  height:100%;
+  width: 100%;
+  border-radius: 10px;
+  margin: 30px auto;
+  background-color: #00498E;
+  padding: 10px 10px 10px 10px;
+}
 
 .coupons{
-  height:350px;
-  width: 100%;
-  border: 1px solid;
-  padding: 10px 10px 10px 10px;
-  margin: 10px;
-  box-shadow: 3px 1px 5px 2px ;
+    border: 5px dotted #bbb;
+    height: 220px;
+    width: 80%;
+    border-radius: 15px;
+    margin: 0 auto;
+    margin: 10px;
+    max-width: 600px;
+    position: relative;
+    padding: 5px;
 }
 .coupons:hover{
-  box-shadow: 3px 1px 10px 2px ;
+  box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3),
+             0px 20px 15px 0px rgba(0, 0, 0, 0.6);
+  opacity: 1.0;
+}
+.promo {
+    background: #ccc;
+    padding: 3px;
+}
+.cHead {
+    padding: 2px 16px;
+    background-color: #f1f1f1;
+}
+.cFoot{
+  padding: 2px 2px;
+  background-color: #f1f1f1;
+  bottom: 0px;
+  position: absolute;
+  padding-bottom: 10px;
 }
 
 

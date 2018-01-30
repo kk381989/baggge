@@ -21,10 +21,13 @@ $(document).ready(function() {
 
   $('#menu1').click(function(){
     m1.style.backgroundColor = '#ffffff';
-    m1.style.color = '#004E89';
     m2.style.backgroundColor = 'transparent';
     m3.style.backgroundColor = 'transparent';
     m4.style.backgroundColor = 'transparent';
+    m1.style.color = '#004E89';
+    m2.style.color = 'white';
+    m3.style.color = 'white';
+    m4.style.color = 'white';
     $('#mobile').show();
     $('#electricity').hide();
     $('#water').hide();
@@ -33,9 +36,12 @@ $(document).ready(function() {
     $('#menu2').click(function(){
         m1.style.backgroundColor = 'transparent';
         m2.style.backgroundColor = 'white';
-        m2.style.color = '#004E89';
         m3.style.backgroundColor = 'transparent';
         m4.style.backgroundColor = 'transparent';
+        m1.style.color = 'white';
+        m2.style.color = '#004E89';
+        m3.style.color = 'white';
+        m4.style.color = 'white';
         $('#electricity').show();
         $('#mobile').hide();
         $('#water').hide();
@@ -46,6 +52,10 @@ $(document).ready(function() {
         m2.style.backgroundColor = 'transparent';
         m3.style.backgroundColor = 'white';
         m4.style.backgroundColor = 'transparent';
+        m1.style.color = 'white';
+        m2.style.color = 'white';
+        m3.style.color = '#004E89';
+        m4.style.color = 'white';
         $('#water').show();
         $('#electricity').hide();
         $('#mobile').hide();
@@ -56,16 +66,24 @@ $(document).ready(function() {
         m2.style.backgroundColor = 'transparent';
         m3.style.backgroundColor = 'transparent';
         m4.style.backgroundColor = 'white';
+        m1.style.color = 'white';
+        m2.style.color = 'white';
+        m3.style.color = 'white';
+        m4.style.color = '#004E89';
         $('#dth').show();
         $('#mobile').hide();
         $('#electricity').hide();
         $('#water').hide();
     });
     $('#menu5').click(function(){
-        m5.style.backgroundColor = '#4c50cd';
+        m5.style.backgroundColor = '#004293';
         m6.style.backgroundColor = 'transparent';
         m7.style.backgroundColor = 'transparent';
         m8.style.backgroundColor = 'transparent';
+        m5.style.color = 'white';
+        m6.style.color = '#004293';
+        m7.style.color = '#004293';
+        m8.style.color = '#004293';
         $('#flight').show();
         $('#bus').hide();
         $('#hotels').hide();
@@ -73,9 +91,13 @@ $(document).ready(function() {
     });
     $('#menu6').click(function(){
         m5.style.backgroundColor = 'transparent';
-        m6.style.backgroundColor = '#4c50cd';
+        m6.style.backgroundColor = '#004293';
         m7.style.backgroundColor = 'transparent';
         m8.style.backgroundColor = 'transparent';
+        m5.style.color = '#004293';
+        m6.style.color = 'white';
+        m7.style.color = '#004293';
+        m8.style.color = '#004293';
         $('#bus').show();
         $('#flight').hide();
         $('#hotels').hide();
@@ -84,8 +106,12 @@ $(document).ready(function() {
     $('#menu7').click(function(){
         m5.style.backgroundColor = 'transparent';
         m6.style.backgroundColor = 'transparent';
-        m7.style.backgroundColor = '#4c50cd';
+        m7.style.backgroundColor = '#004293';
         m8.style.backgroundColor = 'transparent';
+        m5.style.color = '#004293';
+        m6.style.color = '#004293';
+        m7.style.color = 'white';
+        m8.style.color = '#004293';
         $('#hotels').show();
         $('#flight').hide();
         $('#bus').hide();
@@ -95,7 +121,11 @@ $(document).ready(function() {
         m5.style.backgroundColor = 'transparent';
         m6.style.backgroundColor = 'transparent';
         m7.style.backgroundColor = 'transparent';
-        m8.style.backgroundColor = '#4c50cd';
+        m8.style.backgroundColor = '#004293';
+        m5.style.color = '#004293';
+        m6.style.color = '#004293';
+        m7.style.color = '#004293';
+        m8.style.color = 'white';
         $('#holiday_package').show();
         $('#flight').hide();
         $('#bus').hide();
