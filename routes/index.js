@@ -8,6 +8,8 @@ const colors = require('colors');
 
 /* GET home page. */
 routers.get('/', (req, res) => {
+  console.log("session checking is the ::: "+req.session.page_views)
+  console.log("session 2nd is the ::: "+req.session.userId)
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
@@ -18,12 +20,10 @@ routers.get('/', (req, res) => {
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
     let sessionStore = true
-    let signupDone = false
     const bodyData = JSON.parse(body)
-    if (req.session.page_views) { sessionStore = false }
-    if (req.session.signupDone) { signupDone = true }
+    if (req.session.userId) { sessionStore = false }
     console.log(`session is the :: ${sessionStore}`)
-    res.render('index', { data: bodyData, session: sessionStore, signupDone });
+    res.render('index', { data: bodyData, session: sessionStore });
   });
 });
 
@@ -68,7 +68,7 @@ routers.post('/login', (req, res, next) => {
           } else {
             console.log('login successfully');
             req.session.userId = docs[0].userId;
-            console.log(req.session.userId);
+            console.log("req.session.userId ::::: "+docs[0].userId);
             req.session.page_views = 'hhh'
             console.log(req.session.page_views)
             //  res.send('login successfully');
@@ -126,7 +126,10 @@ routers.post('/signUp', (req, res, next) => {
             }
           });
         }
-        res.redirect('/')
+        else {
+          console.log('user already registered');
+        }
+        //res.redirect('/')
       });
     }
   })
@@ -136,7 +139,6 @@ routers.post('/signUp', (req, res, next) => {
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
     const bodyData = JSON.parse(body)
-    // res.render('index', { data: body });
     req.session.signupDone = 1
     res.redirect('/')
   });

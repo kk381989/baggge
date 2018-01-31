@@ -4,7 +4,9 @@ const router = global.express.Router();
 
 /* GET Vendor login Page. */
 router.get('/', (req, res) => {
-  res.render('vendorLogin', {});
+  let sessionStoreVendor = true
+  if (req.session.vendorId) { sessionStoreVendor = false }
+  res.render('vendorLogin', { sessionStoreVendor });
 });
 
 // vendor login form handler
