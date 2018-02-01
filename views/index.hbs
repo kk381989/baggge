@@ -35,8 +35,8 @@
               <select id="moperator" name="operator" class="form-control" >
               <option value="">Select Operator</option>
               {{#each data.providers}}
-              {{#ifEquals this.service "Recharge"}}
-              <option style="color:black;" value="{{this}}">{{this}}</option>
+              {{#ifEquals this.service Recharge}}
+              <option style="color:black;" value="{{this}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}
               {{/each}}

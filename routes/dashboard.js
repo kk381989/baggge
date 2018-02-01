@@ -1,3 +1,12 @@
+const multer = require('multer');
+
+const upload = multer({
+  dest: 'public/images/hotelsUploads/'
+});
+const fields = [
+  { name: 'room1', maxCount: 1 },
+  { name: 'room2', maxCount: 1 }
+]
 const router = global.express.Router();
 const colors = require('colors');
 /*  */
@@ -47,7 +56,7 @@ router.get('/', (req, res) => {
 });
 
 // HOTEL Registration form handle
-router.post('/addHotel', (req, res, next) => {
+router.post('/addHotel', upload.fields(fields), (req, res, next) => {
   const vendorid = req.body.vendorId;
   const hotelName = req.body.name;
   const hotelAddress = req.body.address;
