@@ -159,6 +159,11 @@ routers.get('/refundpolicy', (req, res) => {
 routers.get('/privacypolicy', (req, res) => {
   res.render('privacypolicy', {});
 });
+/* GET Privacy Policy page. */
+routers.get('/cancellationPolicy', (req, res) => {
+  res.render('cancellationPolicy', {});
+});
+
 
 /* GET CONTACT US page. */
 routers.get('/contactus', (req, res) => {

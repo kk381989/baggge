@@ -57,7 +57,7 @@
       </div>
       <div class="modal-body">
         <div class="hotels">
-          <form method="post" action="/dashboard/addHotel">
+          <form method="post" action="/dashboard/addHotel" enctype="multipart/form-data">
             <div class="form-group row">
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">
@@ -117,12 +117,14 @@
             <h3>Upload Hotel Images</h3>
             <div class="form-group row">
               <div class="col-sm-4">
-                <label for="Room1"> Room 1</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload" multiple>
+
+              <div class="btn">UPLOAD
+              <input type="file" class="form-control-file" name="room1" id="fileToUpload">
+              </div>
               </div>
               <div class="col-sm-4">
                 <label for="Room1"> Room 2</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+                <input type="file" class="form-control-file" name="room2" id="fileToUpload">
               </div>
               <div class="col-sm-4">
                 <label for="reception"> Reception/lobby</label>

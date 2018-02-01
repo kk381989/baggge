@@ -24,6 +24,21 @@ input[type="number"]{
   margin: 10px 10px 10px 0px;
 }
 
+input[type="file"]{
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.uploadBtn{
+  height: 100;
+  width: 100%;
+  position: relative;
+  background-image: url();
+}
+
+
 #moperator{
   margin: 10px;
 }
