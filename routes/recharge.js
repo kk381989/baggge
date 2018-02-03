@@ -19,7 +19,7 @@ router.post('/mobile', (req, res) => {
   const operators = req.body.operator;
   const rechargeAmount = req.body.amount;
   console.log(req.session.userId);
-  if (req.sess.userId) {
+  if (req.session.userId) {
     const options = {
       method: 'GET',
       url: 'https://www.pay2all.in/web-api/paynow',

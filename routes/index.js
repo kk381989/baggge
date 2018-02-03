@@ -30,27 +30,13 @@ routers.get('/', (req, res) => {
 
 // login form handler
 routers.post('/login', (req, res, next) => {
-  const userName = req.body.userName;
+  const usrName = req.body.userName;
   const userPassword = req.body.passWord;
-  const options = {
-    method: 'GET',
-    url: 'https://www.pay2all.in/web-api/get-provider',
-    qs: {
-      api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW'
-    }
-  };
-
-
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
-    const bodyData = JSON.parse(body)
-    //  res.render('index', { data: bodyData });
-  });
 
   const user = global.MongoHandler.opened.baggge.collection('users')
   const where1 = {
-    $or: [{ emailId: userName },
-      { number: userName }]
+    $or: [{ emailId: usrName },
+      { number: usrName }]
   }
   user.find(where1, (err, cursor) => {
     if (err) {
@@ -71,7 +57,6 @@ routers.post('/login', (req, res, next) => {
             console.log("req.session.userId ::::: "+docs[0].userId);
             req.session.page_views = 'hhh'
             console.log(req.session.page_views)
-            //  res.send('login successfully');
             res.redirect('/');
           }
         }

@@ -1,7 +1,156 @@
 <div class="vendorReg">
   <div class="container-fluid">
     <div class="mid">
-      <h1>Dashboard</h1>
+      <h1 style="color:white" class="text-center">Dashboard</h1>
+      <div class="hotels">
+        <div class="profile">
+          <div class="row">
+            <div class="col-sm-2 col-sm-offset-3">
+             <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="150px">
+            </div>
+            <div class="col-sm-7">
+              <p><b>Name : </b>{{data.firstname}}&nbsp;{{data.lastname}}</p>
+              <p><b>Email Id : </b>{{data.email}}</p>
+              <p><b>Mobile Number : </b>{{data.number}}</p>
+              <p><b>Username : </b>{{data.username}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div class="hotels" style="margin-top:10px">
+       <h3 class="text-center"><b>Your Hotels Will Appear Here</b></h1>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHotel">Click Here To Add Hotel</button>
+       <div class="entry">
+      {{#if hotels}}
+       {{#each hotels}}
+       <div class="hotelCard">
+         <div class="row">
+           <div class="col-sm-5">
+           <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="100px">
+           </div>
+         <div class="col-sm-7">
+           <p><b>Hotel Name : </b>{{this.name}}</p>
+           <p><b>Address : </b>{{this.address}}</p>
+           <p><b>Description : </b>{{this.description}}</p>
+         </div>
+       </div>
+       </div>
+       {{/each}}
+      {{else}}
+      <h4 class="text-center">No Hotels Added Yet...</h4>
+      {{/if}}
+      </div>
+     </div>
     </div>
+  </div>
+</div>
+
+<!-- ADD HOTEL Modal -->
+<div id="addHotel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Register Your Hotel With Us</h4>
+      </div>
+      <div class="modal-body">
+        <div class="hotels">
+          <form method="post" action="/dashboard/addHotel">
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="address" placeholder=" Address">
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="city" placeholder=" City ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="number" class="form-control" style="margin:0px;" name="pincode" placeholder=" Pincode ">
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="state" placeholder=" State ">
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="country" placeholder=" Country ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="website" placeholder=" Website ">
+              </div>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" style="margin:0px;" name="mNumber" placeholder=" Mobile No. ">
+              </div>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" style="margin:0px;" name="tNumber" placeholder=" Telephone No ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="time" placeholder=" Check-In/Check-Out time ">
+              </div>
+              <div class="col-sm-4">
+                <select name="starCategory" class="form-control">
+                <option value=""> Star Category</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="nearestAirport" placeholder=" Nearest Airport ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <textarea placeholder="Description about your Hotel" name="description" class="form-control"></textarea>
+              </div>
+            </div>
+            <h3>Upload Hotel Images</h3>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label for="Room1"> Room 1</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload" multiple>
+              </div>
+              <div class="col-sm-4">
+                <label for="Room1"> Room 2</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+              </div>
+              <div class="col-sm-4">
+                <label for="reception"> Reception/lobby</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label for="Room1"> Exterior</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+              </div>
+              <div class="col-sm-4">
+                <label for="Room1"> Interior</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+              </div>
+              <div class="col-sm-4">
+                <label for="reception"> Another Facility</label>
+                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+              </div>
+            </div>
+            <input type="hidden" name="vendorId" value="{{data.vendorId}}">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
   </div>
 </div>
