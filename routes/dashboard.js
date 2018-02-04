@@ -1,4 +1,5 @@
 const multer = require('multer');
+const ObjectId = require('mongodb').ObjectID;
 
 const upload = multer({
   dest: 'public/images/hotelsUploads/'
@@ -13,7 +14,6 @@ const colors = require('colors');
 router.get('/', (req, res) => {
   if (req.session.vendorId) {
     const vendor = req.session.vendorId;
-    console.log(vendor);
     const vendors = global.MongoHandler.opened.baggge.collection('vendors')
     const where1 = {
       vendorId: vendor
@@ -42,7 +42,6 @@ router.get('/', (req, res) => {
                     console.log(error)
                   }
                   const hotelData = hotel;
-                  console.log(hotelData);
                   req.session.vendorId = docs[0].vendorId;
                   res.render('dashboard', { data: docs[0], hotels: hotelData });
                 });
@@ -56,7 +55,7 @@ router.get('/', (req, res) => {
 });
 
 // HOTEL Registration form handle
-router.post('/addHotel', upload.fields(fields), (req, res, next) => {
+router.post('/addHotel', upload.fields(fields), (req, res) => {
   const vendorid = req.body.vendorId;
   const hotelName = req.body.name;
   const hotelAddress = req.body.address;
@@ -75,8 +74,8 @@ router.post('/addHotel', upload.fields(fields), (req, res, next) => {
     vendorId: vendorid,
     name: hotelName,
     address: hotelAddress,
-    lastname: hotelCity,
-    email: hotelPincode,
+    city: hotelCity,
+    pincode: hotelPincode,
     state: hotelState,
     country: hotelCountry,
     website: hotelWebsite,
@@ -91,14 +90,26 @@ router.post('/addHotel', upload.fields(fields), (req, res, next) => {
   };
 
   const hotels = global.MongoHandler.opened.baggge.collection('hotels');
-  hotels.insert(hotelDocument, (err, doc) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Hotel registered successfully');
-      res.redirect('/dashboard');
-    }
-  });
+  if (req.body.id.length !== 0) {
+    const myquery = { _id: ObjectId(req.body.id) };
+    hotels.updateOne(myquery, hotelDocument, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('updated');
+        res.redirect('/dashboard');
+      }
+    });
+  } else if (req.body.id.length === 0) {
+    hotels.insert(hotelDocument, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Hotel registered successfully');
+        res.redirect('/dashboard');
+      }
+    });
+  }
 });
 
 

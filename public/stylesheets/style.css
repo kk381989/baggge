@@ -25,10 +25,11 @@ input[type="number"]{
 }
 
 input[type="file"]{
-  display: none;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+  position:absolute;
+  opacity:0;
+  font-size:50px;
+  right:0;
+  top:0;
 }
 
 .uploadBtn{

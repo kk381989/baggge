@@ -3,7 +3,10 @@
   <div class="mid">
     <h2 class="text-center" style="color: white;">Vendor Login</h2>
     {{#if success }}
-    <div class="alert alert-success"><strong>{{success}}</strong></div>
+    <div class="alert alert-success alert-dismissable fade in text-center">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>{{success}}</strong>
+    </div>
     {{/if}}
   <form id="vendorRegForm" action="/vendor/login" method="post">
     <div class="form-group">

@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
                     console.log(error)
                   }
                   const hotelData = hotel;
-                  console.log(hotelData);
+                  // console.log(hotelData);
                   req.session.vendorId = docs[0].vendorId;
                   console.log(req.session.vendorId);
                   res.render('dashboard', { data: docs[0], hotels: hotelData });
