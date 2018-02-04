@@ -54,27 +54,19 @@ app.get('/logout', (req, res) => {
 
 const hbs = require('hbs');
 
-hbs.registerHelper('ifEquals', (arg1, arg2, options) => (
-  (arg1 === arg2) ? options.fn(this) : options.inverse(this)));
+// hbs.registerHelper('equal', (arg1, arg2, options) => (
+//   (arg1 === arg2) ? options.fn(this) : options.inverse(this)));
+
+hbs.registerHelper('ifEquals', function equals (a, b, options) {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this)
+});
 
 
 appFunctions.bagggePreLoad(() => {
   console.log(colors.green('[booting] ✔ All prerequisites are done'))
-  const user = global.MongoHandler.opened.baggge.collection('users')
-  const where1 = {}
-  user.find(where1, (err, cursor) => {
-    if (err) {
-      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
-    } else {
-      cursor.toArray((error, docs) => {
-        if (error) {
-          console.log(error)
-        }
-        // console.log('docs is the :::: ')
-        // console.log(docs)
-      });
-    }
-  })
 });
 
 // catch 404 and forward to error handler

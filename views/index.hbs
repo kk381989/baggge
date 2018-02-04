@@ -1,4 +1,4 @@
-<div class="first">
+<div class="first" style="color:#175588;">
   <div class="container-fluid">
    <div class="mid">
     <h4 style="color: white"><b>Mobile Recharge & Bill Payments</b></h4>
@@ -29,14 +29,14 @@
       <label style="color:#00498E;font-size:15px;padding-left:20px;"><input type="radio" name="planType" value="2"> Postpaid</label><br>
           <div class="form-group row">
             <div class="col-sm-2 col-md-2">
-              <input type="number" class="form-control" style="color:black;" name="number" placeholder="Mobile Number" required>
+              <input type="number" class="form-control" maxlength="10" pattern="\d*" style="color:black;" name="number" placeholder="Mobile Number" required>
             </div>
             <div class="col-sm-2 col-md-2">
               <select id="moperator" name="operator" class="form-control" >
               <option value="">Select Operator</option>
               {{#each data.providers}}
-              {{#ifEquals this.service Recharge}}
-              <option style="color:black;" value="{{this}}">{{this.provider_name}}</option>
+              {{#ifEquals this.service 'Recharge'}}
+              <option style="color:black;" value="{{this.provider_id}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}
               {{/each}}
@@ -137,7 +137,7 @@
 </div>
 
 <div class="second">
-  <div class="container-fluid">
+  <div class="container-fluid" style="color:#175588;">
     <div class="mid">
       <h4><b>Book With Us</b></h4>
 
@@ -245,12 +245,12 @@
 
 <!--trending holiday packages
 
-<div class="container-fluid">
+<div class="container-fluid" style="color:#175588;">
   <h4 class="text-center"><b>Trending Holiday Packages</b></h4>
   <hr style="border-width:5px;border-color:orange;width:5%;">
 </div>
 
-<div class="container">
+<div class="container" style="color:#175588;">
   <div class="row">
     <div class="col-sm-5">
       <div class="trending">
@@ -267,7 +267,7 @@
 </div>  -->
 
 <div class="subscribe">
-  <div class="container">
+  <div class="container" style="color:#175588;">
     <h4 class="text-center"><b>Subscribe for Exiting Offers</b></h4>
     <hr style="border-width: 5px; border-color: orange;width:5%;">
     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">

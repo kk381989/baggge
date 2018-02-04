@@ -3,9 +3,6 @@ const express = require('express');
 // const sessionv = global.session;
 const router = express.Router();
 const request = require('request')
-const http = require('http')
-
-const httpsAgent = new http.Agent({ keepAlive: true });
 
 
 /* GET users listing. */

@@ -2,10 +2,6 @@
 const router = global.express.Router();
 const request = require('request');
 
-// const request = require('request')
-// const http = require('http')
-// const httpsAgent = new http.Agent({ keepAlive: true });
-
 /*  */
 router.get('/', (req, res) => {
   res.send('respond with a resource recharge /');

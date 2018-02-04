@@ -2,7 +2,6 @@ const router = global.express.Router();
 
 // const router = express.Router();
 const request = require('request')
-const http = require('http')
 
 // const httpsAgent = new http.Agent({ keepAlive: true });
 

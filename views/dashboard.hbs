@@ -23,10 +23,26 @@
        <div class="entry">
       {{#if hotels}}
        {{#each hotels}}
-       <div class="hotelCard">
-         <div class="row">
-           <div class="col-sm-5">
-           <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="100px">
+       <a data-toggle="modal" data-target="#addHotel"
+       data-id="{{this._id}}"
+       data-name="{{this.name}}"
+       data-address="{{this.address}}"
+       data-city="{{this.city}}"
+       data-pincode="{{this.pincode}}"
+       data-state="{{this.state}}"
+       data-country="{{this.country}}"
+       data-website="{{this.website}}"
+       data-mnumber="{{this.mobNumber}}"
+       data-tnumber="{{this.telNumber}}"
+       data-time="{{this.time}}"
+       data-starcat="{{this.starCategory}}"
+       data-nairport="{{this.nearestAirport}}"
+       data-description="{{this.description}}"
+       >
+        <div class="hotelCard">
+           <div class="row">
+           <div class="col-sm-offset-2 col-sm-3">
+           <img class="text-center" align="center" style="margin:0 auto;" src="/images/hotel.png" height="120px" width="100px">
            </div>
          <div class="col-sm-7">
            <p><b>Hotel Name : </b>{{this.name}}</p>
@@ -35,6 +51,7 @@
          </div>
        </div>
        </div>
+      </a>
        {{/each}}
       {{else}}
       <h4 class="text-center">No Hotels Added Yet...</h4>
@@ -57,10 +74,10 @@
       </div>
       <div class="modal-body">
         <div class="hotels">
-          <form method="post" action="/dashboard/addHotel" enctype="multipart/form-data">
+          <form method="post" action="/dashboard/addHotel" name="editHotel" enctype="multipart/form-data">
             <div class="form-group row">
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">
+                <input type="text" class="form-control" id="hname"  name="name" placeholder=" Name of the Hotel ">
               </div>
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="address" placeholder=" Address">
@@ -96,7 +113,7 @@
                 <input type="text" class="form-control" name="time" placeholder=" Check-In/Check-Out time ">
               </div>
               <div class="col-sm-4">
-                <select name="starCategory" class="form-control">
+                <select id="starCategory" name="starCategory" class="form-control">
                 <option value=""> Star Category</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -111,41 +128,52 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-12">
-                <textarea placeholder="Description about your Hotel" name="description" class="form-control"></textarea>
+                <textarea placeholder="Description about your Hotel" id="description" name="description" class="form-control"></textarea>
               </div>
             </div>
             <h3>Upload Hotel Images</h3>
             <div class="form-group row">
               <div class="col-sm-4">
-
-              <div class="btn">UPLOAD
-              <input type="file" class="form-control-file" name="room1" id="fileToUpload">
-              </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="Room1"> Room 2</label>
-                <input type="file" class="form-control-file" name="room2" id="fileToUpload">
+                <label for="Room1"> Room 1</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" style="" name="room1" id="">
+                </div>
               </div>
               <div class="col-sm-4">
-                <label for="reception"> Reception/lobby</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+                <label for="Room2"> Room 2</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="room2" id="">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="reception"> Reception</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="fileToUpload" id="">
+                </div>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-4">
                 <label for="Room1"> Exterior</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="fileToUpload" id="">
+                </div>
               </div>
               <div class="col-sm-4">
                 <label for="Room1"> Interior</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="fileToUpload" id="">
+                </div>
               </div>
               <div class="col-sm-4">
-                <label for="reception"> Another Facility</label>
-                <input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+                <label for="reception"> Facility(any)</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="fileToUpload" id="">
+                </div>
               </div>
             </div>
             <input type="hidden" name="vendorId" value="{{data.vendorId}}">
+            <input type="hidden" name="id" value="">
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
           </form>
         </div>
@@ -156,3 +184,37 @@
 
   </div>
 </div>
+
+<script>
+$('#addHotel').on('show.bs.modal', function(e) {
+const id = $(e.relatedTarget).data('id');
+const name = $(e.relatedTarget).data('name');
+const address = $(e.relatedTarget).data('address');
+const city = $(e.relatedTarget).data('city');
+const pincode = $(e.relatedTarget).data('pincode');
+const state = $(e.relatedTarget).data('state');
+const country = $(e.relatedTarget).data('country');
+const website = $(e.relatedTarget).data('website');
+const mNumber = $(e.relatedTarget).data('mnumber');
+const tNumber = $(e.relatedTarget).data('tnumber');
+const time = $(e.relatedTarget).data('time');
+const starCat = $(e.relatedTarget).data('starcat');
+const nAirport = $(e.relatedTarget).data('nairport');
+const description = $(e.relatedTarget).data('description');
+$(e.currentTarget).find('input[name="id"]').val(id);
+$(e.currentTarget).find('input[name="name"]').val(name);
+$(e.currentTarget).find('input[name="address"]').val(address);
+$(e.currentTarget).find('input[name="city"]').val(city);
+$(e.currentTarget).find('input[name="pincode"]').val(pincode);
+$(e.currentTarget).find('input[name="state"]').val(state);
+$(e.currentTarget).find('input[name="country"]').val(country);
+$(e.currentTarget).find('input[name="website"]').val(website);
+$(e.currentTarget).find('input[name="mNumber"]').val(mNumber);
+$(e.currentTarget).find('input[name="tNumber"]').val(tNumber);
+$(e.currentTarget).find('input[name="time"]').val(time);
+$(e.currentTarget).find('#starCategory').val(starCat);
+$(e.currentTarget).find('input[name="nearestAirport"]').val(nAirport);
+$(e.currentTarget).find('#description').val(description);
+});
+
+</script>

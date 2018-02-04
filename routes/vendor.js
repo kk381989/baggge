@@ -1,15 +1,16 @@
 const colors = require('colors');
-const fs = require('fs');
 
 const router = global.express.Router();
 
 /* GET Vendor login Page. */
 router.get('/', (req, res) => {
-  res.render('vendorLogin', {});
+  let sessionStoreVendor = true
+  if (req.session.vendorId) { sessionStoreVendor = false }
+  res.render('vendorLogin', { sessionStoreVendor });
 });
 
 // vendor login form handler
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
   const vendorUserName = req.body.userName;
   const userPassword = req.body.passWord;
 
@@ -45,7 +46,7 @@ router.post('/login', (req, res, next) => {
                     console.log(error)
                   }
                   const hotelData = hotel;
-                  console.log(hotelData);
+                  // console.log(hotelData);
                   req.session.vendorId = docs[0].vendorId;
                   console.log(req.session.vendorId);
                   res.render('dashboard', { data: docs[0], hotels: hotelData });
@@ -60,7 +61,7 @@ router.post('/login', (req, res, next) => {
 });
 
 // vendor Registration form handle
-router.post('/signUp', (req, res, next) => {
+router.post('/signUp', (req, res) => {
   const firstName = req.body.fName;
   const lastName = req.body.lName;
   const emailId = req.body.email;
@@ -93,9 +94,9 @@ router.post('/signUp', (req, res, next) => {
           console.log(error)
         }
         if (docs.length === 0) {
-          vendors.insert(userDocument, (err, doc) => {
-            if (err) {
-              console.log(err);
+          vendors.insert(userDocument, (errors) => {
+            if (errors) {
+              console.log(errors);
             } else {
               console.log('Vendor registered successfully');
               res.render('vendorLogin', { success: 'Vendor registered successfully :) ' });
