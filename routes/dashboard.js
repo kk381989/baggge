@@ -90,7 +90,6 @@ router.post('/addHotel', upload.fields(fields), (req, res) => {
   };
 
   const hotels = global.MongoHandler.opened.baggge.collection('hotels');
-<<<<<<< HEAD
   if (req.body.id.length !== 0) {
     const myquery = { _id: ObjectId(req.body.id) };
     hotels.updateOne(myquery, hotelDocument, (err) => {
@@ -111,16 +110,6 @@ router.post('/addHotel', upload.fields(fields), (req, res) => {
       }
     });
   }
-=======
-  hotels.insert(hotelDocument, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Hotel registered successfully');
-      res.redirect('/dashboard');
-    }
-  });
->>>>>>> 92e32280ab102151cd466bd665a5794b83a18fd3
 });
 
 
