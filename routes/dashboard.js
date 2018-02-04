@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
 });
 
 // HOTEL Registration form handle
-router.post('/addHotel', upload.fields(fields), (req, res, next) => {
+router.post('/addHotel', upload.fields(fields), (req, res) => {
   const vendorid = req.body.vendorId;
   const hotelName = req.body.name;
   const hotelAddress = req.body.address;
@@ -91,7 +91,7 @@ router.post('/addHotel', upload.fields(fields), (req, res, next) => {
   };
 
   const hotels = global.MongoHandler.opened.baggge.collection('hotels');
-  hotels.insert(hotelDocument, (err, doc) => {
+  hotels.insert(hotelDocument, (err) => {
     if (err) {
       console.log(err);
     } else {

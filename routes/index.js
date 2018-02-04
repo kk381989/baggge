@@ -8,8 +8,6 @@ const colors = require('colors');
 
 /* GET home page. */
 routers.get('/', (req, res) => {
-  console.log("session checking is the ::: "+req.session.page_views)
-  console.log("session 2nd is the ::: "+req.session.userId)
   const options = {
     method: 'GET',
     url: 'https://www.pay2all.in/web-api/get-provider',
@@ -21,6 +19,7 @@ routers.get('/', (req, res) => {
     if (error) throw new Error(error);
     let sessionStore = true
     const bodyData = JSON.parse(body)
+    console.log(bodyData)
     if (req.session.userId) { sessionStore = false }
     console.log(`session is the :: ${sessionStore}`)
     res.render('index', { data: bodyData, session: sessionStore });
@@ -29,7 +28,7 @@ routers.get('/', (req, res) => {
 
 
 // login form handler
-routers.post('/login', (req, res, next) => {
+routers.post('/login', (req, res) => {
   const usrName = req.body.userName;
   const userPassword = req.body.passWord;
 
@@ -54,9 +53,7 @@ routers.post('/login', (req, res, next) => {
           } else {
             console.log('login successfully');
             req.session.userId = docs[0].userId;
-            console.log("req.session.userId ::::: "+docs[0].userId);
-            req.session.page_views = 'hhh'
-            console.log(req.session.page_views)
+            console.log(`req.session.userId ::::: ${docs[0].userId}`);
             res.redirect('/');
           }
         }
@@ -67,7 +64,7 @@ routers.post('/login', (req, res, next) => {
 
 
 // signUp form handle
-routers.post('/signUp', (req, res, next) => {
+routers.post('/signUp', (req, res) => {
   const usrName = req.body.userName;
   const userEmailId = req.body.emailId;
   const userNumber = req.body.mobileNumber;
@@ -79,11 +76,6 @@ routers.post('/signUp', (req, res, next) => {
     password: userPassword,
     number: userNumber,
     isActive: 1
-  };
-  const options = {
-    method: 'GET',
-    url: 'https://www.pay2all.in/web-api/get-provider',
-    qs: { api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW' }
   };
 
   const user = global.MongoHandler.opened.baggge.collection('users');
@@ -100,33 +92,20 @@ routers.post('/signUp', (req, res, next) => {
           console.log(error)
         }
         if (docs.length === 0) {
-          user.insert(userDocument, (err, doc) => {
-            if (err) {
-              console.log(err);
+          user.insert(userDocument, (errors) => {
+            if (errors) {
+              console.log(errors);
             } else {
               console.log('user registered successfully');
-              req.session.page_views = 'hhh'
-              console.log(req.session.page_views)
               res.redirect('/')
             }
           });
-        }
-        else {
+        } else {
           console.log('user already registered');
         }
-        //res.redirect('/')
       });
     }
   })
-  // });
-
-
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
-    const bodyData = JSON.parse(body)
-    req.session.signupDone = 1
-    res.redirect('/')
-  });
 });
 
 
@@ -182,16 +161,16 @@ routers.post('/contactus', (req, res) => {
   if (req.body.submit) {
     const yourNamename = req.body.yourName;
     const emailId = req.body.email;
-    const subject = req.body.subject;
+    const subjects = req.body.subject;
     const question = req.body.yourQuestion;
     const contactDoc = {
       name: yourNamename,
       email: emailId,
-      subject,
+      subject: subjects,
       question
     };
     const randomVisitors = global.MongoHandler.opened.baggge.collection('randomVisitors');
-    randomVisitors.insert(contactDoc, (err, doc) => {
+    randomVisitors.insert(contactDoc, (err) => {
       if (err) {
         console.log(err);
       } else {

@@ -1,5 +1,4 @@
 const colors = require('colors');
-const fs = require('fs');
 
 const router = global.express.Router();
 
@@ -11,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 // vendor login form handler
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
   const vendorUserName = req.body.userName;
   const userPassword = req.body.passWord;
 
@@ -62,7 +61,7 @@ router.post('/login', (req, res, next) => {
 });
 
 // vendor Registration form handle
-router.post('/signUp', (req, res, next) => {
+router.post('/signUp', (req, res) => {
   const firstName = req.body.fName;
   const lastName = req.body.lName;
   const emailId = req.body.email;
@@ -95,9 +94,9 @@ router.post('/signUp', (req, res, next) => {
           console.log(error)
         }
         if (docs.length === 0) {
-          vendors.insert(userDocument, (err, doc) => {
-            if (err) {
-              console.log(err);
+          vendors.insert(userDocument, (errors) => {
+            if (errors) {
+              console.log(errors);
             } else {
               console.log('Vendor registered successfully');
               res.render('vendorLogin', { success: 'Vendor registered successfully :) ' });
