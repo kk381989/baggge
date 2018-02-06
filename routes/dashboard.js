@@ -1,12 +1,25 @@
 const multer = require('multer');
 const ObjectId = require('mongodb').ObjectID;
 
+const mulstorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/hotelsUploads/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.vendorId + req.body.name + file.fieldname)
+  }
+})
+
 const upload = multer({
-  dest: 'public/images/hotelsUploads/'
+  storage: mulstorage
 });
 const fields = [
   { name: 'room1', maxCount: 1 },
-  { name: 'room2', maxCount: 1 }
+  { name: 'room2', maxCount: 1 },
+  { name: 'reception', maxCount: 1 },
+  { name: 'exterior', maxCount: 1 },
+  { name: 'interior', maxCount: 1 },
+  { name: 'facility', maxCount: 1 }
 ]
 const router = global.express.Router();
 const colors = require('colors');
@@ -58,6 +71,7 @@ router.get('/', (req, res) => {
 router.post('/addHotel', upload.fields(fields), (req, res) => {
   const vendorid = req.body.vendorId;
   const hotelName = req.body.name;
+  const hotelid = vendorid + hotelName;
   const hotelAddress = req.body.address;
   const hotelCity = req.body.city;
   const hotelPincode = req.body.pincode;
@@ -72,6 +86,7 @@ router.post('/addHotel', upload.fields(fields), (req, res) => {
   const hotelDescription = req.body.description;
   const hotelDocument = {
     vendorId: vendorid,
+    hotelId: hotelid,
     name: hotelName,
     address: hotelAddress,
     city: hotelCity,
