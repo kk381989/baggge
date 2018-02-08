@@ -1,30 +1,21 @@
+<div id="demo">
+</div>
+
 <div class="vendorReg">
   <div class="container-fluid">
     <div class="mid">
-      <h1 style="color:white" class="text-center">Dashboard</h1>
-      <div class="hotels">
-        <div class="profile">
-          <div class="row">
-            <div class="col-sm-2 col-sm-offset-3">
-             <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="150px">
-            </div>
-            <div class="col-sm-7">
-              <p><b>Name : </b>{{data.firstname}}&nbsp;{{data.lastname}}</p>
-              <p><b>Email Id : </b>{{data.email}}</p>
-              <p><b>Mobile Number : </b>{{data.number}}</p>
-              <p><b>Username : </b>{{data.username}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-     <div class="hotels" style="margin-top:10px">
-       <h3 class="text-center"><b>Your Hotels Will Appear Here</b></h1>
-       <button type="button" id="newHotel" class="btn btn-primary" data-toggle="modal" data-target="#addHotel">Click Here To Add Hotel</button>
-       <div class="entry">
+      <h1 style="color:white" class="text-center">Welcome Admin</h1>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="hotels" style="margin-top:10px">
+            <h3 class="text-center text-danger"><b>Unverified Hotels</b></h1>
+      <div class="entry">
       {{#if hotels}}
        {{#each hotels}}
+       {{#ifEquals this.isVerified 0}}
        <a id="showEdit" data-toggle="modal" data-target="#addHotel"
        data-id="{{this._id}}"
+       data-vendorid="{{this.vendorId}}"
        data-name="{{this.name}}"
        data-address="{{this.address}}"
        data-city="{{this.city}}"
@@ -41,14 +32,7 @@
        >
         <div class="hotelCard">
            <div class="row">
-           <div class="col-sm-7">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room1" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room2" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}reception" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}exterior" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}interior" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           </div>
-         <div class="col-sm-5">
+          <div class="col-sm-12">
            <p><b>Hotel Name : </b>{{this.name}}</p>
            <p><b>Address : </b>{{this.address}}</p>
            <p><b>Description : </b>{{this.description}}</p>
@@ -56,12 +40,55 @@
        </div>
        </div>
       </a>
+       {{/ifEquals}}
        {{/each}}
-      {{else}}
-      <h4 class="text-center">No Hotels Added Yet...</h4>
       {{/if}}
+      <h4 class="text-center">No more hotels to be Verified...</h4>
       </div>
      </div>
+     </div>
+     <div class="col-sm-6">
+       <div class="hotels" style="margin-top:10px">
+         <h3 class="text-center text-success"><b>Verified Hotels</b></h1>
+    <div class="entry">
+   {{#if hotels}}
+    {{#each hotels}}
+    {{#ifEquals this.isVerified 1}}
+    <a id="showEdit" data-toggle="modal" data-target="#addHotel"
+    data-id="{{this._id}}"
+    data-vendorid="{{this.vendorId}}"
+    data-name="{{this.name}}"
+    data-address="{{this.address}}"
+    data-city="{{this.city}}"
+    data-pincode="{{this.pincode}}"
+    data-state="{{this.state}}"
+    data-country="{{this.country}}"
+    data-website="{{this.website}}"
+    data-mnumber="{{this.mobNumber}}"
+    data-tnumber="{{this.telNumber}}"
+    data-time="{{this.time}}"
+    data-starcat="{{this.starCategory}}"
+    data-nairport="{{this.nearestAirport}}"
+    data-description="{{this.description}}"
+    >
+     <div class="hotelCard">
+       <div class="row">
+         <div class="col-sm-12">
+           <p><b>Hotel Name : </b>{{this.name}}</p>
+           <p><b>Address : </b>{{this.address}}</p>
+           <p><b>Description : </b>{{this.description}}</p>
+        </div>
+      </div>
+    </div>
+   </a>
+   {{/ifEquals}}
+   {{/each}}
+   {{/if}}
+   <h4 class="text-center">No more Verified Hotels...</h4>
+   </div>
+  </div>
+     </div>
+    </div>
     </div>
   </div>
 </div>
@@ -74,59 +101,65 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-center">Register Your Hotel With Us</h4>
+        <h4 class="modal-title text-center"> Hotel Details
+          <button type="submit" onclick="verifyHotel()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-check"></span> Verify</button>
+       </h4>
       </div>
       <div class="modal-body">
         <div class="hotels">
           <form method="post" action="/dashboard/addHotel" name="editHotel" enctype="multipart/form-data">
-            <input type="hidden" name="vendorId" value="{{data.vendorId}}">
-            <input type="hidden" name="id" value="">
+            <input type="hidden" id="hotel_id" name="id" value="">
+              <div class="form-group row">
+                <div class="col-sm-offset-4 col-sm-4">
+                  <input type="text" class="form-control" name="vendorId" value="" readonly>
+                </div>
+              </div>
               <div class="form-group row">
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">
-                <button type="button" id="edit1" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit1" ><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4 ">
                 <input type="text" class="form-control" name="address" placeholder=" Address">
-                <button type="button" id="edit2" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit2" ><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4 ">
                 <input type="text" class="form-control" name="city" placeholder=" City ">
-                <button type="button" id="edit3" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit3" ><span class="glyphicon glyphicon-edit"></span></button>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-4">
                 <input type="number" class="form-control" style="margin:0px;" name="pincode" placeholder=" Pincode ">
-                <button type="button" id="edit4" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit4"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="state" placeholder=" State ">
-                <button type="button" id="edit5" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit5"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="country" placeholder=" Country ">
-                <button type="button" id="edit6" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit6"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="website" placeholder=" Website ">
-                <button type="button" id="edit7" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit7"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
                 <input type="number" class="form-control" style="margin:0px;" name="mNumber" placeholder=" Mobile No. ">
-                <button type="button" id="edit8" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit8"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
                 <input type="number" class="form-control" style="margin:0px;" name="tNumber" placeholder=" Telephone No ">
-                <button type="button" id="edit9" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit9"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="time" placeholder=" Check-In/Check-Out time ">
-                <button type="button" id="edit10" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit10"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
                 <select id="starCategory" name="starCategory" class="form-control">
@@ -140,70 +173,29 @@
               </div>
               <div class="col-sm-4">
                 <input type="text" class="form-control" name="nearestAirport" placeholder=" Nearest Airport ">
-                <button type="button" id="edit11" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit11"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-12">
                 <textarea placeholder="Description about your Hotel" id="description" name="description" class="form-control"></textarea>
-                <button type="button" id="edit12" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
+                <button type="button" id="edit12"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
             </div>
-            <h3>Upload Hotel Images</h3>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <label for="room1">Room 1</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" style="" name="room1" id="">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="room2">Room 2</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="room2" id="">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="reception">Reception</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="reception" id="">
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <label for="exterior"> Exterior</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="exterior" id="">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="interior"> Interior</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="interior" id="">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="facility"> Facility(any)</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="facility" id="">
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg">Update</button>
           </form>
-        </div>
+      </div>
       </div>
       <div class="modal-footer">
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
 $('#addHotel').on('show.bs.modal', function(e) {
 const id = $(e.relatedTarget).data('id');
+const vendorId = $(e.relatedTarget).data('vendorid');
 const name = $(e.relatedTarget).data('name');
 const address = $(e.relatedTarget).data('address');
 const city = $(e.relatedTarget).data('city');
@@ -218,6 +210,7 @@ const starCat = $(e.relatedTarget).data('starcat');
 const nAirport = $(e.relatedTarget).data('nairport');
 const description = $(e.relatedTarget).data('description');
 $(e.currentTarget).find('input[name="id"]').val(id);
+$(e.currentTarget).find('input[name="vendorId"]').val(vendorId);
 $(e.currentTarget).find('input[name="name"]').val(name);
 $(e.currentTarget).find('input[name="address"]').val(address);
 $(e.currentTarget).find('input[name="city"]').val(city);
@@ -232,7 +225,7 @@ $(e.currentTarget).find('#starCategory').val(starCat);
 $(e.currentTarget).find('input[name="nearestAirport"]').val(nAirport);
 $(e.currentTarget).find('#description').val(description);
 if (id) {
-  $('input[name="name"]').prop('disabled', true);
+  $('input[name="name"]').prop('readonly', true);
   $('input[name="address"]').prop('readonly', true);
   $('input[name="city"]').prop('readonly', true);
   $('input[name="pincode"]').prop('readonly', true);
@@ -243,7 +236,7 @@ if (id) {
   $('input[name="tNumber"]').prop('readonly', true);
   $('input[name="time"]').prop('readonly', true);
   $('input[name="nearestAirport"]').prop('readonly', true);
-//    $('#starCategory').prop("disabled", true);
+  $('#starCategory').addClass("disabled");
   $('#description').prop('readonly', true);
 }
 });
@@ -291,5 +284,19 @@ $("#newHotel").click(function(){
 $("#showEdit").click(function(){
   $("#edit1,#edit2,#edit3,#edit4,#edit5,#edit6,#edit7,#edit8,#edit9,#edit10,#edit11,#edit12").show();
 });
+
+
+function verifyHotel() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            location.reload();
+       }
+    };
+    xhttp.open("post", "/admin/verify", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const hotel_id = $('#hotel_id').val();
+    xhttp.send("id=" + hotel_id);
+}
 
 </script>

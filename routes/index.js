@@ -154,6 +154,11 @@ routers.get('/career', (req, res) => {
   res.render('career', {});
 });
 
+// get admin login page
+routers.get('/admin', (req, res) => {
+  res.render('admin', {});
+});
+
 
 /* Contact Us page handler */
 routers.post('/contactus', (req, res) => {
