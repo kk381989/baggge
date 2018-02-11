@@ -5,12 +5,28 @@
      <p class="text-center" style="color:white;font-size:20px;margin-top:15px;">Recharge of mobile number {{rData.number}} for Rs. {{rData.amount}}</p>
      </div>
      <div class="col-sm-4">
-      <form action="/recharge/mobile" method="post">
+      <!-- <form action="/recharge/mobile" method="post">
         <input type="hidden" name="planType" value="{{rData.planType}}">
         <input type="hidden" name="number" value="{{rData.number}}">
         <input type="hidden" name="operator" value="{{rData.operator}}">
         <input type="hidden" name="amount" value="{{rData.amount}}">
        <button type="submit" class="btn btn-primary btn-lg">Proceed to Pay Rs. {{rData.amount}}</button>
+      </form> -->
+      <form action='https://test.payu.in/_payment' method='post'>
+        <input type="hidden" name="firstname" value="himanshu" />
+        <input type="hidden" name="lastname" value="yadav" />
+        <input type="hidden" name="surl" value="https://baggge.com/success" />
+        <input type="hidden" name="phone" value="9457542057" />
+        <input type="hidden" name="key" value="gtKFFx" />
+        <input type="hidden" name="hash" value =
+        "0222E012CFC5D7352745728E9D0ABFCE44DF7D4E80CD46F86CF953DDEF5FF65285ECE36BB627DCAD05B1492BC0E77D0D2503B34CA847957F408AD09EDF447947" />
+        <input type="hidden" name="curl" value="https://baggge.com/cancel" />
+        <input type="hidden" name="furl" value="https://baggge.com/failure" />
+        <input type="hidden" name="txnid" value="airtel100" />
+        <input type="hidden" name="productinfo" value="recharge" />
+        <input type="hidden" name="amount" value="100.00" />
+        <input type="hidden" name="email" value="yadavhimanshu477@gmail.com" />
+        <button type="submit" class="btn btn-primary btn-lg">Proceed to Pay Rs. {{rData.amount}}</button>
       </form>
      </div>
    </div>

@@ -121,7 +121,10 @@ routers.get('/vendorRegistration', (req, res) => {
 
 /* GET ABOUT US page. */
 routers.get('/aboutus', (req, res) => {
-  res.render('aboutus', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+    console.log(`session in aboutus page is the :: ${sessionStore}`)
+  res.render('aboutus', { session: sessionStore });
 });
 
 
