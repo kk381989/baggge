@@ -9,10 +9,10 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs')
 
-//    const options = {
-//   key: fs.readFileSync('/etc/ssl/certs/baggge.com.key', 'utf8'),
-//   cert: fs.readFileSync('/etc/ssl/certs/baggge.com.cert', 'utf8')
-// };
+const options = {
+   key: fs.readFileSync('/etc/ssl/certs/baggge.com.key', 'utf8'),
+   cert: fs.readFileSync('/etc/ssl/certs/baggge.com.cert', 'utf8')
+};
 
 /**
  * Get port from environment and store in Express.
@@ -29,8 +29,8 @@ global.conf = conf
  * Create HTTP server.
  */
 
-// const server = https.createServer(options, app);
- const server = http.createServer(app)
+ const server = https.createServer(options, app);
+ //const server = http.createServer(app)
 
 /**
  * Listen on provided port, on all network interfaces.
