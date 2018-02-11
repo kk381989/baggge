@@ -55,20 +55,22 @@ router.post('/login', (req, res) => {
                   });
                 }
               });
-            } products.find(where, (err1, cursor1) => {
-              if (err1) {
-                console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
-              } else {
-                cursor1.toArray((error2, product) => {
-                  if (error2) {
-                    console.log(error)
-                  }
-                  const productsData = product;
-                  req.session.vendorId = docs[0].vendorId;
-                  res.render('dashboard', { data: docs[0], products: productsData });
-                });
-              }
-            });
+            } if (docs[0].vendorCategory === 'products') {
+              products.find(where, (err1, cursor1) => {
+                if (err1) {
+                  console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+                } else {
+                  cursor1.toArray((error2, product) => {
+                    if (error2) {
+                      console.log(error)
+                    }
+                    const productsData = product;
+                    req.session.vendorId = docs[0].vendorId;
+                    res.render('dashboard', { data: docs[0], products: productsData });
+                  });
+                }
+              });
+            }
           }
         }
       });
