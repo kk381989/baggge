@@ -19,7 +19,9 @@ routers.get('/', (req, res) => {
     if (error) throw new Error(error);
     let sessionStore = true
     const bodyData = JSON.parse(body)
-    if (req.session.userId) { sessionStore = false }
+    console.log(sessionStore);
+    console.log(req.session.userId);
+    if (req.session.userId) { sessionStore = true }
     console.log(`session is the :: ${sessionStore}`)
     res.render('index', { data: bodyData, session: sessionStore });
   });

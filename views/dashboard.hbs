@@ -5,18 +5,40 @@
       <div class="hotels">
         <div class="profile">
           <div class="row">
-            <div class="col-sm-2 col-sm-offset-3">
-             <img class="text-center" align="center" style="margin:0 auto;" src="/images/avatar.png" height="120px" width="150px">
-            </div>
-            <div class="col-sm-7">
+            <div class="col-sm-3">
+              <h3>Personal Details</h3>
               <p><b>Name : </b>{{data.firstname}}&nbsp;{{data.lastname}}</p>
               <p><b>Email Id : </b>{{data.email}}</p>
               <p><b>Mobile Number : </b>{{data.number}}</p>
               <p><b>Username : </b>{{data.username}}</p>
             </div>
+            <div class="col-sm-3">
+              <h3>Seller Details</h3>
+              <p><b>Business Legal Name : </b>{{data.businessLegalName}}</p>
+              <p><b>Shop Name : </b>{{data.shopName}}</p>
+              <p><b>Address : </b>{{data.sellerAddress}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#sellerDetailsModal">Add Seller Details</button>
+            </div>
+            <div class="col-sm-3">
+              <h3>Tax Details</h3>
+              <p><b>PAN Card : </b>{{data.PAN}}</p>
+              <p><b>VAT : </b>{{data.VAT}}</p>
+              <p><b>TIN : </b>{{data.TIN}}</p>
+              <p><b>GSTIN : </b>{{data.GSTIN}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#taxDetailsModal">Add Tax Details</button>
+            </div>
+            <div class="col-sm-3">
+              <h3>Account Details</h3>
+              <p><b>Account Name : </b>{{data.accountName}}</p>
+              <p><b>Account Number : </b>{{data.accountNumber}}</p>
+              <p><b>Branch Name : </b>{{data.branchName}}</p>
+              <p><b>IFSC Code : </b>{{data.IFSC}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#accountDetailsModal">Add Tax Details</button>
+            </div>
           </div>
         </div>
       </div>
+      {{#ifEquals data.vendorCategory 'hotels'}}
      <div class="hotels" style="margin-top:10px">
        <h3 class="text-center"><b>Your Hotels Will Appear Here</b></h1>
        <button type="button" id="newHotel" class="btn btn-primary" data-toggle="modal" data-target="#addHotel">Click Here To Add Hotel</button>
@@ -42,11 +64,11 @@
         <div class="hotelCard">
            <div class="row">
            <div class="col-sm-7">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room1" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room2" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}reception" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}exterior" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}interior" onerror="this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room1" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room2" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}reception" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}exterior" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}interior" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
            </div>
          <div class="col-sm-5">
            <p><b>Hotel Name : </b>{{this.name}}</p>
@@ -62,10 +84,51 @@
       {{/if}}
       </div>
      </div>
+
+{{/ifEquals}}
+{{#ifEquals data.vendorCategory 'products'}}
+<div class="products" style="margin-top:10px">
+  <h3 class="text-center"><b>Your Products Will Appear Here</b></h1>
+  <button type="button" id="newProduct" class="btn btn-primary" data-toggle="modal" data-target="#addProduct">Click Here To Add Products</button>
+  <div class="entry">
+ {{#if products}}
+  {{#each products}}
+  <a id="showProductEdit" data-toggle="modal" data-target="#addProduct"
+  data-id="{{this._id}}"
+  data-productname="{{this.productName}}"
+  data-model="{{this.model}}"
+  data-brand="{{this.brand}}"
+  data-quantity="{{this.quantity}}"
+  data-manufacturer="{{this.manufacturer}}"
+  data-productcategory="{{this.productCategory}}"
+  data-productdescription="{{this.productDescription}}"
+  >
+   <div class="hotelCard">
+      <div class="row">
+      <div class="col-sm-7">
+        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image1" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
+        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image2" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
+        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image3" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
+        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image4" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
+      </div>
+    <div class="col-sm-5">
+      <p><b>Product Name : </b>{{this.productName}}</p>
+      <p><b>Brand : </b>{{this.brand}}</p>
+      <p><b>Quantity : </b>{{this.quantity}}</p>
     </div>
   </div>
+  </div>
+ </a>
+  {{/each}}
+  {{else}}
+  <h4 class="text-center">No Products Added Yet...</h4>
+  {{/if}}
 </div>
-
+</div>
+{{/ifEquals}}
+   </div>
+  </div>
+</div>
 <!-- ADD HOTEL Modal -->
 <div id="addHotel" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -154,19 +217,19 @@
               <div class="col-sm-4">
                 <label for="room1">Room 1</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" style="" name="room1" id="">
+                  <input type="file" class="form-control-file" style="" name="room1" >
                 </div>
               </div>
               <div class="col-sm-4">
                 <label for="room2">Room 2</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="room2" id="">
+                  <input type="file" class="form-control-file" name="room2" >
                 </div>
               </div>
               <div class="col-sm-4">
                 <label for="reception">Reception</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="reception" id="">
+                  <input type="file" class="form-control-file" name="reception" >
                 </div>
               </div>
             </div>
@@ -174,19 +237,19 @@
               <div class="col-sm-4">
                 <label for="exterior"> Exterior</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="exterior" id="">
+                  <input type="file" class="form-control-file" name="exterior" >
                 </div>
               </div>
               <div class="col-sm-4">
                 <label for="interior"> Interior</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="interior" id="">
+                  <input type="file" class="form-control-file" name="interior" >
                 </div>
               </div>
               <div class="col-sm-4">
                 <label for="facility"> Facility(any)</label>
                 <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="facility" id="">
+                  <input type="file" class="form-control-file" name="facility" >
                 </div>
               </div>
             </div>
@@ -200,6 +263,219 @@
 
   </div>
 </div>
+
+<!-- ADD Products Modal -->
+<div id="addProduct" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Register Your Product With Us</h4>
+      </div>
+      <div class="modal-body">
+        <div class="products">
+          <form method="post" action="/dashboard/addProduct" name="editProduct" enctype="multipart/form-data">
+            <input type="hidden" name="vendorId" value="{{data.vendorId}}">
+            <input type="hidden" name="id" value="">
+              <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="productName" placeholder=" Product Name ">
+                <button type="button" id="pedit1" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+              <div class="col-sm-4 ">
+                <input type="text" class="form-control" name="model" placeholder=" Model">
+                <button type="button" id="pedit2" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+              <div class="col-sm-4 ">
+                <input type="text" class="form-control" name="brand" placeholder=" Brand ">
+                <button type="button" id="pedit3" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <input type="number" class="form-control" style="margin:0px;" name="quantity" placeholder=" Qantity ">
+                <button type="button" id="pedit4" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="manufacturer" placeholder=" Manufacturer ">
+                <button type="button" id="pedit5" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="productCategory" placeholder=" Category ">
+                <button type="button" id="pedit6" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <textarea class="form-control" name="productDescription" id="productDescription" placeholder="Enter Product description">
+                </textarea>
+                <button type="button" id="pedit7" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
+              </div>
+            </div>
+            <h3>Upload Product Images</h3>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label for="image1">Image 1</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" style="" name="image1" >
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="image2">Image 2</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="image2" >
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="image3">Image 3</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="image3">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label for="image4">Image 4</label>
+                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
+                  <input type="file" class="form-control-file" name="image4">
+                </div>
+              </div>
+              <div class="col-sm-4">
+              </div>
+              </div>
+              <div class="col-sm-4">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ADD Seller Details Modal -->
+<div id="sellerDetailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Seller Details</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" method="" id="sellerDetailsform">
+          <div class="form-group">
+            <label for="businessLegalName">Business Legal Name</label>
+            <input type="text" class="form-control" id="businessLegalName" name="businessLegalName" required>
+          </div>
+          <div class="form-group">
+            <label for="shopName">Shop Name</label>
+            <input type="text" class="form-control" id="shopName" name="shopName" required>
+          </div>
+          <div class="form-group">
+            <label for="sellerAddress">Address</label>
+            <input type="text" class="form-control" id="sellerAddress" name="sellerAddress" required>
+          </div>
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary col-sm-11">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD Tax Details Modal -->
+<div id="taxDetailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Tax Details</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" method="" id="taxDetailsform">
+          <div class="form-group">
+            <label for="pan">PAN Card</label>
+            <input type="text" class="form-control" id="pan" required>
+          </div>
+          <div class="form-group">
+            <label for="vat">VAT</label>
+            <input type="text" class="form-control" id="vat" required>
+          </div>
+          <div class="form-group">
+            <label for="tin">TIN</label>
+            <input type="text" class="form-control" id="tin" required>
+          </div>
+          <div class="form-group">
+            <label for="gstin">GSTIN</label>
+            <input type="text" class="form-control" id="gstin" required>
+          </div>
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary col-sm-11">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD Account Details Modal -->
+<div id="accountDetailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Tax Details</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" method="" id="accountDetailsform">
+          <div class="form-group">
+            <label for="accountName">Account Name </label>
+            <input type="text" class="form-control" id="accountName" required>
+          </div>
+          <div class="form-group">
+            <label for="accountNumber">Account Number </label>
+            <input type="number" class="form-control" id="accountNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="branchName">Branch Name</label>
+            <input type="text" class="form-control" id="branchName" required>
+          </div>
+          <div class="form-group">
+            <label for="IFSC">IFSC Code</label>
+            <input type="text" class="form-control" id="IFSC" required>
+          </div>
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary col-sm-11">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <script>
 $('#addHotel').on('show.bs.modal', function(e) {
@@ -232,7 +508,7 @@ $(e.currentTarget).find('#starCategory').val(starCat);
 $(e.currentTarget).find('input[name="nearestAirport"]').val(nAirport);
 $(e.currentTarget).find('#description').val(description);
 if (id) {
-  $('input[name="name"]').prop('disabled', true);
+  $('input[name="name"]').prop('readonly', true);
   $('input[name="address"]').prop('readonly', true);
   $('input[name="city"]').prop('readonly', true);
   $('input[name="pincode"]').prop('readonly', true);
@@ -291,5 +567,123 @@ $("#newHotel").click(function(){
 $("#showEdit").click(function(){
   $("#edit1,#edit2,#edit3,#edit4,#edit5,#edit6,#edit7,#edit8,#edit9,#edit10,#edit11,#edit12").show();
 });
+$("#newProduct").click(function(){
+   $("#pedit1,#pedit2,#pedit3,#pedit4,#pedit5,#pedit6,#pedit7").hide();
+   $('input,#productDescription').prop('readonly', false);
+});
+
+$('#addProduct').on('show.bs.modal', function(e) {
+const id = $(e.relatedTarget).data('id');
+const pname = $(e.relatedTarget).data('productname');
+const Model = $(e.relatedTarget).data('model');
+const Brand = $(e.relatedTarget).data('brand');
+const Quantity = $(e.relatedTarget).data('quantity');
+const Manufacturer = $(e.relatedTarget).data('manufacturer');
+const productCategory = $(e.relatedTarget).data('productcategory');
+const productDescription = $(e.relatedTarget).data('productdescription');
+$(e.currentTarget).find('input[name="id"]').val(id);
+$(e.currentTarget).find('input[name="productName"]').val(pname);
+$(e.currentTarget).find('input[name="model"]').val(Model);
+$(e.currentTarget).find('input[name="brand"]').val(Brand);
+$(e.currentTarget).find('input[name="quantity"]').val(Quantity);
+$(e.currentTarget).find('input[name="manufacturer"]').val(Manufacturer);
+$(e.currentTarget).find('input[name="productCategory"]').val(productCategory);
+$(e.currentTarget).find('#productDescription').val(productDescription);
+if (id) {
+  $('input[name="productName"]').prop('readonly', true);
+  $('input[name="model"]').prop('readonly', true);
+  $('input[name="brand"]').prop('readonly', true);
+  $('input[name="quantity"]').prop('readonly', true);
+  $('input[name="manufacturer"]').prop('readonly', true);
+  $('input[name="productCategory"]').prop('readonly', true);
+  $('#productDescription').prop('readonly', true);
+}
+});
+$("#pedit1").click(function(){
+ $(this).parent().find('input[name="productName"]').prop('readonly', false);
+});
+$("#pedit2").click(function(){
+ $(this).parent().find('input[name="model"]').prop('readonly', false);
+});
+$("#pedit3").click(function(){
+ $(this).parent().find('input[name="brand"]').prop('readonly', false);
+});
+$("#pedit4").click(function(){
+ $(this).parent().find('input[name="quantity"]').prop('readonly', false);
+});
+$("#pedit5").click(function(){
+ $(this).parent().find('input[name="manufacturer"]').prop('readonly', false);
+});
+$("#pedit6").click(function(){
+ $(this).parent().find('input[name="productCategory"]').prop('readonly', false);
+});
+$("#pedit7").click(function(){
+ $(this).parent().find('#productDescription').prop('readonly', false);
+});
+
+
+$("#showProductEdit").click(function(){
+  $("#pedit1,#pedit2,#pedit3,#pedit4,#pedit5,#pedit6,#pedit7").show();
+});
+
+
+
+
+
+// process seller Details form
+    $('#sellerDetailsform').submit(function(event) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                location.reload();
+           }
+        };
+        xhttp.open("post", "/dashboard/addSellerDetails", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const vendor ={{data.vendorId}}
+        const businessLegalName = $('#businessLegalName').val();
+        const shopName = $('#shopName').val();
+        const sellerAddress = $('#sellerAddress').val();
+        xhttp.send("vendor=" + vendor+"&businessLegalName=" + businessLegalName+"&shopName="+ shopName+"&sellerAddress="+ sellerAddress);
+      event.preventDefault();
+      });
+
+      // process Tax Details form
+          $('#taxDetailsform').submit(function(event) {
+              const xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                      location.reload();
+                 }
+              };
+              xhttp.open("post", "/dashboard/addTaxDetails", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              const vendor ={{data.vendorId}}
+              const pan = $('#pan').val();
+              const vat = $('#vat').val();
+              const tin = $('#tin').val();
+              const gstin = $('#gstin').val();
+              xhttp.send("vendor=" + vendor+"&PAN=" + pan+"&VAT="+ vat+"&TIN="+ tin+"&GSTIN="+ gstin);
+            event.preventDefault();
+            });
+
+            // process Account Details form
+                $('#accountDetailsform').submit(function(event) {
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            location.reload();
+                       }
+                    };
+                    xhttp.open("post", "/dashboard/addaccountDetails", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    const vendor ={{data.vendorId}}
+                    const accountName = $('#accountName').val();
+                    const accountNumber = $('#accountNumber').val();
+                    const branchName = $('#branchName').val();
+                    const IFSC = $('#IFSC').val();
+                    xhttp.send("vendor=" + vendor+"&accountName=" + accountName+"&accountNumber="+ accountNumber+"&branchName="+ branchName+"&IFSC="+ IFSC);
+                  event.preventDefault();
+                  });
 
 </script>
