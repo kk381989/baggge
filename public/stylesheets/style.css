@@ -52,6 +52,18 @@ input[type="file"]{
 #doperator{
   margin: 10px;
 }
+#toperator{
+  margin: 10px;
+}
+
+#dcoperator{
+  margin: 10px;
+}
+
+#goperator{
+  margin: 10px;
+}
+
 #city{
   margin: 10px;
 }
@@ -107,6 +119,14 @@ input#Travellers.form-control{
   background-color: #FFFFFF;
   padding: 10px 10px 10px 10px;
 }
+.products{
+  height:100%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  padding: 10px 10px 10px 10px;
+}
+
 .vendorReg{
   height:100%;
   width: 100%;
@@ -119,7 +139,7 @@ input#Travellers.form-control{
   width: 100%;
   margin:10px;
   padding: 10px 10px 10px 10px;
-  box-shadow: 3px 1px 5px 2px ;
+//  box-shadow: 3px 1px 5px 2px ;
   border: 1px solid;
 }
 .couponsBlue{
@@ -197,7 +217,7 @@ input#Travellers.form-control{
 }
 .blue_div{
   background-color: #004293;
-  padding: 15px 10px 10px 25px;
+  padding: 20px 10px 10px 25px;
 }
 
 .white_div{

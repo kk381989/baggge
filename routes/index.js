@@ -19,8 +19,9 @@ routers.get('/', (req, res) => {
     if (error) throw new Error(error);
     let sessionStore = true
     const bodyData = JSON.parse(body)
-    console.log(bodyData)
-    if (req.session.userId) { sessionStore = false }
+    console.log(sessionStore);
+    console.log(req.session.userId);
+    if (req.session.userId) { sessionStore = true }
     console.log(`session is the :: ${sessionStore}`)
     res.render('index', { data: bodyData, session: sessionStore });
   });
@@ -122,7 +123,10 @@ routers.get('/vendorRegistration', (req, res) => {
 
 /* GET ABOUT US page. */
 routers.get('/aboutus', (req, res) => {
-  res.render('aboutus', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+    console.log(`session in aboutus page is the :: ${sessionStore}`)
+  res.render('aboutus', { session: sessionStore });
 });
 
 
@@ -153,6 +157,11 @@ routers.get('/contactus', (req, res) => {
 /* GET CAREERS page. */
 routers.get('/career', (req, res) => {
   res.render('career', {});
+});
+
+// get admin login page
+routers.get('/admin', (req, res) => {
+  res.render('admin', {});
 });
 
 

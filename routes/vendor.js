@@ -34,25 +34,43 @@ router.post('/login', (req, res) => {
           } else {
             console.log('login successfully');
             const hotels = global.MongoHandler.opened.baggge.collection('hotels');
+            const products = global.MongoHandler.opened.baggge.collection('products');
             const where = {
               vendorId: docs[0].vendorId
             }
-            hotels.find(where, (err1, cursor1) => {
-              if (err1) {
-                console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
-              } else {
-                cursor1.toArray((error2, hotel) => {
-                  if (error2) {
-                    console.log(error)
-                  }
-                  const hotelData = hotel;
-                  // console.log(hotelData);
-                  req.session.vendorId = docs[0].vendorId;
-                  console.log(req.session.vendorId);
-                  res.render('dashboard', { data: docs[0], hotels: hotelData });
-                });
-              }
-            });
+            if (docs[0].vendorCategory === 'hotels') {
+              hotels.find(where, (err1, cursor1) => {
+                if (err1) {
+                  console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+                } else {
+                  cursor1.toArray((error2, hotel) => {
+                    if (error2) {
+                      console.log(error)
+                    }
+                    const hotelData = hotel;
+                    // console.log(hotelData);
+                    req.session.vendorId = docs[0].vendorId;
+                    console.log(req.session.vendorId);
+                    res.render('dashboard', { data: docs[0], hotels: hotelData });
+                  });
+                }
+              });
+            } if (docs[0].vendorCategory === 'products') {
+              products.find(where, (err1, cursor1) => {
+                if (err1) {
+                  console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+                } else {
+                  cursor1.toArray((error2, product) => {
+                    if (error2) {
+                      console.log(error)
+                    }
+                    const productsData = product;
+                    req.session.vendorId = docs[0].vendorId;
+                    res.render('dashboard', { data: docs[0], products: productsData });
+                  });
+                }
+              });
+            }
           }
         }
       });
@@ -66,6 +84,7 @@ router.post('/signUp', (req, res) => {
   const lastName = req.body.lName;
   const emailId = req.body.email;
   const vendorNumber = req.body.number;
+  const vendorCat = req.body.vendorCategory;
   const userName = req.body.username;
   const vendorPassword = req.body.pass;
   const userDocument = {
@@ -74,6 +93,7 @@ router.post('/signUp', (req, res) => {
     lastname: lastName,
     email: emailId,
     number: vendorNumber,
+    vendorCategory: vendorCat,
     username: userName,
     password: vendorPassword,
     isActive: 1,

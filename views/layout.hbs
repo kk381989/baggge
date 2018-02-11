@@ -4,17 +4,11 @@
     <title>Baggge</title>
     <meta charset="utf-8">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap.css.map">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css.map">
-    <script src="/js/bootstrap.min.js"></script>  -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script src="/javascripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/fontawesome.min.css">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style type="text/css">
     body { padding-top: 52px;
     }
@@ -39,7 +33,7 @@
             </button>
   				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/bagggelogo.png" alt="beggge.com"></a>
   			  </div>
-          {{#if session}}
+          {{#if !session}}
     			  <div class="collapse navbar-collapse" id="topNavbar">
               <ul class="nav navbar-nav navbar-right" style="margin-top: 18px;font-size:20px;font-family:'Roboto',sans-serif">
     			      <li><a href="#loginModal" data-toggle="modal" style="color:#175588">Login</a></li>
@@ -206,10 +200,7 @@
       </div>
     </footer>
     <!--footer starts here -->
-  <script type="text/javascript" src="/js/processEvent.js"></script>
-  <script type="text/javascript" src="/js/validations.js"></script>
-  <script type="text/javascript" src="/js/contactUsValidations.js"></script>
-  <script type="text/javascript" src="/js/loginFormValidations.js"></script>
-  <script type="text/javascript" src="/js/signUpFormValidations.js"></script>
+  <script type="text/javascript" src="/javascripts/processEvent.js"></script>
+  <script type="text/javascript" src="/javascripts/validations.js"></script>
   </body>
 </html>
