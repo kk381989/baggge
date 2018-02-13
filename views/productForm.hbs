@@ -1,0 +1,40 @@
+<div class="vendorReg">
+  <div class="container-fluid">
+    <div class="mid">
+      <h1 style="color:white" class="text-center">Add Product Details</h1>
+      <div class="productForm">
+        <form action="/dashboard/productAdd" method="post">
+        <input type="hidden" name="vendorId" value="{{vendor}}">
+        <input type="hidden" name="prodCategory" value="{{prodCategory}}">
+        {{#each formData}}
+
+        <div class="form-group">
+        {{#ifEquals this.tagName 'input'}}
+         <div class="">
+          <label for="{{this.fieldName}}">{{this.labelName}}</label>
+          <input type="{{this.type}}" name="{{this.fieldName}}" class="form-control" placeholder=" Enter {{this.labelName}}" required>
+         </div>
+        {{/ifEquals}}
+      </div>
+
+        {{#ifEquals this.tagName 'select'}}
+        <select name="{{this.fieldname}}">
+        </select>
+        {{/ifEquals}}
+
+        <div class="form-group">
+        {{#ifEquals this.tagName 'textarea'}}
+        <label for="{{this.fieldName}}">{{this.labelName}}</label>
+        <textarea name="{{this.fieldname}}" class="form-control" placeholder=" Enter {{this.labelName}}" required>
+        </textarea>
+        {{/ifEquals}}
+        </div>
+
+
+        {{/each}}
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+        <form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -192,5 +192,20 @@ routers.post('/contactus', (req, res) => {
   }
 });
 
+// success url
+routers.post('/success', (req, res) => {
+  res.render('success');
+});
+
+// failure url
+routers.post('/failure', (req, res) => {
+  res.render('failure');
+});
+
+// cancel url
+routers.post('/cancel', (req, res) => {
+  res.render('cancel');
+});
+
 
 module.exports = routers;

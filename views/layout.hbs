@@ -33,7 +33,7 @@
             </button>
   				  <a class="navbar-brand" href="/"><img  class="img-responsive img-rounded" src="/images/bagggelogo.png" alt="beggge.com"></a>
   			  </div>
-          {{#if !session}}
+          {{#if session}}
     			  <div class="collapse navbar-collapse" id="topNavbar">
               <ul class="nav navbar-nav navbar-right" style="margin-top: 18px;font-size:20px;font-family:'Roboto',sans-serif">
     			      <li><a href="#loginModal" data-toggle="modal" style="color:#175588">Login</a></li>
@@ -169,8 +169,11 @@
               </ul>
             </div>
             <div class="col-sm-2">
+              {{#if data.vendorId}}
+              {{else}}
                 <a href="/vendorRegistration" class="btn" style="color: black;">Registration for business</a></br>
                 <a href="/vendor" class="btn" style="color: black;">Vendor Login</a>
+                {{/if}}
             </div>
             <div class="col-sm-3">
               <h4><b>Download Our App</b></h4>
