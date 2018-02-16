@@ -5,28 +5,21 @@
      <p class="text-center" style="color:white;font-size:20px;margin-top:15px;">Recharge of mobile number {{rData.number}} for Rs. {{rData.amount}}</p>
      </div>
      <div class="col-sm-4">
-      <!-- <form action="/recharge/mobile" method="post">
-        <input type="hidden" name="planType" value="{{rData.planType}}">
-        <input type="hidden" name="number" value="{{rData.number}}">
-        <input type="hidden" name="operator" value="{{rData.operator}}">
-        <input type="hidden" name="amount" value="{{rData.amount}}">
-       <button type="submit" class="btn btn-primary btn-lg">Proceed to Pay Rs. {{rData.amount}}</button>
-      </form> -->
       <form action='https://test.payu.in/_payment' method='post'>
-        <input type="hidden" name="firstname" value="himanshu" />
-        <input type="hidden" name="lastname" value="yadav" />
-        <input type="hidden" name="surl" value="https://baggge.com/success" />
-        <input type="hidden" name="phone" value="9457542057" />
-        <input type="hidden" name="key" value="gtKFFx" />
-        <input type="hidden" name="hash" value =
-        "ff709c29893744596284045c2fd6f505b9b1dd0b14e9b715b2753f031d6b1ba4df098d2230fa5cd37402d0bc7825636c48650653c1393b060687dc4233ff08bd" />
-        <input type="hidden" name="curl" value="https://baggge.com/cancel" />
-        <input type="hidden" name="furl" value="https://baggge.com/failure" />
-        <input type="hidden" name="txnid" value="airtel300" />
-        <input type="hidden" name="productinfo" value="recharge" />
-        <input type="hidden" name="amount" value="100.00" />
-        <input type="hidden" name="email" value="yadavhimanshu477@gmail.com" />
-        <input type="hidden" name="salt" value="eCwWELxi" />
+        <input type="hidden" name="firstname" value="{{rData.firstname}}" />
+        <input type="hidden" name="lastname" value="{{rData.lastname}}" />
+        <input type="hidden" name="operator" value="{{rData.operator}}" />
+        <input type="hidden" name="email" value="{{rData.email}}" />
+        <input type="hidden" name="phone" value="{{rData.phone}}" />
+        <input type="hidden" name="amount" value="{{rData.amount}}" />
+        <input type="hidden" name="productinfo" value="{{rData.productinfo}}" />
+        <input type="hidden" name="key" value="{{rData.key}}" />
+        <input type="hidden" name="salt" value="{{rData.salt}}" />
+        <input type="hidden" name="surl" value="{{rData.surl}}" />
+        <input type="hidden" name="curl" value="{{rData.curl}}" />
+        <input type="hidden" name="furl" value="{{rData.furl}}" />
+        <input type="hidden" name="txnid" value="{{rData.txnid}}" />
+        <input type="hidden" name="hash" value ="{{hash}}" />
         <button type="submit" class="btn btn-primary btn-lg">Proceed to Pay Rs. {{rData.amount}}</button>
       </form>
      </div>

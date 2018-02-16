@@ -1,1 +1,26 @@
-<h1>Transaction cancled</h1>
+<div class="container">
+<h3 class="alert alert-warning">Sorry! Transaction Cancled</h3>
+ <div class="couponsBlue" style="color:#ffffff;">
+   <h3>Your Order Details</h3>
+   <table class="table">
+    <thead>
+      <tr>
+        <th>Transaction Id</th>
+        <th>Product Info</th>
+        <th>Amount</th>
+        <th>Payment Mode</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{response.txnid}}</td>
+        <td>{{response.productinfo}}</td>
+        <td>{{response.amount}}</td>
+        <td>{{response.mode}}</td>
+        <td>{{response.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+   </div>
+</div>

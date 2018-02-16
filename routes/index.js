@@ -194,17 +194,43 @@ routers.post('/contactus', (req, res) => {
 
 // success url
 routers.post('/success', (req, res) => {
-  res.render('success');
+  console.log(req.body);
+  const customerNumber = req.body.phone;
+  const operators = req.body.operator;
+  const rechargeAmount = req.body.net_amount_debit;
+  const options = {
+    method: 'GET',
+    url: 'https://www.pay2all.in/web-api/paynow',
+    qs: {
+      api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW',
+      number: customerNumber,
+      provider_id: operators,
+      amount: rechargeAmount,
+      client_id: '12'
+    },
+    //  agent: httpsAgent
+  };
+  console.log(options);
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    const bodyData = JSON.parse(body)
+    console.log(bodyData);
+    //   res.send(bodyData);
+    res.render('success', { response: req.body, presponse: bodyData });
+  });
+//  res.render('success', { response: req.body });
 });
 
 // failure url
 routers.post('/failure', (req, res) => {
-  res.render('failure');
+  console.log(req.body);
+  res.render('failure', { response: req.body });
 });
 
 // cancel url
 routers.post('/cancel', (req, res) => {
-  res.render('cancel');
+  console.log(req.body);
+  res.render('cancel', { response: req.body });
 });
 
 

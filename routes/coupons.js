@@ -1,6 +1,7 @@
 // const routers = global.router
 const router = global.express.Router();
 const request = require('request');
+const crypto = require('crypto');
 
 /*  */
 router.get('/', (req, res) => {
@@ -8,7 +9,33 @@ router.get('/', (req, res) => {
 });
 
 router.post('/mobile', (req, res) => {
-  const rechargeData = req.body;
+  const plan = req.body.planType;
+  const mobileNumber = req.body.number;
+  const Operator = req.body.operator;
+  const Amount = req.body.amount;
+  const transactionId = crypto.randomBytes(8).toString('hex');
+  const recData = {
+    planType: plan,
+    phone: mobileNumber,
+    operator: Operator,
+    udf1: Operator,
+    amount: Amount,
+    productinfo: 'recharge',
+    firstname: 'himanshu',
+    lastname: 'yadav',
+    email: 'yadavhimanshu477@gmail.com',
+    key: 'gtKFFx',
+    salt: 'eCwWELxi',
+    surl: 'http://5a4e219d.ngrok.io/success',
+    curl: 'http://5a4e219d.ngrok.io/cancel',
+    furl: 'http://5a4e219d.ngrok.io/failure',
+    txnid: transactionId,
+  };
+
+  // create hash
+  const formula = `${recData.key}|${recData.txnid}|${recData.amount}|${recData.productinfo}|${recData.firstname}|${recData.email}|||||||||||${recData.salt}`;
+  const hashValue = crypto.createHash('sha512').update(formula).digest('hex');
+
   const options = {
     method: 'GET',
     url: 'https://www.coupomated.com/apiv3/9deb-cbcf-917a-02bd/getOnlyCoupons/json',
@@ -16,7 +43,7 @@ router.post('/mobile', (req, res) => {
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
     const bodyData = JSON.parse(body)
-    res.render('coupons', { data: bodyData, rData: rechargeData });
+    res.render('coupons', { data: bodyData, rData: recData, hash: hashValue });
   });
 });
 
