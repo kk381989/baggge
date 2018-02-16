@@ -54,6 +54,11 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
 const hbs = require('hbs');
 
 // hbs.registerHelper('equal', (arg1, arg2, options) => (

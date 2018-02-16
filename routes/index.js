@@ -112,12 +112,16 @@ routers.post('/signUp', (req, res) => {
 
 /* GET Hotels page. */
 routers.get('/hotels', (req, res) => {
-  res.render('hotels', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('hotels', { session: sessionStore });
 });
 
 /* GET Vendor Registration page. */
 routers.get('/vendorRegistration', (req, res) => {
-  res.render('vendorRegistration', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('vendorRegistration', { session: sessionStore });
 });
 
 
@@ -132,41 +136,57 @@ routers.get('/aboutus', (req, res) => {
 
 /* GET Terms and Conditions page. */
 routers.get('/termsandconditions', (req, res) => {
-  res.render('termsandconditions', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('termsandconditions', { session: sessionStore });
 });
 
 /* GET Refund Policy page. */
 routers.get('/refundpolicy', (req, res) => {
-  res.render('refundpolicy', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('refundpolicy', { session: sessionStore });
 });
 
 /* GET Privacy Policy page. */
 routers.get('/privacypolicy', (req, res) => {
-  res.render('privacypolicy', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('privacypolicy', { session: sessionStore });
 });
 /* GET Privacy Policy page. */
 routers.get('/cancellationPolicy', (req, res) => {
-  res.render('cancellationPolicy', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('cancellationPolicy', { session: sessionStore });
 });
 
 
 /* GET CONTACT US page. */
 routers.get('/contactus', (req, res) => {
-  res.render('contactus', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('contactus', { session: sessionStore });
 });
 /* GET CAREERS page. */
 routers.get('/career', (req, res) => {
-  res.render('career', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('career', { session: sessionStore });
 });
 
 // get admin login page
 routers.get('/admin', (req, res) => {
-  res.render('admin', {});
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
+  res.render('admin', { session: sessionStore });
 });
 
 
 /* Contact Us page handler */
 routers.post('/contactus', (req, res) => {
+  let sessionStore = true
+  if (req.session.userId) { sessionStore = false }
   if (req.body.submit) {
     const yourNamename = req.body.yourName;
     const emailId = req.body.email;
@@ -184,7 +204,7 @@ routers.post('/contactus', (req, res) => {
         console.log(err);
       } else {
         console.log('submitted successfully');
-        res.render('contactus', { msg: 'submitted successfully' })
+        res.render('contactus', { msg: 'submitted successfully', session: sessionStore })
       }
     });
   } else {
