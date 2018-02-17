@@ -26,9 +26,9 @@ router.post('/mobile', (req, res) => {
     email: 'yadavhimanshu477@gmail.com',
     key: 'gtKFFx',
     salt: 'eCwWELxi',
-    surl: 'http://5a4e219d.ngrok.io/success',
-    curl: 'http://5a4e219d.ngrok.io/cancel',
-    furl: 'http://5a4e219d.ngrok.io/failure',
+    surl: 'https://baggge.com/success',
+    curl: 'https://baggge.com/cancel',
+    furl: 'https://baggge.com/failure',
     txnid: transactionId,
   };
 
