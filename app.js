@@ -6,15 +6,19 @@ const bodyParser = require('body-parser');
 const colors = require('colors')
 const session = require('express-session');
 
-const router = express.Router();
+// const router = express.Router();
 
 global.express = express
 global.session = session
-global.router = router
+// global.router = router
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const recharge = require('./routes/recharge');
+const coupons = require('./routes/coupons');
+const vendor = require('./routes/vendor');
+const admin = require('./routes/admin');
+const dashboard = require('./routes/dashboard');
 const electricityRecharge = require('./routes/electricityRecharge');
 const dthRecharge = require('./routes/dthRecharge');
 const appFunctions = require('./lib/appFunction');
@@ -37,6 +41,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/recharge', recharge);
+app.use('/coupons', coupons);
+app.use('/vendor', vendor);
+app.use('/admin', admin);
+app.use('/dashboard', dashboard);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
 
@@ -46,28 +54,26 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
 const hbs = require('hbs');
 
-hbs.registerHelper('ifEquals', (arg1, arg2, options) => ((arg1 === arg2) ? options.fn(this) : options.inverse(this)));
+// hbs.registerHelper('equal', (arg1, arg2, options) => (
+//   (arg1 === arg2) ? options.fn(this) : options.inverse(this)));
+
+hbs.registerHelper('ifEquals', function equals (a, b, options) {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this)
+});
 
 
 appFunctions.bagggePreLoad(() => {
   console.log(colors.green('[booting] ✔ All prerequisites are done'))
-  const user = global.MongoHandler.opened.baggge.collection('users')
-  const where1 = {}
-  user.find(where1, (err, cursor) => {
-    if (err) {
-      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
-    } else {
-      cursor.toArray((error, docs) => {
-        if (error) {
-          console.log(error)
-        }
-        // console.log('docs is the :::: ')
-        // console.log(docs)
-      });
-    }
-  })
 });
 
 // catch 404 and forward to error handler
