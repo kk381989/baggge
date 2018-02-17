@@ -63,41 +63,23 @@ router.get('/', (req, res) => {
             res.send('not logged in');
           } else if (docs.length === 1) {
             const hotels = global.MongoHandler.opened.baggge.collection('hotels');
-            const products = global.MongoHandler.opened.baggge.collection('products');
             const where = {
               vendorId: docs[0].vendorId
             }
-            if (docs[0].vendorCategory === 'hotels') {
-              hotels.find(where, (err1, cursor1) => {
-                if (err1) {
-                  console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
-                } else {
-                  cursor1.toArray((error2, hotel) => {
-                    if (error2) {
-                      console.log(error)
-                    }
-                    const hotelData = hotel;
-                    req.session.vendorId = docs[0].vendorId;
-                    res.render('dashboard', { data: docs[0], hotels: hotelData });
-                  });
-                }
-              });
-            } if (docs[0].vendorCategory === 'products') {
-              products.find(where, (err1, cursor1) => {
-                if (err1) {
-                  console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
-                } else {
-                  cursor1.toArray((error2, product) => {
-                    if (error2) {
-                      console.log(error)
-                    }
-                    const productsData = product;
-                    req.session.vendorId = docs[0].vendorId;
-                    res.render('dashboard', { data: docs[0], products: productsData });
-                  });
-                }
-              });
-            }
+            hotels.find(where, (err1, cursor1) => {
+              if (err1) {
+                console.log(colors.red(`Mongo:error can't query hotels ==>${err}`))
+              } else {
+                cursor1.toArray((error2, hotel) => {
+                  if (error2) {
+                    console.log(error)
+                  }
+                  const hotelData = hotel;
+                  req.session.vendorId = docs[0].vendorId;
+                  res.render('dashboard', { data: docs[0], hotels: hotelData });
+                });
+              }
+            });
           }
         });
       }
@@ -213,6 +195,49 @@ router.post('/addProduct', upload1.fields(fields1), (req, res) => {
     });
   }
 });
+
+// get product form
+router.post('/productForm', (req, res) => {
+  const vendorID = req.body.vendor;
+  const productCategory = req.body.prodCategory;
+  const collection = `prod_${productCategory}_desc`;
+  console.log(collection);
+  const form = global.MongoHandler.opened.baggge.collection(collection);
+  const where = {};
+  form.find(where, (err, cursor) => {
+    if (err) {
+      console.log(colors.red(`Mongo:error can't query ${collection} ==>${err}`))
+    } else {
+      cursor.toArray((error, docs) => {
+        if (error) {
+          console.log(error)
+        }
+        console.log(docs);
+        res.render('productForm', { formData: docs, vendor: vendorID, prodCategory: productCategory });
+      });
+    }
+  });
+});
+
+// add product to database
+router.post('/productAdd', (req, res) => {
+  const vendor = req.body.vendorId;
+  const productCategory = req.body.prodCategory;
+  const collection = `${productCategory}_info`;
+  console.log(collection);
+  console.log(req.body);
+  const productDocument = req.body;
+  const product = global.MongoHandler.opened.baggge.collection(collection);
+  product.insert(productDocument, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Product registered successfully');
+      res.redirect('/dashboard');
+    }
+  });
+});
+
 
 // add seller Details form handle
 router.post('/addSellerDetails', (req, res) => {

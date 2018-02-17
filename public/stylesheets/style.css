@@ -119,6 +119,15 @@ input#Travellers.form-control{
   background-color: #FFFFFF;
   padding: 10px 10px 10px 10px;
 }
+.productForm{
+  height:100%;
+  width: 70%;
+  border-radius: 10px;
+  margin:0 auto;
+  background-color: #FFFFFF;
+  padding: 10px 10px 10px 10px;
+}
+
 .products{
   height:100%;
   width: 100%;

@@ -74,9 +74,9 @@ button:hover {
 </style>
 <div class="vendorReg">
   <div class="container-fluid">
-    <h1 class="text-center" style="color: white;">Welcome Vendor</h1>
+    <h1 class="text-center" style="color: white;">Vendor Registration</h1>
     {{#if msg }}
-    <div class="alert alert-error alert-dismissable fade in text-center">
+    <div class="alert alert-danger alert-dismissable fade in text-center">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>{{msg}}</strong>
     </div>
@@ -92,13 +92,11 @@ button:hover {
 <div class="tab"><h3>Contact Info :<h3>
   <p><input type="email" name="email" class="form-control" placeholder="E-mail..." oninput=""></p>
   <p><input type="number" name="number" class="form-control" placeholder="Phone..." oninput=""></p>
-  <p><label style=""><input type="radio" name="vendorCategory" value="hotels"> Hotels</label>
-  <label style=""><input type="radio" name="vendorCategory" value="products"> Products</label><br>
-  </p>
 </div>
 <div class="tab"><h3>Login Info :</h3>
-  <p><input type="text" name="username" class="form-control" placeholder="Username..." oninput=""></p>
-  <p><input type="password" name="pass" class="form-control" placeholder="Password..." oninput=""></p>
+  <div class="alert" id="message"></div>
+  <p><input type="password" name="pass" id="pass" class="form-control" placeholder="Password..." oninput=""></p>
+  <p><input type="password" name="cpass" id="cpass" class="form-control" placeholder="Confirm Password..." oninput=""></p>
 </div>
 <div style="overflow:auto;">
   <div style="float:right;">
@@ -192,4 +190,11 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
+
+$('#pass, #cpass').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('Matching').css('color', 'green');
+  } else
+    $('#message').html('Not Matching').css('color', 'red');
+});
 </script>

@@ -7,265 +7,154 @@
           <div class="row">
             <div class="col-sm-3">
               <h3>Personal Details</h3>
-              <p><b>Name : </b>{{data.firstname}}&nbsp;{{data.lastname}}</p>
+              <p><b>First Name : </b>{{data.firstname}}</p>
+              <p><b>Last Name : </b>{{data.lastname}}</p>
               <p><b>Email Id : </b>{{data.email}}</p>
               <p><b>Mobile Number : </b>{{data.number}}</p>
-              <p><b>Username : </b>{{data.username}}</p>
             </div>
             <div class="col-sm-3">
               <h3>Seller Details</h3>
+              {{#if data.businessLegalName}}
               <p><b>Business Legal Name : </b>{{data.businessLegalName}}</p>
               <p><b>Shop Name : </b>{{data.shopName}}</p>
               <p><b>Address : </b>{{data.sellerAddress}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#sellerDetailsModal">Edit Seller Details</button>
+              {{else}}
               <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#sellerDetailsModal">Add Seller Details</button>
+              {{/if}}
             </div>
             <div class="col-sm-3">
               <h3>Tax Details</h3>
+              {{#if data.PAN}}
               <p><b>PAN Card : </b>{{data.PAN}}</p>
               <p><b>VAT : </b>{{data.VAT}}</p>
               <p><b>TIN : </b>{{data.TIN}}</p>
               <p><b>GSTIN : </b>{{data.GSTIN}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#taxDetailsModal">Edit Tax Details</button>
+              {{else}}
               <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#taxDetailsModal">Add Tax Details</button>
+              {{/if}}
             </div>
             <div class="col-sm-3">
               <h3>Account Details</h3>
+              {{#if data.accountName}}
               <p><b>Account Name : </b>{{data.accountName}}</p>
               <p><b>Account Number : </b>{{data.accountNumber}}</p>
               <p><b>Branch Name : </b>{{data.branchName}}</p>
               <p><b>IFSC Code : </b>{{data.IFSC}}</p>
+              <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#accountDetailsModal">Edit Tax Details</button>
+              {{else}}
               <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#accountDetailsModal">Add Tax Details</button>
+              {{/if}}
             </div>
           </div>
         </div>
       </div>
-      {{#ifEquals data.vendorCategory 'hotels'}}
+      <div class="hotels text-center" style="margin-top:10px;">
+      <h3><b>To add your product</b></h3>
+      <div class="row">
+        <div class="col-sm-6">
+          <h4><b>Step-1</b> Select PRODUCT CATEGORY</h4>
+        </div>
+        <div class="col-sm-6">
+        <h4>Step-2</b> Click on ADD PRODUCT button</h4>
+        </div>
+      </div>
+      <form class="form-inline" action="/dashboard/productForm" method="post">
+        <input type="hidden" name="vendor" value="{{data.vendorId}}">
+        <div class="form-group">
+        <label for="productCategory">Product Category</label>
+      <select id="prodCategory" name="prodCategory" class="form-control">
+        <option value="mobileandaccess">Mobile and accessories</options>
+        <option value="computerandaccess">Computer and acceessories</options>
+        <option value="camerasandaccess">Cameras and accessories</options>
+        <option value="clothingandaccess">Clothing and acceessories</options>
+   <!-- <option value="hotels">Hotels</options>
+        <option value="babyProduct">baby product</options>
+        <option value="books">books</options>
+        <option value="">consumer electronic</options>
+        <option value="">fine art</options>
+        <option value="">furniture</options>
+        <option value="">grocery and gourmet food</options>
+        <option value="">handbages</options>
+        <option value="">health and personal care</options>
+        <option value="">home and garden</options>
+        <option value="">industrial and scientific supply</options>
+        <option value="">jewelry</options>
+        <option value="">kindle accessories</options>
+        <option value="">kitchen</options>
+        <option value="">luggage and travel accessories</options>
+        <option value="">movies and DVD</options>  -->
+      </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+    </div>
+
      <div class="hotels" style="margin-top:10px">
-       <h3 class="text-center"><b>Your Hotels Will Appear Here</b></h1>
-       <button type="button" id="newHotel" class="btn btn-primary" data-toggle="modal" data-target="#addHotel">Click Here To Add Hotel</button>
+       <h3 class="text-center"><b>Your Products Will Appear Here</b></h3>
        <div class="entry">
-      {{#if hotels}}
-       {{#each hotels}}
-       <a id="showEdit" data-toggle="modal" data-target="#addHotel"
-       data-id="{{this._id}}"
-       data-name="{{this.name}}"
-       data-address="{{this.address}}"
-       data-city="{{this.city}}"
-       data-pincode="{{this.pincode}}"
-       data-state="{{this.state}}"
-       data-country="{{this.country}}"
-       data-website="{{this.website}}"
-       data-mnumber="{{this.mobNumber}}"
-       data-tnumber="{{this.telNumber}}"
-       data-time="{{this.time}}"
-       data-starcat="{{this.starCategory}}"
-       data-nairport="{{this.nearestAirport}}"
-       data-description="{{this.description}}"
-       >
+      {{#if products}}
+       {{#each products}}
+       <a id="showEdit" data-toggle="modal" data-target="#addHotel" >
         <div class="hotelCard">
            <div class="row">
            <div class="col-sm-7">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room1" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}room2" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}reception" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}exterior" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
-           <img class="img-thumbnail" src="/images/hotelsUploads/{{this.hotelId}}interior" onerror="this.onerror=null;this.src='/images/hotel.png';" height="120px" width="100px">
+           <img class="img-thumbnail" src="" onerror="" height="120px" width="100px">
+           <img class="img-thumbnail" src="" onerror="" height="120px" width="100px">
+           <img class="img-thumbnail" src="" onerror="" height="120px" width="100px">
+           <img class="img-thumbnail" src="" onerror="" height="120px" width="100px">
+           <img class="img-thumbnail" src="" onerror="" height="120px" width="100px">
            </div>
          <div class="col-sm-5">
-           <p><b>Hotel Name : </b>{{this.name}}</p>
-           <p><b>Address : </b>{{this.address}}</p>
-           <p><b>Description : </b>{{this.description}}</p>
+           <p><b>Product Name : </p>
+           <p><b>Model : </b></p>
+           <p><b>Description : </b></p>
          </div>
        </div>
        </div>
       </a>
        {{/each}}
       {{else}}
-      <h4 class="text-center">No Hotels Added Yet...</h4>
+      <h4 class="text-center">No Products Added Yet...</h4>
+      <a id="showEdit" data-toggle="modal" data-target="#demoProduct"
+      data-productname="Demo Product"
+      data-model="Demo Model"
+      data-brand="Demo Brand"
+      data-quantity="123"
+      data-manufacturer="Demo manufacturer"
+      data-productcategory="Demo Category"
+      data-productdescription="Demo Description"
+      >
+       <div class="hotelCard">
+          <div class="row">
+          <div class="col-sm-7">
+          <img class="img-thumbnail" src="/images/product_Icon.png"  height="120px" width="100px">
+          <img class="img-thumbnail" src="/images/product_Icon.png"  height="120px" width="100px">
+          <img class="img-thumbnail" src="/images/product_Icon.png"  height="120px" width="100px">
+          <img class="img-thumbnail" src="/images/product_Icon.png"  height="120px" width="100px">
+          <img class="img-thumbnail" src="/images/product_Icon.png"  height="120px" width="100px">
+          </div>
+        <div class="col-sm-5">
+          <p><b>Product Name : </b>Demo Product</p>
+          <p><b>MRP : </b>100</p>
+          <p><b>Stock : </b>20</p>
+        </div>
+      </div>
+      </div>
+     </a>
+
       {{/if}}
       </div>
      </div>
 
-{{/ifEquals}}
-{{#ifEquals data.vendorCategory 'products'}}
-<div class="products" style="margin-top:10px">
-  <h3 class="text-center"><b>Your Products Will Appear Here</b></h1>
-  <button type="button" id="newProduct" class="btn btn-primary" data-toggle="modal" data-target="#addProduct">Click Here To Add Products</button>
-  <div class="entry">
- {{#if products}}
-  {{#each products}}
-  <a id="showProductEdit" data-toggle="modal" data-target="#addProduct"
-  data-id="{{this._id}}"
-  data-productname="{{this.productName}}"
-  data-model="{{this.model}}"
-  data-brand="{{this.brand}}"
-  data-quantity="{{this.quantity}}"
-  data-manufacturer="{{this.manufacturer}}"
-  data-productcategory="{{this.productCategory}}"
-  data-productdescription="{{this.productDescription}}"
-  >
-   <div class="hotelCard">
-      <div class="row">
-      <div class="col-sm-7">
-        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image1" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
-        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image2" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
-        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image3" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
-        <img class="img-thumbnail" src="/images/productsUploads/{{this.productId}}image4" onerror="this.src='/images/product_Icon.png';" height="120px" width="100px">
-      </div>
-    <div class="col-sm-5">
-      <p><b>Product Name : </b>{{this.productName}}</p>
-      <p><b>Brand : </b>{{this.brand}}</p>
-      <p><b>Quantity : </b>{{this.quantity}}</p>
-    </div>
-  </div>
-  </div>
- </a>
-  {{/each}}
-  {{else}}
-  <h4 class="text-center">No Products Added Yet...</h4>
-  {{/if}}
-</div>
-</div>
-{{/ifEquals}}
+
    </div>
   </div>
 </div>
-<!-- ADD HOTEL Modal -->
-<div id="addHotel" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-center">Register Your Hotel With Us</h4>
-      </div>
-      <div class="modal-body">
-        <div class="hotels">
-          <form method="post" action="/dashboard/addHotel" name="editHotel" enctype="multipart/form-data">
-            <input type="hidden" name="vendorId" value="{{data.vendorId}}">
-            <input type="hidden" name="id" value="">
-              <div class="form-group row">
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="name" placeholder=" Name of the Hotel ">
-                <button type="button" id="edit1" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4 ">
-                <input type="text" class="form-control" name="address" placeholder=" Address">
-                <button type="button" id="edit2" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4 ">
-                <input type="text" class="form-control" name="city" placeholder=" City ">
-                <button type="button" id="edit3" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <input type="number" class="form-control" style="margin:0px;" name="pincode" placeholder=" Pincode ">
-                <button type="button" id="edit4" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="state" placeholder=" State ">
-                <button type="button" id="edit5" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="country" placeholder=" Country ">
-                <button type="button" id="edit6" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="website" placeholder=" Website ">
-                <button type="button" id="edit7" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4">
-                <input type="number" class="form-control" style="margin:0px;" name="mNumber" placeholder=" Mobile No. ">
-                <button type="button" id="edit8" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4">
-                <input type="number" class="form-control" style="margin:0px;" name="tNumber" placeholder=" Telephone No ">
-                <button type="button" id="edit9" title="Click to Edit" ><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="time" placeholder=" Check-In/Check-Out time ">
-                <button type="button" id="edit10" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-              <div class="col-sm-4">
-                <select id="starCategory" name="starCategory" class="form-control">
-                <option value=""> Star Category</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                </select>
-              </div>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="nearestAirport" placeholder=" Nearest Airport ">
-                <button type="button" id="edit11" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-12">
-                <textarea placeholder="Description about your Hotel" id="description" name="description" class="form-control"></textarea>
-                <button type="button" id="edit12" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
-              </div>
-            </div>
-            <h3>Upload Hotel Images</h3>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <label for="room1">Room 1</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" style="" name="room1" >
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="room2">Room 2</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="room2" >
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="reception">Reception</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="reception" >
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-4">
-                <label for="exterior"> Exterior</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="exterior" >
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="interior"> Interior</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="interior" >
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <label for="facility"> Facility(any)</label>
-                <div class="file btn btn-primary btn-md" style="position:relative;overflow:hidden;">Upload
-                  <input type="file" class="form-control-file" name="facility" >
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ADD Products Modal -->
-<div id="addProduct" class="modal fade" role="dialog">
+<!-- demo Products Modal -->
+<div id="demoProduct" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -276,8 +165,7 @@
       </div>
       <div class="modal-body">
         <div class="products">
-          <form method="post" action="/dashboard/addProduct" name="editProduct" enctype="multipart/form-data">
-            <input type="hidden" name="vendorId" value="{{data.vendorId}}">
+          <form method="" action="" name="editProduct" enctype="multipart/form-data">
             <input type="hidden" name="id" value="">
               <div class="form-group row">
               <div class="col-sm-4">
@@ -295,7 +183,7 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-4">
-                <input type="number" class="form-control" style="margin:0px;" name="quantity" placeholder=" Qantity ">
+                <input type="number" class="form-control" style="margin:0px;" name="quantity" placeholder=" Stock ">
                 <button type="button" id="pedit4" title="Click to Edit"><span class="glyphicon glyphicon-edit"></span></button>
               </div>
               <div class="col-sm-4">
@@ -478,92 +366,7 @@
 
 
 <script>
-$('#addHotel').on('show.bs.modal', function(e) {
-const id = $(e.relatedTarget).data('id');
-const name = $(e.relatedTarget).data('name');
-const address = $(e.relatedTarget).data('address');
-const city = $(e.relatedTarget).data('city');
-const pincode = $(e.relatedTarget).data('pincode');
-const state = $(e.relatedTarget).data('state');
-const country = $(e.relatedTarget).data('country');
-const website = $(e.relatedTarget).data('website');
-const mNumber = $(e.relatedTarget).data('mnumber');
-const tNumber = $(e.relatedTarget).data('tnumber');
-const time = $(e.relatedTarget).data('time');
-const starCat = $(e.relatedTarget).data('starcat');
-const nAirport = $(e.relatedTarget).data('nairport');
-const description = $(e.relatedTarget).data('description');
-$(e.currentTarget).find('input[name="id"]').val(id);
-$(e.currentTarget).find('input[name="name"]').val(name);
-$(e.currentTarget).find('input[name="address"]').val(address);
-$(e.currentTarget).find('input[name="city"]').val(city);
-$(e.currentTarget).find('input[name="pincode"]').val(pincode);
-$(e.currentTarget).find('input[name="state"]').val(state);
-$(e.currentTarget).find('input[name="country"]').val(country);
-$(e.currentTarget).find('input[name="website"]').val(website);
-$(e.currentTarget).find('input[name="mNumber"]').val(mNumber);
-$(e.currentTarget).find('input[name="tNumber"]').val(tNumber);
-$(e.currentTarget).find('input[name="time"]').val(time);
-$(e.currentTarget).find('#starCategory').val(starCat);
-$(e.currentTarget).find('input[name="nearestAirport"]').val(nAirport);
-$(e.currentTarget).find('#description').val(description);
-if (id) {
-  $('input[name="name"]').prop('readonly', true);
-  $('input[name="address"]').prop('readonly', true);
-  $('input[name="city"]').prop('readonly', true);
-  $('input[name="pincode"]').prop('readonly', true);
-  $('input[name="state"]').prop('readonly', true);
-  $('input[name="country"]').prop('readonly', true);
-  $('input[name="website"]').prop('readonly', true);
-  $('input[name="mNumber"]').prop('readonly', true);
-  $('input[name="tNumber"]').prop('readonly', true);
-  $('input[name="time"]').prop('readonly', true);
-  $('input[name="nearestAirport"]').prop('readonly', true);
-//    $('#starCategory').prop("disabled", true);
-  $('#description').prop('readonly', true);
-}
-});
 
-$("#edit1").click(function(){
- $(this).parent().find('input[name="name"]').prop('readonly', false);
-});
-$("#edit2").click(function(){
- $(this).parent().find('input[name="address"]').prop('readonly', false);
-});
-$("#edit3").click(function(){
- $(this).parent().find('input[name="city"]').prop('readonly', false);
-});
-$("#edit4").click(function(){
- $(this).parent().find('input[name="pincode"]').prop('readonly', false);
-});
-$("#edit5").click(function(){
- $(this).parent().find('input[name="state"]').prop('readonly', false);
-});
-$("#edit6").click(function(){
- $(this).parent().find('input[name="country"]').prop('readonly', false);
-});
-$("#edit7").click(function(){
- $(this).parent().find('input[name="website"]').prop('readonly', false);
-});
-$("#edit8").click(function(){
- $(this).parent().find('input[name="mNumber"]').prop('readonly', false);
-});
-$("#edit9").click(function(){
- $(this).parent().find('input[name="tNumber"]').prop('readonly', false);
-});
-$("#edit10").click(function(){
- $(this).parent().find('input[name="time"]').prop('readonly', false);
-});
-$("#edit11").click(function(){
- $(this).parent().find('input[name="nearestAirport"]').prop('readonly', false);
-});
-$("#edit12").click(function(){
- $(this).parent().find('#description').prop('readonly', false);
-});
-$("#newHotel").click(function(){
-   $("#edit1,#edit2,#edit3,#edit4,#edit5,#edit6,#edit7,#edit8,#edit9,#edit10,#edit11,#edit12").hide();
-   $('input,#description').prop('readonly', false);
-});
 $("#showEdit").click(function(){
   $("#edit1,#edit2,#edit3,#edit4,#edit5,#edit6,#edit7,#edit8,#edit9,#edit10,#edit11,#edit12").show();
 });
@@ -572,7 +375,7 @@ $("#newProduct").click(function(){
    $('input,#productDescription').prop('readonly', false);
 });
 
-$('#addProduct').on('show.bs.modal', function(e) {
+$('#demoProduct').on('show.bs.modal', function(e) {
 const id = $(e.relatedTarget).data('id');
 const pname = $(e.relatedTarget).data('productname');
 const Model = $(e.relatedTarget).data('model');
@@ -589,7 +392,6 @@ $(e.currentTarget).find('input[name="quantity"]').val(Quantity);
 $(e.currentTarget).find('input[name="manufacturer"]').val(Manufacturer);
 $(e.currentTarget).find('input[name="productCategory"]').val(productCategory);
 $(e.currentTarget).find('#productDescription').val(productDescription);
-if (id) {
   $('input[name="productName"]').prop('readonly', true);
   $('input[name="model"]').prop('readonly', true);
   $('input[name="brand"]').prop('readonly', true);
@@ -597,7 +399,6 @@ if (id) {
   $('input[name="manufacturer"]').prop('readonly', true);
   $('input[name="productCategory"]').prop('readonly', true);
   $('#productDescription').prop('readonly', true);
-}
 });
 $("#pedit1").click(function(){
  $(this).parent().find('input[name="productName"]').prop('readonly', false);

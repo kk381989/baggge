@@ -182,8 +182,11 @@
               </ul>
             </div>
             <div class="col-sm-2">
+              {{#if data.vendorId}}
+              {{else}}
                 <a href="/vendorRegistration" class="btn" style="color: black;">Registration for business</a></br>
                 <a href="/vendor" class="btn" style="color: black;">Vendor Login</a>
+                {{/if}}
             </div>
             <div class="col-sm-3">
               <h4><b>Download Our App</b></h4>
