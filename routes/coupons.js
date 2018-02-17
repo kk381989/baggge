@@ -25,7 +25,7 @@ router.post('/mobile', (req, res) => {
     lastname: 'yadav',
     email: 'yadavhimanshu477@gmail.com',
     key: 'B74f96',
-    salt: 'eCwWELxi',
+    salt: 'o2o0Cf7r',
     surl: 'https://baggge.com/success',
     curl: 'https://baggge.com/cancel',
     furl: 'https://baggge.com/failure',
