@@ -80,4 +80,9 @@ $(document).ready(function() {
       $('#hotels').show();
       $('#bus, #flight').hide();
   });
+
+    $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+    //$('#bus_datepicker').data("DateTimePicker").FUNCTION()
 });

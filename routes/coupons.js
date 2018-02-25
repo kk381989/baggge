@@ -24,11 +24,11 @@ router.post('/mobile', (req, res) => {
     firstname: 'himanshu',
     lastname: 'yadav',
     email: 'yadavhimanshu477@gmail.com',
-    key: 'gtKFFx',
-    salt: 'eCwWELxi',
-    surl: 'http://5a4e219d.ngrok.io/success',
-    curl: 'http://5a4e219d.ngrok.io/cancel',
-    furl: 'http://5a4e219d.ngrok.io/failure',
+    key: 'B74f96',
+    salt: 'o2o0Cf7r',
+    surl: 'https://baggge.com/success',
+    curl: 'https://baggge.com/cancel',
+    furl: 'https://baggge.com/failure',
     txnid: transactionId,
   };
 

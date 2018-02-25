@@ -76,6 +76,8 @@ appFunctions.bagggePreLoad(() => {
   console.log(colors.green('[booting] ✔ All prerequisites are done'))
 });
 
+app.use('/favicon.ico', express.static('images/favicon.ico'));
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
