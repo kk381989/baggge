@@ -139,35 +139,6 @@ input#Travellers.form-control{
   width: 100%;
   border-radius: 10px;
   background-color: #FFFFFF;
-<<<<<<< HEAD
-  padding: 10px 10px 10px 10px;
-}
-
-.vendorReg{
-  height:100%;
-  width: 100%;
-  background-color: #00498E;
-  padding: 10px 10px 10px 10px;
-}
-
-.hotelCard{
-  height:100%;
-  width: 100%;
-  margin:10px;
-  padding: 10px 10px 10px 10px;
-//  box-shadow: 3px 1px 5px 2px ;
-  border: 1px solid;
-}
-.couponsBlue{
-  height:100%;
-  width: 100%;
-  border-radius: 10px;
-  margin: 30px auto;
-  background-color: #00498E;
-  padding: 10px 10px 10px 10px;
-}
-
-=======
   padding: 10px 10px 10px 10px;
 }
 
