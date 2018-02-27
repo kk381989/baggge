@@ -1,0 +1,26 @@
+<div class="vendorReg">
+  <div class="container-fluid">
+    <div class="mid">
+      <h2 class="text-center" style="color: white;">Admin Login</h2>
+      {{#if fail }}
+      <div class="alert alert-danger alert-dismissable fade in text-center">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{fail}}</strong> {{msg}}
+      </div>
+      {{/if}}
+      <form id="vendorRegForm" action="/admin/adminLogin" method="post">
+        <div class="form-group">
+         <label for="userName"><span class="glyphicon glyphicon-user"></span> Username</label>
+         <input type="text" class="form-control" name="userName" placeholder="" value="ADMIN" readonly>
+      </div>
+      <div class="loginFormError" id="userNameError"></div>
+      <div class="form-group">
+        <label for="passWord"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+        <input type="password" class="form-control" name="passWord" placeholder="Enter password" >
+      </div>
+      <div class="loginFormError" id="passWordError"></div>
+      <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+      </form>
+    </div>
+  </div>
+</div>

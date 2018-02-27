@@ -1,0 +1,50 @@
+<div class="container">
+ <div class="couponsBlue">
+   <div class="row">
+     <div class="col-sm-8">
+     <p class="text-center" style="color:white;font-size:20px;margin-top:15px;">Recharge of mobile number {{rData.number}} for Rs. {{rData.amount}}</p>
+     </div>
+     <div class="col-sm-4">
+      <form action='https://secure.payu.in/_payment' method='post'>
+        <input type="hidden" name="firstname" value="{{rData.firstname}}" />
+        <input type="hidden" name="lastname" value="{{rData.lastname}}" />
+        <input type="hidden" name="operator" value="{{rData.operator}}" />
+        <input type="hidden" name="email" value="{{rData.email}}" />
+        <input type="hidden" name="phone" value="{{rData.phone}}" />
+        <input type="hidden" name="amount" value="{{rData.amount}}" />
+        <input type="hidden" name="productinfo" value="{{rData.productinfo}}" />
+        <input type="hidden" name="key" value="{{rData.key}}" />
+        <input type="hidden" name="salt" value="{{rData.salt}}" />
+        <input type="hidden" name="surl" value="{{rData.surl}}" />
+        <input type="hidden" name="curl" value="{{rData.curl}}" />
+        <input type="hidden" name="furl" value="{{rData.furl}}" />
+        <input type="hidden" name="txnid" value="{{rData.txnid}}" />
+        <input type="hidden" name="hash" value ="{{hash}}" />
+        <button type="submit" class="btn btn-primary btn-lg">Proceed to Pay Rs. {{rData.amount}}</button>
+      </form>
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="container">
+  <div class="couponslue">
+  <div class="row">
+{{#each data}}
+<div class="col-sm-3">
+  <div class="coupons" >
+    <div class="cHead">
+    <p class="text-center"><b>{{this.STORE_NAME}}</b></p>
+    </div>
+    <p><b>{{this.TITLE}}</b></p>
+    <p><b>Discount</b> : {{this.DISCOUNT}}</p>
+    <div class="cFoot">
+    <p>Coupon Code :<span class="promo"> {{this.COUPON}}</span></p>
+    <a href="{{this.LINK}}" class="btn btn-primary btn-sm">Go to store to avail this offer</a>
+    </div>
+ </div>
+</div>
+{{/each}}
+  </div>
+</div>
+</div>
