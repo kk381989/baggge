@@ -54,9 +54,13 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/robots.txt', function (req, res) {
+app.get('/robots.txt',v  function (req, res) {
     res.type('text/plain');
+<<<<<<< Updated upstream
     res.send("User-agent: *\nallow: /");
+=======
+    res.send("User-agent: *\nallow: www.baggge.com/sitemap.xml");
+>>>>>>> Stashed changes
 });
 
 const hbs = require('hbs');
