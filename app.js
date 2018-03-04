@@ -21,6 +21,8 @@ const admin = require('./routes/admin');
 const dashboard = require('./routes/dashboard');
 const electricityRecharge = require('./routes/electricityRecharge');
 const dthRecharge = require('./routes/dthRecharge');
+const bus = require('./routes/bus');
+
 const appFunctions = require('./lib/appFunction');
 
 const app = express();
@@ -47,6 +49,7 @@ app.use('/admin', admin);
 app.use('/dashboard', dashboard);
 app.use('/dthRecharge', dthRecharge);
 app.use('/electricityRecharge', electricityRecharge);
+app.use('/bus', bus);
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
@@ -56,7 +59,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
-    res.send("User-agent: *\nallow: /");
+    res.send("User-agent: *\nallow: /\n\nSitemap: https://baggge.com/sitemap.xml");
 });
 
 const hbs = require('hbs');
