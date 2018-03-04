@@ -267,23 +267,17 @@
     </div>
 
     <div id="bus" class="blue_div">
-      <form action="" method="">
+      <form action="/bus" method="GET">
         <div class="form-group row">
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="" placeholder=" From Station ">
+            <input type="text" class="form-control" name="city_from" placeholder=" From Station " value="1327">
           </div>
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="" placeholder=" To Station">
+            <input type="text" class="form-control" name="city_to" placeholder=" To Station" value="1492">
           </div>
-          <!-- <div class="col-sm-3">
-            <input id="bus_datepicker" type="text" class="form-control" name="travel_date" placeholder=" Date ">
-          </div> -->
-          <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+          <div class="col-sm-3">
+            <input id="bus_datepicker" type="date" class="form-control" name="dateOfJourney" value="" placeholder=" Date ">
+          </div>
           <div class="col-sm-3">
             <button type="submit" style="margin-top:0px;" class="btn col-xs-10 btn-primary" > Search</button>
           </div>

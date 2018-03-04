@@ -79,10 +79,5 @@ $(document).ready(function() {
       $("#menu8, #menu7").css("color", "#004293");
       $('#hotels').show();
       $('#bus, #flight').hide();
-  });
-
-    $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-    //$('#bus_datepicker').data("DateTimePicker").FUNCTION()
+    });
 });
