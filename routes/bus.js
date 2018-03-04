@@ -6,8 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
 	const ipAddress = new Buffer(req.connection.remoteAddress).toString('base64')
 	let doj = req.query.dateOfJourney
-	doj = new Date(doj)
-	doj = doj.getFullYear()+'-' + (doj.getMonth()+1) + '-'+doj.getDate();
+	// doj = new Date(doj)
+	// doj = doj.getFullYear()+'-' + (doj.getMonth()+1) + '-'+doj.getDate();
 	const search_arr = req.originalUrl.split("?");
 	console.log("req.originalUrl")
 	console.log(req.originalUrl)
