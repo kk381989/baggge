@@ -57,7 +57,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/robots.txt',v  function (req, res) {
+app.get('/robots.txt',  function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nallow: /\n\nSitemap: https://www.baggge.com/sitemap.xml");
 });
