@@ -15,16 +15,30 @@ routers.get('/', (req, res) => {
       api_token: '1swdyd5JddEUDK8iqwZJpMmCTPzakBemqOIAwV00f1O9x0LDG5hQjtb98brW'
     },
   };
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
-    let sessionStore = true
-    const bodyData = JSON.parse(body)
-    console.log(sessionStore);
-    console.log(req.session.userId);
-    if (req.session.userId) { sessionStore = true }
-    console.log(`session is the :: ${sessionStore}`)
-    res.render('index', { data: bodyData, session: sessionStore });
-  });
+  const bus_city_name = global.MongoHandler.opened.baggge.collection('bus_city_name')
+  let docs_bus_city_name = {}
+  bus_city_name.find({}, (err, cursor) => {
+    if (err) {
+      console.log(colors.red(`Mongo:error can't query users ==>${err}`))
+    } else {
+      cursor.toArray((error, docs) => {
+        if (error) {
+          console.log(error)
+        }
+        docs_bus_city_name = docs
+        request(options, (error, response, body) => {
+          if (error) throw new Error(error);
+          let sessionStore = true
+          const bodyData = JSON.parse(body)
+          console.log(sessionStore);
+          console.log(req.session.userId);
+          if (req.session.userId) { sessionStore = true }
+          console.log(`session is the :: ${sessionStore}`)
+          res.render('index', { data: bodyData, session: sessionStore, docs_bus_city_name:docs_bus_city_name });
+        });
+      });
+    }
+  })
 });
 
 
