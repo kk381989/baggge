@@ -59,9 +59,9 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/robots.txt', function (req, res) {
+app.get('/robots.txt',  function (req, res) {
     res.type('text/plain');
-    res.send("User-agent: *\nallow: /\n\nSitemap: https://baggge.com/sitemap.xml");
+    res.send("User-agent: *\nallow: /\n\nSitemap: https://www.baggge.com/sitemap.xml");
 });
 
 const hbs = require('hbs');
