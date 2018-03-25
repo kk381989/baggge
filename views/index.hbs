@@ -41,9 +41,9 @@
             </div>
             <div class="col-sm-2 col-md-2">
               <select id="moperator" name="operator" class="form-control" >
-              <option value="">Select Operator</option>
+              <option value="">Select Operators</option>
               {{#each data.providers}}
-              {{#ifEquals this.service 'Recharge'}}
+              {{#ifEquals this.service 'Mobile Recharge'}}
               <option style="color:black;" value="{{this.provider_id}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}

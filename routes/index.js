@@ -35,6 +35,7 @@ routers.get('/', (req, res) => {
           console.log(req.session.userId);
           if (req.session.userId) { sessionStore = true }
           console.log(`session is the :: ${sessionStore}`)
+        console.log(bodyData)
           res.render('index', { data: bodyData, session: sessionStore, docs_bus_city_name:docs_bus_city_name });
         });
       });
