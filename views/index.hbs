@@ -41,9 +41,9 @@
             </div>
             <div class="col-sm-2 col-md-2">
               <select id="moperator" name="operator" class="form-control" >
-              <option value="">Select Operator</option>
+              <option value="">Select Operators</option>
               {{#each data.providers}}
-              {{#ifEquals this.service 'Recharge'}}
+              {{#ifEquals this.service 'Mobile Recharge'}}
               <option style="color:black;" value="{{this.provider_id}}">{{this.provider_name}}</option>
               <!-- <div>{{@key}} himanshu yadav</div></br> -->
               {{/ifEquals}}
@@ -225,7 +225,7 @@
       </ul>
 
     <div id="flight" class="blue_div">
-      <form action="" method="get">
+      <form action="/flights" method="get">
         <label class="redio-inline" style="color:white;font-size:15px;">
           <input type="radio"  name="" value="oneway"> One Way
         </label>
@@ -270,13 +270,15 @@
       <form action="/bus" method="GET">
         <div class="form-group row">
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="city_from" placeholder=" From Station " value="1327">
+            <input type="hidden" name="city_from_code" value="1327">
+            <input type="hidden" name="city_to_code" value="1492">
+            <input type="text" class="form-control" name="city_from" placeholder=" From Station " value="">
           </div>
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="city_to" placeholder=" To Station" value="1492">
+            <input type="text" class="form-control" name="city_to" placeholder=" To Station" value="">
           </div>
           <div class="col-sm-3">
-            <input id="bus_datepicker" type="date" class="form-control" name="dateOfJourney" value="" placeholder=" Date ">
+            <input id="bus_datepicker" type="date" class="form-control" name="Doj" value="" placeholder=" Date ">
           </div>
           <div class="col-sm-3">
             <button type="submit" style="margin-top:0px;" class="btn col-xs-10 btn-primary" > Search</button>
@@ -286,7 +288,7 @@
     </div>
 
     <div id="hotels" class="blue_div">
-      <form action="/hotels" method="get">
+      <form action="./hotels" method="GET">
         <div class="form-group row">
           <div class="col-sm-3">
             <select id="city" class="form-control" >
